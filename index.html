@@ -1,0 +1,3092 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Pariya Academy — English Language Learning Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+/* ===== CSS VARIABLES ===== */
+:root {
+  --primary: #0a2463;
+  --primary-light: #1e3a8a;
+  --primary-dark: #060f2e;
+  --gold: #c9a84c;
+  --gold-light: #f0c97a;
+  --gold-dark: #9b7a2f;
+  --white: #ffffff;
+  --off-white: #f8f7f2;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --info: #0284c7;
+  --bg: #f0f4ff;
+  --card-bg: #ffffff;
+  --text: #0a2463;
+  --text-muted: #4b5563;
+  --border: #dde3f5;
+  --shadow: 0 4px 24px rgba(10,36,99,0.10);
+  --shadow-lg: 0 8px 48px rgba(10,36,99,0.16);
+  --radius: 16px;
+  --radius-sm: 8px;
+  --radius-lg: 24px;
+  --sidebar-w: 260px;
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="dark"] {
+  --bg: #060f2e;
+  --card-bg: #0d1f54;
+  --text: #e8eeff;
+  --text-muted: #8899cc;
+  --border: #1a2f70;
+  --shadow: 0 4px 24px rgba(0,0,0,0.40);
+  --shadow-lg: 0 8px 48px rgba(0,0,0,0.60);
+  --gray-100: #0d1f54;
+  --gray-200: #1a2f70;
+}
+
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden;transition:background var(--transition),color var(--transition)}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+input,textarea,select{font-family:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+ul{list-style:none}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--primary-light);border-radius:99px}
+
+/* ===== UTILITY ===== */
+.hidden{display:none!important}
+.flex{display:flex}
+.items-center{align-items:center}
+.justify-between{justify-content:space-between}
+.gap-1{gap:8px}
+.gap-2{gap:16px}
+.gap-3{gap:24px}
+.text-center{text-align:center}
+.mt-1{margin-top:8px}
+.mt-2{margin-top:16px}
+.mt-3{margin-top:24px}
+.mb-2{margin-bottom:16px}
+.w-full{width:100%}
+.grid{display:grid}
+.rounded{border-radius:var(--radius)}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:99px;font-size:12px;font-weight:600;letter-spacing:.3px}
+.badge-success{background:#d1fae5;color:#065f46}
+.badge-warning{background:#fef3c7;color:#92400e}
+.badge-danger{background:#fee2e2;color:#991b1b}
+.badge-info{background:#dbeafe;color:#1e40af}
+.badge-gold{background:linear-gradient(135deg,#f0c97a,#c9a84c);color:#5a3900}
+[data-theme="dark"] .badge-success{background:#064e3b;color:#6ee7b7}
+[data-theme="dark"] .badge-warning{background:#78350f;color:#fcd34d}
+[data-theme="dark"] .badge-danger{background:#7f1d1d;color:#fca5a5}
+[data-theme="dark"] .badge-info{background:#1e3a8a;color:#93c5fd}
+
+/* ===== PAGES SYSTEM ===== */
+.page{display:none;min-height:100vh}
+.page.active{display:block}
+
+/* ===== TOAST ===== */
+#toast-container{position:fixed;top:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:12px}
+.toast{padding:14px 20px;border-radius:var(--radius-sm);background:var(--card-bg);border-left:4px solid;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;animation:slideInRight .3s ease,fadeOut .3s ease 2.7s forwards;max-width:340px;color:var(--text)}
+.toast.success{border-color:var(--success)}
+.toast.error{border-color:var(--danger)}
+.toast.warning{border-color:var(--warning)}
+.toast.info{border-color:var(--info)}
+.toast i{font-size:18px}
+.toast.success i{color:var(--success)}
+.toast.error i{color:var(--danger)}
+.toast.warning i{color:var(--warning)}
+.toast.info i{color:var(--info)}
+@keyframes slideInRight{from{transform:translateX(120%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes fadeOut{to{opacity:0;transform:translateX(120%)}}
+
+/* ===== LOADING OVERLAY ===== */
+#loading-overlay{position:fixed;inset:0;background:var(--primary-dark);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity .5s}
+#loading-overlay.hidden{opacity:0;pointer-events:none}
+.loader-logo{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--white);letter-spacing:-1px}
+.loader-logo span{color:var(--gold)}
+.loader-bar{width:220px;height:4px;background:rgba(255,255,255,.2);border-radius:99px;overflow:hidden}
+.loader-bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:99px;animation:loadFill 1.8s ease forwards}
+@keyframes loadFill{to{width:100%}}
+.loader-text{color:rgba(255,255,255,.6);font-size:13px;font-family:'JetBrains Mono',monospace}
+
+/* ===========================
+   ===== HOME / LANDING =====
+   =========================== */
+#page-home{display:none}
+#page-home.active{display:block}
+
+/* Navbar */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 40px;height:72px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,36,99,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,.2);transition:all var(--transition)}
+.navbar.scrolled{background:rgba(6,15,46,.98);box-shadow:0 4px 32px rgba(0,0,0,.3)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--primary-dark);font-weight:900}
+.nav-logo-text{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);line-height:1.1}
+.nav-logo-text small{display:block;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:400;color:rgba(255,255,255,.6);letter-spacing:.5px}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{color:rgba(255,255,255,.8);font-size:14px;font-weight:500;transition:color var(--transition);position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--gold);transition:width var(--transition)}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:99px;font-size:14px;font-weight:600;transition:all var(--transition);white-space:nowrap}
+.btn-outline-white{border:1.5px solid rgba(255,255,255,.5);color:var(--white);background:transparent}
+.btn-outline-white:hover{background:rgba(255,255,255,.1);border-color:var(--white)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--primary-dark);box-shadow:0 4px 16px rgba(201,168,76,.4)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.5)}
+.btn-primary{background:var(--primary);color:var(--white);box-shadow:0 4px 16px rgba(10,36,99,.3)}
+.btn-primary:hover{background:var(--primary-light);transform:translateY(-2px)}
+.btn-danger{background:var(--danger);color:var(--white)}
+.btn-danger:hover{opacity:.9}
+.btn-success{background:var(--success);color:var(--white)}
+.btn-success:hover{opacity:.9}
+.btn-warning{background:var(--warning);color:var(--white)}
+.btn-sm{padding:7px 16px;font-size:13px}
+.btn-lg{padding:14px 32px;font-size:16px;border-radius:var(--radius)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.nav-hamburger span{width:24px;height:2px;background:var(--white);transition:all var(--transition);border-radius:2px}
+
+/* Hero */
+.hero{min-height:100vh;background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 50%,#1a3a8f 100%);display:flex;align-items:center;padding:100px 40px 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.hero-orb-1{width:500px;height:500px;background:rgba(201,168,76,.15);top:-100px;right:-100px}
+.hero-orb-2{width:300px;height:300px;background:rgba(30,58,138,.4);bottom:-50px;left:10%}
+.hero-content{position:relative;z-index:1;max-width:640px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);border-radius:99px;font-size:13px;font-weight:600;color:var(--gold-light);margin-bottom:24px}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(40px,5vw,72px);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:24px}
+.hero-title .highlight{color:var(--gold-light);position:relative;display:inline-block}
+.hero-subtitle{font-size:18px;color:rgba(255,255,255,.75);margin-bottom:40px;max-width:520px;line-height:1.7}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:60px}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap}
+.hero-stat{text-align:left}
+.hero-stat-number{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--gold-light);line-height:1}
+.hero-stat-label{font-size:13px;color:rgba(255,255,255,.6);margin-top:4px}
+.hero-image-side{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:42%;max-width:580px;display:grid;grid-template-columns:1fr 1fr;gap:16px;z-index:1}
+.hero-card{background:rgba(255,255,255,.08);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:20px;animation:floatCard 4s ease-in-out infinite}
+.hero-card:nth-child(2){animation-delay:.7s}
+.hero-card:nth-child(3){animation-delay:1.4s}
+.hero-card:nth-child(4){animation-delay:2.1s}
+.hero-card-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--primary-dark);margin-bottom:12px}
+.hero-card-title{font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px}
+.hero-card-sub{font-size:12px;color:rgba(255,255,255,.6)}
+@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* Typing animation */
+.typing-wrapper{color:var(--gold-light);display:inline}
+#typing-text{border-right:3px solid var(--gold-light);animation:blink .7s step-end infinite}
+@keyframes blink{50%{border-color:transparent}}
+
+/* Sections */
+.section{padding:90px 40px}
+.section-header{text-align:center;margin-bottom:64px}
+.section-tag{display:inline-block;padding:5px 16px;background:rgba(10,36,99,.1);border-radius:99px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--primary);margin-bottom:16px}
+[data-theme="dark"] .section-tag{background:rgba(255,255,255,.1);color:var(--gold-light)}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,48px);font-weight:900;color:var(--text);line-height:1.15;margin-bottom:16px}
+.section-title span{color:var(--gold)}
+.section-desc{font-size:17px;color:var(--text-muted);max-width:560px;margin:0 auto}
+
+/* Features */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.feature-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:all var(--transition);position:relative;overflow:hidden}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--gold));transform:scaleX(0);transition:transform var(--transition)}
+.feature-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--gold)}
+.feature-card:hover::before{transform:scaleX(1)}
+.feature-icon{width:56px;height:56px;background:linear-gradient(135deg,rgba(10,36,99,.1),rgba(201,168,76,.1));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--primary);margin-bottom:20px;transition:all var(--transition)}
+[data-theme="dark"] .feature-icon{background:rgba(255,255,255,.07);color:var(--gold-light)}
+.feature-card:hover .feature-icon{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:var(--white)}
+.feature-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:10px}
+.feature-desc{font-size:14px;color:var(--text-muted);line-height:1.6}
+
+/* Classes Banner */
+.classes-section{background:linear-gradient(135deg,var(--primary-dark),var(--primary));padding:80px 40px}
+.classes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;max-width:900px;margin:0 auto}
+.class-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius);padding:24px 16px;text-align:center;color:var(--white);transition:all var(--transition);cursor:pointer}
+.class-pill:hover{background:rgba(201,168,76,.2);border-color:var(--gold);transform:translateY(-4px)}
+.class-pill-label{font-size:22px;font-weight:900;font-family:'Playfair Display',serif;color:var(--gold-light)}
+.class-pill-sub{font-size:13px;color:rgba(255,255,255,.7);margin-top:4px}
+
+/* Testimonials */
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.testimonial-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:all var(--transition)}
+.testimonial-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.testimonial-stars{color:var(--gold);font-size:14px;margin-bottom:16px}
+.testimonial-text{font-size:15px;color:var(--text-muted);line-height:1.7;margin-bottom:20px;font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--gold));display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--white);font-size:16px}
+.testimonial-name{font-weight:700;font-size:14px;color:var(--text)}
+.testimonial-class{font-size:12px;color:var(--text-muted)}
+
+/* Stats Counter */
+.stats-section{background:linear-gradient(135deg,var(--gold-dark),var(--gold));padding:70px 40px;text-align:center}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px;max-width:800px;margin:0 auto}
+.stat-item .stat-number{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;color:var(--primary-dark);line-height:1}
+.stat-item .stat-label{font-size:15px;color:rgba(10,36,99,.7);font-weight:600;margin-top:8px}
+
+/* Quotes */
+.quote-section{padding:80px 40px;background:var(--card-bg)}
+.quote-rotator{max-width:700px;margin:0 auto;text-align:center;position:relative;min-height:140px}
+.quote-text{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,30px);font-weight:700;color:var(--text);line-height:1.5;opacity:0;transform:translateY(20px);transition:all .6s;position:absolute;width:100%}
+.quote-text.visible{opacity:1;transform:translateY(0);position:relative}
+.quote-author{font-size:14px;color:var(--text-muted);font-style:italic;margin-top:12px;display:block}
+.quote-dots{display:flex;justify-content:center;gap:8px;margin-top:24px}
+.quote-dot{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:all var(--transition)}
+.quote-dot.active{background:var(--gold);transform:scale(1.3)}
+
+/* CTA */
+.cta-section{background:linear-gradient(135deg,var(--primary-dark),var(--primary));padding:90px 40px;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(201,168,76,.15),transparent 70%)}
+.cta-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);font-weight:900;color:var(--white);margin-bottom:20px}
+.cta-sub{font-size:18px;color:rgba(255,255,255,.75);margin-bottom:40px}
+
+/* Footer */
+footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:64px 40px 32px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand .brand-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--white);margin-bottom:4px}
+.footer-brand .brand-tagline{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:16px}
+.footer-brand p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.7}
+.footer-col h4{font-size:13px;font-weight:700;color:var(--gold-light);text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul li a{font-size:14px;color:rgba(255,255,255,.6);transition:color var(--transition)}
+.footer-col ul li a:hover{color:var(--gold-light)}
+.footer-socials{display:flex;gap:12px;margin-top:20px}
+.social-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:15px;color:rgba(255,255,255,.7);transition:all var(--transition)}
+.social-btn:hover{background:var(--gold);color:var(--primary-dark);border-color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:13px;color:rgba(255,255,255,.5)}
+.footer-bottom p span{color:var(--gold-light)}
+
+/* =========================
+   ===== AUTH MODALS =====
+   ========================= */
+.modal-overlay{position:fixed;inset:0;background:rgba(6,15,46,.85);backdrop-filter:blur(8px);z-index:5000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity var(--transition)}
+.modal-overlay.active{opacity:1;pointer-events:all}
+.modal{background:var(--card-bg);border-radius:var(--radius-lg);padding:40px;width:100%;max-width:460px;transform:scale(.95) translateY(20px);transition:all .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 32px 80px rgba(0,0,0,.3)}
+.modal-overlay.active .modal{transform:scale(1) translateY(0)}
+.modal-header{text-align:center;margin-bottom:32px}
+.modal-logo{width:64px;height:64px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px;color:var(--gold)}
+.modal-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--text)}
+.modal-sub{font-size:14px;color:var(--text-muted);margin-top:4px}
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px}
+.form-control{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);font-size:14px;transition:all var(--transition)}
+.form-control:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(10,36,99,.12)}
+[data-theme="dark"] .form-control{background:rgba(255,255,255,.05)}
+.input-group{position:relative}
+.input-group .form-control{padding-left:44px}
+.input-group .input-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--gray-400);font-size:16px}
+.input-group .input-toggle{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--gray-400);font-size:14px;cursor:pointer}
+.modal-footer-text{text-align:center;font-size:13px;color:var(--text-muted);margin-top:20px}
+.modal-footer-text a{color:var(--primary);font-weight:600}
+[data-theme="dark"] .modal-footer-text a{color:var(--gold-light)}
+.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:var(--gray-100);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--gray-500);transition:all var(--transition)}
+.modal-close:hover{background:var(--danger);color:var(--white)}
+.modal-wrapper{position:relative}
+
+/* ============================
+   ===== STUDENT DASHBOARD =====
+   ============================ */
+#page-student{display:none}
+#page-student.active{display:flex;min-height:100vh}
+
+.sidebar{width:var(--sidebar-w);background:var(--primary-dark);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:900;transition:transform var(--transition)}
+.sidebar-logo{padding:24px 20px;border-bottom:1px solid rgba(255,255,255,.1)}
+.sidebar-logo-text{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:var(--white);line-height:1.2}
+.sidebar-logo-text small{display:block;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:400;color:rgba(255,255,255,.5);margin-top:2px}
+.sidebar-user{padding:20px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:12px}
+.sidebar-avatar{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--primary-dark);font-size:18px;flex-shrink:0}
+.sidebar-user-name{font-size:14px;font-weight:700;color:var(--white)}
+.sidebar-user-class{font-size:12px;color:rgba(255,255,255,.5)}
+.sidebar-nav{flex:1;padding:16px 12px;overflow-y:auto}
+.sidebar-nav-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.3);padding:8px 8px 4px;margin-top:8px}
+.sidebar-nav-item{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;color:rgba(255,255,255,.65);font-size:14px;font-weight:500;transition:all var(--transition);cursor:pointer;margin-bottom:2px}
+.sidebar-nav-item:hover{background:rgba(255,255,255,.08);color:var(--white)}
+.sidebar-nav-item.active{background:linear-gradient(135deg,rgba(201,168,76,.25),rgba(201,168,76,.1));color:var(--gold-light);font-weight:700}
+.sidebar-nav-item i{width:20px;text-align:center;font-size:16px}
+.sidebar-nav-item .nav-badge{margin-left:auto;background:var(--danger);color:var(--white);font-size:10px;padding:2px 7px;border-radius:99px;font-weight:700}
+.sidebar-bottom{padding:16px 12px;border-top:1px solid rgba(255,255,255,.1)}
+
+.main-content{flex:1;margin-left:var(--sidebar-w);min-height:100vh;background:var(--bg)}
+.topbar{height:68px;background:var(--card-bg);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;position:sticky;top:0;z-index:800;box-shadow:0 1px 8px rgba(0,0,0,.05)}
+.topbar-title{font-size:20px;font-weight:700;color:var(--text);font-family:'Playfair Display',serif}
+.topbar-actions{display:flex;align-items:center;gap:12px}
+.topbar-icon-btn{width:38px;height:38px;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:15px;cursor:pointer;transition:all var(--transition);position:relative}
+.topbar-icon-btn:hover{background:var(--primary);color:var(--white);border-color:var(--primary)}
+.topbar-icon-btn .notif-dot{position:absolute;top:6px;right:6px;width:8px;height:8px;background:var(--danger);border-radius:50%;border:2px solid var(--card-bg)}
+
+/* Dashboard Sections */
+.dash-section{display:none;padding:32px}
+.dash-section.active{display:block}
+
+/* Welcome Banner */
+.welcome-banner{background:linear-gradient(135deg,var(--primary-dark),var(--primary));border-radius:var(--radius-lg);padding:32px 40px;color:var(--white);margin-bottom:28px;position:relative;overflow:hidden}
+.welcome-banner::after{content:'';position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:rgba(201,168,76,.15)}
+.welcome-banner h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;margin-bottom:6px}
+.welcome-banner p{font-size:15px;color:rgba(255,255,255,.75);position:relative;z-index:1}
+
+/* Stat Cards */
+.stat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;margin-bottom:28px}
+.stat-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;gap:16px;align-items:flex-start;transition:all var(--transition)}
+.stat-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.stat-card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.stat-card-icon.blue{background:rgba(10,36,99,.1);color:var(--primary)}
+.stat-card-icon.gold{background:rgba(201,168,76,.15);color:var(--gold-dark)}
+.stat-card-icon.green{background:rgba(5,150,105,.1);color:var(--success)}
+.stat-card-icon.red{background:rgba(220,38,38,.1);color:var(--danger)}
+[data-theme="dark"] .stat-card-icon.blue{background:rgba(30,58,138,.3);color:#93c5fd}
+[data-theme="dark"] .stat-card-icon.gold{background:rgba(201,168,76,.2);color:var(--gold-light)}
+[data-theme="dark"] .stat-card-icon.green{background:rgba(5,150,105,.2);color:#6ee7b7}
+.stat-card-label{font-size:12px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.stat-card-value{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--text);line-height:1}
+.stat-card-sub{font-size:12px;color:var(--text-muted);margin-top:4px}
+
+/* Cards */
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all var(--transition)}
+.card-header{padding:20px 24px 0;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.card-title{font-size:16px;font-weight:700;color:var(--text)}
+.card-body{padding:0 24px 24px}
+
+/* Progress Ring */
+.progress-ring-wrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.progress-ring{position:relative;width:100px;height:100px}
+.progress-ring svg{transform:rotate(-90deg)}
+.progress-ring circle{fill:none;stroke-width:8;stroke-linecap:round}
+.progress-ring .bg{stroke:var(--border)}
+.progress-ring .fill{stroke:url(#ringGrad);stroke-dasharray:283;stroke-dashoffset:283;transition:stroke-dashoffset 1.5s ease}
+.progress-ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.progress-ring-pct{font-size:20px;font-weight:900;color:var(--text);font-family:'Playfair Display',serif}
+.progress-ring-sub{font-size:10px;color:var(--text-muted)}
+
+/* Lessons Grid */
+.lessons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.lesson-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all var(--transition)}
+.lesson-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.lesson-card-cover{height:140px;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;font-size:48px;position:relative}
+.lesson-card-cover .lesson-emoji{font-size:52px}
+.lesson-card-tag{position:absolute;top:12px;right:12px;padding:4px 10px;background:rgba(0,0,0,.4);border-radius:99px;font-size:11px;font-weight:600;color:var(--white)}
+.lesson-card-body{padding:20px}
+.lesson-card-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px}
+.lesson-card-desc{font-size:13px;color:var(--text-muted);line-height:1.5;margin-bottom:16px}
+.lesson-card-footer{display:flex;align-items:center;justify-content:space-between}
+.lesson-complete-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;background:#d1fae5;border-radius:99px;font-size:12px;font-weight:600;color:#065f46}
+[data-theme="dark"] .lesson-complete-badge{background:#064e3b;color:#6ee7b7}
+
+/* Lesson Modal */
+.lesson-modal{max-width:700px}
+.lesson-video-wrap{border-radius:var(--radius-sm);overflow:hidden;margin-bottom:20px;background:#000;aspect-ratio:16/9}
+.lesson-video-wrap iframe{width:100%;height:100%;border:none}
+.lesson-content-text{font-size:15px;color:var(--text-muted);line-height:1.7;margin-bottom:20px}
+
+/* Quiz */
+.quiz-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:20px}
+.quiz-progress-bar{height:6px;background:var(--border);border-radius:99px;margin-bottom:28px;overflow:hidden}
+.quiz-progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--gold));border-radius:99px;transition:width .5s ease}
+.quiz-question{font-size:18px;font-weight:700;color:var(--text);margin-bottom:24px;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:12px}
+.quiz-option{padding:14px 18px;border:1.5px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:all var(--transition);font-size:15px;color:var(--text);display:flex;align-items:center;gap:12px}
+.quiz-option:hover{border-color:var(--primary);background:rgba(10,36,99,.05)}
+.quiz-option.selected{border-color:var(--primary);background:rgba(10,36,99,.08);font-weight:600}
+.quiz-option.correct{border-color:var(--success);background:rgba(5,150,105,.1);color:var(--success)}
+.quiz-option.wrong{border-color:var(--danger);background:rgba(220,38,38,.1);color:var(--danger)}
+.quiz-option-letter{width:28px;height:28px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;transition:all var(--transition)}
+.quiz-option.selected .quiz-option-letter{background:var(--primary);color:var(--white)}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px}
+.quiz-counter{font-size:14px;color:var(--text-muted)}
+
+/* Results */
+.result-card{text-align:center;padding:40px}
+.result-score-circle{width:140px;height:140px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:0 8px 32px rgba(10,36,99,.3)}
+.result-score-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--white)}
+.result-score-label{font-size:12px;color:rgba(255,255,255,.7)}
+.result-grade{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--gold);margin-bottom:8px}
+.result-remark{font-size:18px;color:var(--text-muted);margin-bottom:24px}
+
+/* Assignments */
+.assignment-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px;transition:all var(--transition)}
+.assignment-card:hover{box-shadow:var(--shadow)}
+.assignment-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.assignment-title{font-size:16px;font-weight:700;color:var(--text)}
+.assignment-due{font-size:12px;color:var(--text-muted);margin-top:4px;display:flex;align-items:center;gap:4px}
+.assignment-instructions{font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px}
+.assignment-upload{border:2px dashed var(--border);border-radius:var(--radius-sm);padding:20px;text-align:center;cursor:pointer;transition:all var(--transition)}
+.assignment-upload:hover{border-color:var(--primary);background:rgba(10,36,99,.03)}
+.assignment-upload i{font-size:28px;color:var(--text-muted);margin-bottom:8px}
+.assignment-upload p{font-size:13px;color:var(--text-muted)}
+.assignment-upload.submitted{border-color:var(--success);background:rgba(5,150,105,.05)}
+
+/* Certificate */
+#certificate-preview{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;max-width:800px;margin:0 auto}
+.cert-outer{padding:40px;background:linear-gradient(135deg,#f8f7f2,#fff);position:relative}
+.cert-outer::before,
+.cert-outer::after{content:'';position:absolute;border:4px solid var(--gold-dark)}
+.cert-outer::before{inset:12px;border-radius:16px}
+.cert-outer::after{inset:18px;border-radius:12px;border-color:rgba(201,168,76,.4)}
+.cert-inner{position:relative;z-index:1;text-align:center;padding:30px}
+.cert-top-bar{height:6px;background:linear-gradient(90deg,var(--primary-dark),var(--primary),var(--gold),var(--gold-light));border-radius:3px;margin-bottom:28px}
+.cert-school{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--primary);margin-bottom:8px}
+.cert-title{font-family:'Playfair Display',serif;font-size:40px;font-weight:900;color:var(--primary-dark);margin-bottom:4px}
+.cert-subtitle{font-size:14px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:28px}
+.cert-divider{display:flex;align-items:center;gap:12px;margin-bottom:20px;justify-content:center}
+.cert-divider-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold));max-width:120px}
+.cert-divider-line:last-child{background:linear-gradient(90deg,var(--gold),transparent)}
+.cert-divider-star{color:var(--gold);font-size:18px}
+.cert-presented{font-size:14px;color:var(--text-muted);margin-bottom:8px}
+.cert-name{font-family:'Playfair Display',serif;font-size:38px;font-weight:900;color:var(--primary);margin-bottom:8px;border-bottom:2px solid var(--gold);padding-bottom:8px;display:inline-block}
+.cert-class{font-size:15px;color:var(--text-muted);margin-bottom:20px}
+.cert-statement{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:500px;margin:0 auto 24px}
+.cert-score-box{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:var(--white);border-radius:var(--radius-sm);padding:16px 32px;display:inline-flex;gap:40px;margin-bottom:28px}
+.cert-score-item{text-align:center}
+.cert-score-item .val{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold-light)}
+.cert-score-item .lbl{font-size:11px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.5px}
+.cert-sigs{display:flex;justify-content:space-around;margin-top:24px}
+.cert-sig{text-align:center}
+.cert-sig-line{width:140px;height:1px;background:var(--gray-300);margin:0 auto 8px}
+.cert-sig-name{font-size:13px;font-weight:700;color:var(--text)}
+.cert-sig-title{font-size:11px;color:var(--text-muted)}
+.cert-seal{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px;color:var(--primary-dark);box-shadow:0 4px 16px rgba(201,168,76,.4)}
+.cert-date{font-size:13px;color:var(--text-muted);margin-top:16px}
+
+/* Notifications */
+.notif-list{display:flex;flex-direction:column;gap:12px}
+.notif-item{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 20px;display:flex;gap:14px;align-items:flex-start;transition:all var(--transition)}
+.notif-item:hover{box-shadow:var(--shadow)}
+.notif-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.notif-icon.info{background:rgba(2,132,199,.1);color:var(--info)}
+.notif-icon.warning{background:rgba(217,119,6,.1);color:var(--warning)}
+.notif-icon.success{background:rgba(5,150,105,.1);color:var(--success)}
+.notif-icon.danger{background:rgba(220,38,38,.1);color:var(--danger)}
+.notif-content .notif-title{font-size:14px;font-weight:700;color:var(--text)}
+.notif-content .notif-desc{font-size:13px;color:var(--text-muted);margin-top:2px}
+.notif-time{font-size:11px;color:var(--text-muted);margin-left:auto;white-space:nowrap;margin-top:2px}
+
+/* Warning Box */
+.warning-box{background:rgba(217,119,6,.08);border:1.5px solid rgba(217,119,6,.3);border-radius:var(--radius-sm);padding:20px;display:flex;gap:14px;align-items:flex-start;margin-bottom:16px}
+.warning-box.danger{background:rgba(220,38,38,.08);border-color:rgba(220,38,38,.3)}
+.warning-box .warning-icon{font-size:22px;color:var(--warning);flex-shrink:0}
+.warning-box.danger .warning-icon{color:var(--danger)}
+.warning-box .warning-text h4{font-size:14px;font-weight:700;color:var(--warning)}
+.warning-box.danger .warning-text h4{color:var(--danger)}
+.warning-box .warning-text p{font-size:13px;color:var(--text-muted)}
+
+/* ============================
+   ===== ADMIN DASHBOARD =====
+   ============================ */
+#page-admin{display:none}
+#page-admin.active{display:flex;min-height:100vh}
+
+.admin-sidebar{background:linear-gradient(180deg,var(--primary-dark) 0%,#0d1f54 100%)}
+.admin-badge{background:var(--gold);color:var(--primary-dark);font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;letter-spacing:.5px}
+
+/* Table */
+.table-wrap{overflow-x:auto;border-radius:var(--radius-sm);border:1px solid var(--border)}
+.data-table{width:100%;border-collapse:collapse;background:var(--card-bg)}
+.data-table thead th{padding:12px 16px;text-align:left;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);background:var(--gray-50);border-bottom:1px solid var(--border)}
+[data-theme="dark"] .data-table thead th{background:rgba(255,255,255,.03)}
+.data-table tbody tr{border-bottom:1px solid var(--border);transition:background var(--transition)}
+.data-table tbody tr:last-child{border-bottom:none}
+.data-table tbody tr:hover{background:rgba(10,36,99,.03)}
+[data-theme="dark"] .data-table tbody tr:hover{background:rgba(255,255,255,.03)}
+.data-table tbody td{padding:12px 16px;font-size:14px;color:var(--text)}
+.table-avatar{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--gold));display:inline-flex;align-items:center;justify-content:center;font-weight:700;color:var(--white);font-size:13px;margin-right:8px}
+
+/* Search / Filter Bar */
+.filter-bar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.search-input-wrap{position:relative;flex:1;min-width:200px}
+.search-input-wrap i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--gray-400)}
+.search-input{width:100%;padding:10px 12px 10px 38px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--card-bg);color:var(--text);font-size:14px}
+.search-input:focus{outline:none;border-color:var(--primary)}
+.filter-select{padding:10px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--card-bg);color:var(--text);font-size:14px}
+.filter-select:focus{outline:none;border-color:var(--primary)}
+
+/* Analytics Cards */
+.analytics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:28px}
+.analytics-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;transition:all var(--transition)}
+.analytics-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.analytics-card .a-icon{font-size:32px;margin-bottom:12px}
+.analytics-card .a-num{font-family:'Playfair Display',serif;font-size:38px;font-weight:900;color:var(--text)}
+.analytics-card .a-label{font-size:13px;color:var(--text-muted);font-weight:600}
+.analytics-card .a-change{font-size:12px;margin-top:6px;font-weight:600}
+.analytics-card .a-change.up{color:var(--success)}
+.analytics-card .a-change.down{color:var(--danger)}
+
+/* Progress Bar */
+.progress-bar-wrap{margin-bottom:12px}
+.progress-bar-label{display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+.progress-bar{height:8px;background:var(--border);border-radius:99px;overflow:hidden}
+.progress-bar-fill{height:100%;border-radius:99px;transition:width 1.2s ease}
+.progress-bar-fill.blue{background:linear-gradient(90deg,var(--primary),var(--primary-light))}
+.progress-bar-fill.gold{background:linear-gradient(90deg,var(--gold-dark),var(--gold))}
+.progress-bar-fill.green{background:linear-gradient(90deg,#047857,var(--success))}
+
+/* Form in Modal */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.form-section-title{font-size:14px;font-weight:700;color:var(--primary);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+[data-theme="dark"] .form-section-title{color:var(--gold-light)}
+
+/* Announcement */
+.announcement-card{background:var(--card-bg);border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:var(--radius-sm);padding:20px;margin-bottom:12px;transition:all var(--transition)}
+.announcement-card:hover{box-shadow:var(--shadow)}
+.announcement-card h4{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
+.announcement-card p{font-size:14px;color:var(--text-muted);line-height:1.6}
+.announcement-card .a-meta{font-size:12px;color:var(--text-muted);margin-top:10px;display:flex;gap:12px}
+
+/* Dark Mode Toggle */
+.theme-toggle{width:44px;height:24px;background:var(--border);border-radius:99px;position:relative;cursor:pointer;transition:background var(--transition)}
+.theme-toggle.on{background:var(--primary)}
+.theme-toggle::after{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:var(--white);top:3px;left:3px;transition:transform var(--transition);box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.theme-toggle.on::after{transform:translateX(20px)}
+
+/* Skeleton */
+.skeleton{background:linear-gradient(90deg,var(--border) 25%,var(--gray-100) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:var(--radius-sm)}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.sk-line{height:16px;margin-bottom:8px}
+.sk-line.sm{height:12px;width:60%}
+.sk-card{height:120px;border-radius:var(--radius)}
+
+/* Mobile */
+.sidebar-overlay{position:fixed;inset:0;background:rgba(6,15,46,.7);z-index:850;display:none;backdrop-filter:blur(4px)}
+.sidebar-toggle{display:none;width:40px;height:40px;border-radius:10px;background:var(--bg);border:1px solid var(--border);align-items:center;justify-content:center;cursor:pointer;color:var(--text);font-size:18px}
+
+/* Scroll Reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* Progress Grid responsive */
+.progress-grid-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:768px){.progress-grid-row{grid-template-columns:1fr!important}}
+
+/* Print certificate styles */
+@media print{
+  body *{visibility:hidden}
+  #certificate-preview,#certificate-preview *{visibility:visible}
+  #certificate-preview{position:fixed;left:0;top:0;width:100%;z-index:99999}
+  .sidebar,.topbar,.dash-section:not(#section-certificate),.fab,#toast-container{display:none!important}
+}
+
+/* Quiz option letter colors */
+.quiz-option.correct .quiz-option-letter{background:var(--success);color:var(--white)}
+.quiz-option.wrong .quiz-option-letter{background:var(--danger);color:var(--white)}
+
+/* Loading skeleton pulse */
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+/* Smooth section transitions */
+.dash-section{animation:sectionIn .25s ease}
+@keyframes sectionIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* Admin table action buttons */
+.action-btn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:6px;border:1px solid var(--border);cursor:pointer;transition:all var(--transition);font-size:13px;color:var(--text-muted)}
+.action-btn:hover{background:var(--primary);color:var(--white);border-color:var(--primary)}
+.action-btn.danger:hover{background:var(--danger);border-color:var(--danger)}
+
+/* Student ID mono font */
+.mono{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-muted)}
+
+/* Announcement left border colors */
+.announcement-card.info{border-left-color:var(--info)}
+.announcement-card.warning{border-left-color:var(--warning)}
+.announcement-card.success{border-left-color:var(--success)}
+
+/* Sidebar active glow */
+.sidebar-nav-item.active::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);border-radius:0 2px 2px 0}
+.sidebar-nav-item{position:relative}
+
+/* Cert print wrapper */
+#cert-print-area{background:#fff}
+
+/* Lesson emoji pop */
+.lesson-emoji{animation:emojiBounce 2.5s ease-in-out infinite}
+@keyframes emojiBounce{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.1) rotate(3deg)}}
+
+/* Tab active underline */
+.tab-btn.active{position:relative}
+.tab-btn.active::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:20px;height:2px;background:var(--gold);border-radius:2px}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .cert-outer{background:linear-gradient(135deg,#0d1f54,#0a2463)}
+[data-theme="dark"] .cert-inner{background:transparent}
+[data-theme="dark"] .cert-outer::before,[data-theme="dark"] .cert-outer::after{border-color:rgba(201,168,76,.3)}
+
+/* Scrollbar hidden on mobile */
+@media(max-width:768px){
+  .sidebar-nav{scrollbar-width:none}
+  .sidebar-nav::-webkit-scrollbar{display:none}
+}
+
+/* Floating Action Button */
+.fab{position:fixed;bottom:32px;right:32px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--primary-dark);font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(201,168,76,.5);cursor:pointer;transition:all var(--transition);z-index:800}
+.fab:hover{transform:scale(1.1) translateY(-4px);box-shadow:0 12px 36px rgba(201,168,76,.6)}
+
+/* Chart Bar (Simple) */
+.simple-chart{display:flex;align-items:flex-end;gap:8px;height:140px;padding:0 4px}
+.chart-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%}
+.chart-bar-inner{width:100%;background:linear-gradient(180deg,var(--primary-light),var(--primary));border-radius:4px 4px 0 0;transition:height 1.2s cubic-bezier(.34,1.56,.64,1);min-height:4px}
+.chart-bar-label{font-size:10px;color:var(--text-muted);font-weight:600;text-align:center}
+.chart-bar-val{font-size:11px;color:var(--text);font-weight:700;text-align:center}
+
+/* Tabs */
+.tabs{display:flex;gap:4px;background:var(--gray-100);border-radius:var(--radius-sm);padding:4px;margin-bottom:20px}
+.tab-btn{flex:1;padding:8px 12px;border-radius:6px;font-size:13px;font-weight:600;color:var(--text-muted);transition:all var(--transition);text-align:center;cursor:pointer}
+.tab-btn.active{background:var(--card-bg);color:var(--primary);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+[data-theme="dark"] .tab-btn.active{color:var(--gold-light)}
+
+/* =====================
+   RESPONSIVE
+   ===================== */
+@media(max-width:1024px){
+  .hero-image-side{display:none}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .navbar{padding:0 20px}
+  .nav-links,.nav-actions{display:none}
+  .nav-hamburger{display:flex}
+  .hero{padding:100px 20px 60px}
+  .section{padding:60px 20px}
+  .classes-section{padding:60px 20px}
+  .stats-section{padding:50px 20px}
+  .cta-section{padding:60px 20px}
+  footer{padding:48px 20px 24px}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .sidebar-overlay{display:none}
+  .sidebar-overlay.active{display:block}
+  .main-content{margin-left:0}
+  .sidebar-toggle{display:flex}
+  .topbar{padding:0 16px}
+  .dash-section{padding:20px 16px}
+  .welcome-banner{padding:24px 20px}
+  .form-row{grid-template-columns:1fr}
+  .fab{bottom:20px;right:20px}
+  .cert-score-box{gap:20px;padding:12px 20px}
+}
+@media(max-width:480px){
+  .stat-cards{grid-template-columns:1fr 1fr}
+  .analytics-grid{grid-template-columns:1fr 1fr}
+  .modal{padding:28px 20px}
+  .hero-stats{gap:24px}
+  .hero-stat-number{font-size:28px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== LOADING OVERLAY ===== -->
+<div id="loading-overlay">
+  <div class="loader-logo">Pariya <span>Academy</span></div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  <div class="loader-text">Initializing Learning Platform...</div>
+</div>
+
+<!-- ===== TOAST CONTAINER ===== -->
+<div id="toast-container"></div>
+
+<!-- ===== FLOATING ACTION BUTTON ===== -->
+<button class="fab hidden" id="fab-btn" title="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- SVG Gradient for rings -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a2463"/>
+      <stop offset="100%" style="stop-color:#c9a84c"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- ==============================
+     ===== HOME PAGE =====
+     ============================== -->
+<div id="page-home" class="page active">
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <div class="nav-logo-icon"><i class="fas fa-book-open"></i></div>
+      <div class="nav-logo-text">Pariya Academy
+        <small>Modern Science & Quran</small>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#classes">Classes</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <label class="theme-toggle" id="theme-toggle-home" title="Toggle dark mode"></label>
+      <button class="btn btn-outline-white btn-sm" onclick="openModal('student-login-modal')"><i class="fas fa-user"></i> Student Login</button>
+      <button class="btn btn-gold btn-sm" onclick="openModal('admin-login-modal')"><i class="fas fa-lock"></i> Admin</button>
+    </div>
+    <div class="nav-hamburger" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden" style="position:fixed;top:72px;left:0;right:0;background:rgba(10,36,99,.98);z-index:999;padding:24px;display:none">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <a href="#features" style="color:rgba(255,255,255,.8);font-size:16px">Features</a>
+      <a href="#classes" style="color:rgba(255,255,255,.8);font-size:16px">Classes</a>
+      <a href="#about" style="color:rgba(255,255,255,.8);font-size:16px">About</a>
+      <div style="display:flex;gap:10px;padding-top:8px">
+        <button class="btn btn-outline-white btn-sm" onclick="openModal('student-login-modal')">Student Login</button>
+        <button class="btn btn-gold btn-sm" onclick="openModal('admin-login-modal')">Admin</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-content reveal">
+      <div class="hero-badge"><i class="fas fa-star"></i> Nigeria's Premier English LMS</div>
+      <h1 class="hero-title">
+        Master English<br>
+        <span class="highlight">
+          <span class="typing-wrapper"><span id="typing-text"></span></span>
+        </span>
+      </h1>
+      <p class="hero-subtitle">A complete digital learning platform for JSS1–SS3 students at Pariya Academy for Modern Science & Quran. Lessons, quizzes, assignments and certificates — all in one place.</p>
+      <div class="hero-actions">
+        <button class="btn btn-gold btn-lg" onclick="openModal('student-login-modal')"><i class="fas fa-play"></i> Start Learning</button>
+        <button class="btn btn-outline-white btn-lg" onclick="scrollTo('features')"><i class="fas fa-info-circle"></i> Learn More</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-number counter" data-target="500">0</div><div class="hero-stat-label">Students Enrolled</div></div>
+        <div class="hero-stat"><div class="hero-stat-number counter" data-target="48">0</div><div class="hero-stat-label">Lessons Available</div></div>
+        <div class="hero-stat"><div class="hero-stat-number counter" data-target="6">0</div><div class="hero-stat-label">Classes Supported</div></div>
+        <div class="hero-stat"><div class="hero-stat-number counter" data-target="98">0</div><div class="hero-stat-label">% Pass Rate</div></div>
+      </div>
+    </div>
+    <div class="hero-image-side">
+      <div class="hero-card"><div class="hero-card-icon"><i class="fas fa-book"></i></div><div class="hero-card-title">Grammar Mastery</div><div class="hero-card-sub">Parts of Speech & Tenses</div></div>
+      <div class="hero-card"><div class="hero-card-icon"><i class="fas fa-pen-nib"></i></div><div class="hero-card-title">Essay Writing</div><div class="hero-card-sub">Formal & Informal Letters</div></div>
+      <div class="hero-card"><div class="hero-card-icon"><i class="fas fa-headphones"></i></div><div class="hero-card-title">Oral English</div><div class="hero-card-sub">Phonetics & Pronunciation</div></div>
+      <div class="hero-card"><div class="hero-card-icon"><i class="fas fa-trophy"></i></div><div class="hero-card-title">Certificates</div><div class="hero-card-sub">Official Digital Awards</div></div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" id="features">
+    <div class="section-header reveal">
+      <div class="section-tag">Why Choose Us</div>
+      <h2 class="section-title">A Premium <span>Learning Experience</span></h2>
+      <p class="section-desc">Everything a student needs to excel in English Language, all in one beautifully designed platform.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-video"></i></div><h3 class="feature-title">Video Lessons</h3><p class="feature-desc">Embedded YouTube video lessons for every topic — watch at your own pace and replay anytime.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-question-circle"></i></div><h3 class="feature-title">Interactive Quizzes</h3><p class="feature-desc">Auto-graded multiple-choice quizzes with instant feedback and detailed score breakdowns.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-tasks"></i></div><h3 class="feature-title">Assignments</h3><p class="feature-desc">Submit assignments digitally. Teachers review, score, and leave remarks from the admin panel.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-certificate"></i></div><h3 class="feature-title">Certificates</h3><p class="feature-desc">Earn a beautiful downloadable Certificate of Achievement upon completing the course.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><h3 class="feature-title">Progress Tracking</h3><p class="feature-desc">Visual dashboards showing lesson completion, quiz scores, and overall performance grade.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-mobile-alt"></i></div><h3 class="feature-title">Mobile Ready</h3><p class="feature-desc">Fully responsive — works perfectly on phones, tablets, laptops and desktops.</p></div>
+    </div>
+  </section>
+
+  <!-- Classes -->
+  <section class="classes-section" id="classes">
+    <div class="section-header reveal">
+      <div class="section-tag" style="background:rgba(255,255,255,.15);color:var(--gold-light)">Our Classes</div>
+      <h2 class="section-title" style="color:var(--white)">All Classes <span>Supported</span></h2>
+      <p class="section-desc" style="color:rgba(255,255,255,.7)">From Junior Secondary to Senior Secondary — we cover the full English curriculum.</p>
+    </div>
+    <div class="classes-grid">
+      <div class="class-pill reveal"><div class="class-pill-label">JSS 1</div><div class="class-pill-sub">Junior Secondary</div></div>
+      <div class="class-pill reveal"><div class="class-pill-label">JSS 2</div><div class="class-pill-sub">Junior Secondary</div></div>
+      <div class="class-pill reveal"><div class="class-pill-label">JSS 3</div><div class="class-pill-sub">Junior Secondary</div></div>
+      <div class="class-pill reveal"><div class="class-pill-label">SS 1</div><div class="class-pill-sub">Senior Secondary</div></div>
+      <div class="class-pill reveal"><div class="class-pill-label">SS 2</div><div class="class-pill-sub">Senior Secondary</div></div>
+      <div class="class-pill reveal"><div class="class-pill-label">SS 3</div><div class="class-pill-sub">Senior Secondary</div></div>
+    </div>
+  </section>
+
+  <!-- Stats Counter -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item reveal"><div class="stat-number counter" data-target="500">0</div><div class="stat-label">Students Enrolled</div></div>
+      <div class="stat-item reveal"><div class="stat-number counter" data-target="48">0</div><div class="stat-label">Lessons Created</div></div>
+      <div class="stat-item reveal"><div class="stat-number counter" data-target="1200">0</div><div class="stat-label">Quizzes Taken</div></div>
+      <div class="stat-item reveal"><div class="stat-number counter" data-target="320">0</div><div class="stat-label">Certificates Issued</div></div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section" id="about">
+    <div class="section-header reveal">
+      <div class="section-tag">Testimonials</div>
+      <h2 class="section-title">What <span>Students Say</span></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal"><div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="testimonial-text">"The video lessons and quizzes make English so easy to understand. My grades improved significantly this term!"</p><div class="testimonial-author"><div class="testimonial-avatar">A</div><div><div class="testimonial-name">Aisha Mohammed</div><div class="testimonial-class">SS2 Student</div></div></div></div>
+      <div class="testimonial-card reveal"><div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="testimonial-text">"The certificate I earned from Pariya Academy is something I'm truly proud of. The platform is amazing!"</p><div class="testimonial-author"><div class="testimonial-avatar">I</div><div><div class="testimonial-name">Ibrahim Yusuf</div><div class="testimonial-class">JSS3 Student</div></div></div></div>
+      <div class="testimonial-card reveal"><div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><p class="testimonial-text">"As a parent, I love that I can track my child's progress. The platform is professional and trustworthy."</p><div class="testimonial-author"><div class="testimonial-avatar">F</div><div><div class="testimonial-name">Fatima Abdullahi</div><div class="testimonial-class">Parent, JSS1</div></div></div></div>
+    </div>
+  </section>
+
+  <!-- Quote Rotator -->
+  <section class="quote-section">
+    <div class="section-header reveal"><div class="section-tag">Daily Inspiration</div><h2 class="section-title">Words of <span>Wisdom</span></h2></div>
+    <div class="quote-rotator">
+      <div class="quote-text" id="quote-display"></div>
+    </div>
+    <div class="quote-dots" id="quote-dots"></div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div style="position:relative;z-index:1">
+      <h2 class="cta-title reveal">Ready to Excel in English?</h2>
+      <p class="cta-sub reveal">Join hundreds of students already mastering English at Pariya Academy.</p>
+      <div class="hero-actions" style="justify-content:center" >
+        <button class="btn btn-gold btn-lg reveal" onclick="openModal('student-login-modal')"><i class="fas fa-rocket"></i> Login to Learn</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">Pariya Academy</div>
+        <div class="brand-tagline">Modern Science & Quran</div>
+        <p>A premier educational institution committed to academic excellence, moral values, and digital innovation in English language education.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#features"><i class="fas fa-chevron-right" style="font-size:10px;margin-right:6px"></i>Features</a></li>
+          <li><a href="#classes"><i class="fas fa-chevron-right" style="font-size:10px;margin-right:6px"></i>Classes</a></li>
+          <li><a href="#about"><i class="fas fa-chevron-right" style="font-size:10px;margin-right:6px"></i>About Us</a></li>
+          <li><a href="#" onclick="openModal('student-login-modal')"><i class="fas fa-chevron-right" style="font-size:10px;margin-right:6px"></i>Student Login</a></li>
+          <li><a href="#" onclick="openModal('admin-login-modal')"><i class="fas fa-chevron-right" style="font-size:10px;margin-right:6px"></i>Admin Panel</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Subjects</h4>
+        <ul>
+          <li><a href="#">Grammar</a></li>
+          <li><a href="#">Essay Writing</a></li>
+          <li><a href="#">Oral English</a></li>
+          <li><a href="#">Comprehension</a></li>
+          <li><a href="#">Vocabulary</a></li>
+          <li><a href="#">Letter Writing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#"><i class="fas fa-map-marker-alt" style="margin-right:6px;color:var(--gold)"></i> Nigeria</a></li>
+          <li><a href="mailto:info@pariyaacademy.edu.ng"><i class="fas fa-envelope" style="margin-right:6px;color:var(--gold)"></i> info@pariyaacademy.edu.ng</a></li>
+          <li><a href="tel:+234"><i class="fas fa-phone" style="margin-right:6px;color:var(--gold)"></i> +234 XXX XXX XXXX</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© Copyright <span>2026</span> <span>Arabo Modibbo</span>, All Rights Reserved.</p>
+      <p>Pariya Academy for Modern Science & Quran — English LMS</p>
+    </div>
+  </footer>
+</div><!-- end page-home -->
+
+<!-- ===== STUDENT LOGIN MODAL ===== -->
+<div class="modal-overlay" id="student-login-modal" onclick="handleModalOverlayClick(event,'student-login-modal')">
+  <div class="modal modal-wrapper">
+    <div class="modal-close" onclick="closeModal('student-login-modal')"><i class="fas fa-times"></i></div>
+    <div class="modal-header">
+      <div class="modal-logo"><i class="fas fa-user-graduate"></i></div>
+      <h2 class="modal-title">Student Login</h2>
+      <p class="modal-sub">Enter your credentials to access your dashboard</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Student ID</label>
+      <div class="input-group">
+        <i class="fas fa-id-card input-icon"></i>
+        <input class="form-control" id="s-login-id" type="text" placeholder="e.g. PAR-2024-001"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <div class="input-group">
+        <i class="fas fa-lock input-icon"></i>
+        <input class="form-control" id="s-login-pass" type="password" placeholder="Enter password"/>
+        <i class="fas fa-eye input-toggle" onclick="togglePass('s-login-pass',this)"></i>
+      </div>
+    </div>
+    <button class="btn btn-primary w-full" onclick="studentLogin()" style="padding:14px;font-size:15px;border-radius:var(--radius-sm);justify-content:center">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </button>
+    <p class="modal-footer-text">Demo: ID = <strong>PAR-001</strong> | Password = <strong>student123</strong></p>
+  </div>
+</div>
+
+<!-- ===== ADMIN LOGIN MODAL ===== -->
+<div class="modal-overlay" id="admin-login-modal" onclick="handleModalOverlayClick(event,'admin-login-modal')">
+  <div class="modal modal-wrapper">
+    <div class="modal-close" onclick="closeModal('admin-login-modal')"><i class="fas fa-times"></i></div>
+    <div class="modal-header">
+      <div class="modal-logo" style="background:linear-gradient(135deg,var(--gold-dark),var(--gold))"><i class="fas fa-shield-alt" style="color:var(--primary-dark)"></i></div>
+      <h2 class="modal-title">Admin Login</h2>
+      <p class="modal-sub">Restricted access — authorized personnel only</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Username</label>
+      <div class="input-group">
+        <i class="fas fa-user input-icon"></i>
+        <input class="form-control" id="a-login-user" type="text" placeholder="Admin username"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <div class="input-group">
+        <i class="fas fa-lock input-icon"></i>
+        <input class="form-control" id="a-login-pass" type="password" placeholder="Admin password"/>
+        <i class="fas fa-eye input-toggle" onclick="togglePass('a-login-pass',this)"></i>
+      </div>
+    </div>
+    <button class="btn btn-gold w-full" onclick="adminLogin()" style="padding:14px;font-size:15px;border-radius:var(--radius-sm);justify-content:center">
+      <i class="fas fa-lock-open"></i> Access Admin Panel
+    </button>
+    <p class="modal-footer-text">Demo: Username = <strong>admin</strong> | Password = <strong>admin2026</strong></p>
+  </div>
+</div>
+
+<!-- ===== LESSON DETAIL MODAL ===== -->
+<div class="modal-overlay" id="lesson-modal" onclick="handleModalOverlayClick(event,'lesson-modal')">
+  <div class="modal lesson-modal" style="max-width:700px" id="lesson-modal-inner">
+    <div class="modal-close" onclick="closeModal('lesson-modal')"><i class="fas fa-times"></i></div>
+    <div id="lesson-modal-content"></div>
+  </div>
+</div>
+
+<!-- ===== ADD STUDENT MODAL (Admin) ===== -->
+<div class="modal-overlay" id="add-student-modal" onclick="handleModalOverlayClick(event,'add-student-modal')">
+  <div class="modal" style="max-width:560px">
+    <div class="modal-close" onclick="closeModal('add-student-modal')"><i class="fas fa-times"></i></div>
+    <div class="modal-header"><div class="modal-logo"><i class="fas fa-user-plus"></i></div><h2 class="modal-title">Add New Student</h2></div>
+    <div class="form-section-title">Personal Information</div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Full Name</label><input class="form-control" id="ns-name" type="text" placeholder="Full name"/></div>
+      <div class="form-group"><label class="form-label">Class</label>
+        <select class="form-control" id="ns-class">
+          <option>JSS1</option><option>JSS2</option><option>JSS3</option><option>SS1</option><option>SS2</option><option>SS3</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-section-title">Account Details</div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Username</label><input class="form-control" id="ns-username" type="text" placeholder="e.g. aisha.m"/></div>
+      <div class="form-group"><label class="form-label">Password</label><input class="form-control" id="ns-password" type="text" placeholder="Set password"/></div>
+    </div>
+    <button class="btn btn-primary w-full" onclick="adminAddStudent()" style="padding:14px;border-radius:var(--radius-sm);justify-content:center"><i class="fas fa-user-plus"></i> Add Student</button>
+  </div>
+</div>
+
+<!-- ===== ADD LESSON MODAL (Admin) ===== -->
+<div class="modal-overlay" id="add-lesson-modal" onclick="handleModalOverlayClick(event,'add-lesson-modal')">
+  <div class="modal" style="max-width:560px">
+    <div class="modal-close" onclick="closeModal('add-lesson-modal')"><i class="fas fa-times"></i></div>
+    <div class="modal-header"><div class="modal-logo"><i class="fas fa-book-open"></i></div><h2 class="modal-title">Add New Lesson</h2></div>
+    <div class="form-group"><label class="form-label">Lesson Title</label><input class="form-control" id="nl-title" type="text" placeholder="e.g. Parts of Speech"/></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Class</label>
+        <select class="form-control" id="nl-class">
+          <option>JSS1</option><option>JSS2</option><option>JSS3</option><option>SS1</option><option>SS2</option><option>SS3</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Topic Category</label>
+        <select class="form-control" id="nl-category">
+          <option>Grammar</option><option>Essay Writing</option><option>Vocabulary</option><option>Tenses</option><option>Comprehension</option><option>Oral English</option><option>Letter Writing</option><option>Literature</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group"><label class="form-label">Description</label><textarea class="form-control" id="nl-desc" rows="3" placeholder="Lesson description..."></textarea></div>
+    <div class="form-group"><label class="form-label">YouTube Video ID</label><input class="form-control" id="nl-video" type="text" placeholder="e.g. dQw4w9WgXcQ"/></div>
+    <div class="form-group"><label class="form-label">PDF Notes Link</label><input class="form-control" id="nl-pdf" type="text" placeholder="https://..."/></div>
+    <button class="btn btn-primary w-full" onclick="adminAddLesson()" style="padding:14px;border-radius:var(--radius-sm);justify-content:center"><i class="fas fa-plus"></i> Add Lesson</button>
+  </div>
+</div>
+
+<!-- ===== ANNOUNCEMENT MODAL (Admin) ===== -->
+<div class="modal-overlay" id="announcement-modal" onclick="handleModalOverlayClick(event,'announcement-modal')">
+  <div class="modal">
+    <div class="modal-close" onclick="closeModal('announcement-modal')"><i class="fas fa-times"></i></div>
+    <div class="modal-header"><div class="modal-logo"><i class="fas fa-bullhorn"></i></div><h2 class="modal-title">Post Announcement</h2></div>
+    <div class="form-group"><label class="form-label">Title</label><input class="form-control" id="ann-title" type="text" placeholder="Announcement title"/></div>
+    <div class="form-group"><label class="form-label">Target Class</label>
+      <select class="form-control" id="ann-class">
+        <option value="All">All Classes</option><option>JSS1</option><option>JSS2</option><option>JSS3</option><option>SS1</option><option>SS2</option><option>SS3</option>
+      </select>
+    </div>
+    <div class="form-group"><label class="form-label">Message</label><textarea class="form-control" id="ann-msg" rows="4" placeholder="Write your announcement..."></textarea></div>
+    <button class="btn btn-primary w-full" onclick="adminPostAnnouncement()" style="padding:14px;border-radius:var(--radius-sm);justify-content:center"><i class="fas fa-paper-plane"></i> Post Announcement</button>
+  </div>
+</div>
+
+<!-- ===========================
+     ===== STUDENT DASHBOARD =====
+     =========================== -->
+<div id="page-student" class="page">
+  <!-- Sidebar -->
+  <div class="sidebar" id="student-sidebar">
+    <div class="sidebar-logo">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+        <div style="width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--primary-dark)"><i class="fas fa-book-open"></i></div>
+        <div class="sidebar-logo-text">Pariya Academy<small>English LMS</small></div>
+      </div>
+    </div>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar" id="sidebar-avatar-s">A</div>
+      <div>
+        <div class="sidebar-user-name" id="sidebar-name-s">Student</div>
+        <div class="sidebar-user-class" id="sidebar-class-s">Class</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-nav-label">Main</div>
+      <div class="sidebar-nav-item active" onclick="showStudentSection('overview','Overview')"><i class="fas fa-home"></i> Dashboard</div>
+      <div class="sidebar-nav-item" onclick="showStudentSection('lessons','My Lessons')"><i class="fas fa-book"></i> Lessons</div>
+      <div class="sidebar-nav-item" onclick="showStudentSection('quizzes','Quizzes')"><i class="fas fa-question-circle"></i> Quizzes</div>
+      <div class="sidebar-nav-item" onclick="showStudentSection('assignments','Assignments')"><i class="fas fa-tasks"></i> Assignments</div>
+      <div class="sidebar-nav-label">Account</div>
+      <div class="sidebar-nav-item" onclick="showStudentSection('notifications','Notifications')"><i class="fas fa-bell"></i> Notifications <span class="nav-badge" id="notif-badge">3</span></div>
+      <div class="sidebar-nav-item" onclick="showStudentSection('certificate','Certificate')"><i class="fas fa-certificate"></i> My Certificate</div>
+      <div class="sidebar-nav-item" onclick="showStudentSection('profile','My Profile')"><i class="fas fa-user"></i> Profile</div>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-nav-item" onclick="logout()" style="color:rgba(220,38,38,.9)"><i class="fas fa-sign-out-alt"></i> Logout</div>
+    </div>
+  </div>
+  <div class="sidebar-overlay" id="student-overlay" onclick="closeMobileSidebar()"></div>
+
+  <!-- Main -->
+  <div class="main-content">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="sidebar-toggle" onclick="openMobileSidebar('student-sidebar','student-overlay')"><i class="fas fa-bars"></i></div>
+        <div class="topbar-title" id="topbar-title-s">Dashboard</div>
+      </div>
+      <div class="topbar-actions">
+        <label class="theme-toggle" id="theme-toggle-s" title="Toggle theme"></label>
+        <button class="topbar-icon-btn" onclick="showStudentSection('notifications','Notifications')"><i class="fas fa-bell"></i><span class="notif-dot" id="notif-dot-s"></span></button>
+        <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--gold));display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--white);font-size:14px;cursor:pointer" id="topbar-avatar-s">A</div>
+      </div>
+    </div>
+
+    <!-- ===== OVERVIEW ===== -->
+    <div class="dash-section active" id="section-overview">
+      <div class="welcome-banner">
+        <h2>Welcome back, <span id="welcome-name">Student</span>! 👋</h2>
+        <p id="welcome-sub">Keep up the great work — you're on track to excellence!</p>
+      </div>
+
+      <!-- Warning/Suspension if any -->
+      <div id="student-alerts"></div>
+
+      <div class="stat-cards">
+        <div class="stat-card"><div class="stat-card-icon blue"><i class="fas fa-trophy"></i></div><div><div class="stat-card-label">Total Score</div><div class="stat-card-value" id="ov-total-score">0</div><div class="stat-card-sub">Out of 100</div></div></div>
+        <div class="stat-card"><div class="stat-card-icon gold"><i class="fas fa-star"></i></div><div><div class="stat-card-label">Grade</div><div class="stat-card-value" id="ov-grade">–</div><div class="stat-card-sub" id="ov-remark">–</div></div></div>
+        <div class="stat-card"><div class="stat-card-icon green"><i class="fas fa-check-circle"></i></div><div><div class="stat-card-label">Lessons Done</div><div class="stat-card-value" id="ov-lessons">0/8</div><div class="stat-card-sub">Completed</div></div></div>
+        <div class="stat-card"><div class="stat-card-icon red"><i class="fas fa-exclamation-triangle"></i></div><div><div class="stat-card-label">Warnings</div><div class="stat-card-value" id="ov-warnings">0</div><div class="stat-card-sub">Active warnings</div></div></div>
+      </div>
+
+      <!-- Progress + Charts -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px" class="progress-grid-row">
+        <div class="card">
+          <div class="card-header"><span class="card-title">Overall Progress</span></div>
+          <div class="card-body">
+            <div class="progress-ring-wrap">
+              <div class="progress-ring">
+                <svg viewBox="0 0 100 100" width="100" height="100">
+                  <circle class="bg" cx="50" cy="50" r="45"/>
+                  <circle class="fill" cx="50" cy="50" r="45" id="progress-ring-circle"/>
+                </svg>
+                <div class="progress-ring-label"><div class="progress-ring-pct" id="progress-pct">0%</div><div class="progress-ring-sub">Complete</div></div>
+              </div>
+              <div style="flex:1">
+                <div class="progress-bar-wrap"><div class="progress-bar-label"><span>Quizzes</span><span id="pb-quiz">0%</span></div><div class="progress-bar"><div class="progress-bar-fill blue" id="pb-quiz-fill" style="width:0%"></div></div></div>
+                <div class="progress-bar-wrap"><div class="progress-bar-label"><span>Assignments</span><span id="pb-assign">0%</span></div><div class="progress-bar"><div class="progress-bar-fill gold" id="pb-assign-fill" style="width:0%"></div></div></div>
+                <div class="progress-bar-wrap"><div class="progress-bar-label"><span>Lessons</span><span id="pb-lessons">0%</span></div><div class="progress-bar"><div class="progress-bar-fill green" id="pb-lessons-fill" style="width:0%"></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">Quiz Score History</span></div>
+          <div class="card-body">
+            <div class="simple-chart" id="quiz-chart"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Announcements -->
+      <div class="card">
+        <div class="card-header"><span class="card-title">Recent Announcements</span></div>
+        <div class="card-body" id="student-announcements-list"></div>
+      </div>
+    </div>
+
+    <!-- ===== LESSONS ===== -->
+    <div class="dash-section" id="section-lessons">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+        <div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900">My Lessons</h2>
+          <p style="font-size:14px;color:var(--text-muted)">Click a lesson to watch and learn</p>
+        </div>
+        <div class="filter-bar" style="margin:0">
+          <div class="search-input-wrap"><i class="fas fa-search"></i><input class="search-input" id="lesson-search" placeholder="Search lessons..." oninput="filterLessons()"/></div>
+          <select class="filter-select" id="lesson-category-filter" onchange="filterLessons()">
+            <option value="All">All Topics</option>
+            <option>Grammar</option><option>Essay Writing</option><option>Vocabulary</option><option>Tenses</option><option>Comprehension</option><option>Oral English</option><option>Letter Writing</option>
+          </select>
+        </div>
+      </div>
+      <div class="lessons-grid" id="lessons-grid"></div>
+    </div>
+
+    <!-- ===== QUIZZES ===== -->
+    <div class="dash-section" id="section-quizzes">
+      <div id="quiz-list-view">
+        <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;margin-bottom:6px">Quizzes</h2>
+        <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px">Select a quiz to begin. Each quiz has 10 questions. Total = 100 marks.</p>
+        <div id="quiz-list-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px"></div>
+      </div>
+      <div id="quiz-active-view" class="hidden">
+        <div style="max-width:700px;margin:0 auto">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+            <div><h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900" id="active-quiz-title">Quiz</h2></div>
+            <button class="btn btn-sm" style="border:1px solid var(--border);color:var(--text-muted)" onclick="exitQuiz()"><i class="fas fa-times"></i> Exit</button>
+          </div>
+          <div class="quiz-card">
+            <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="q-progress-fill" style="width:10%"></div></div>
+            <div class="quiz-question" id="q-question">Loading question...</div>
+            <div class="quiz-options" id="q-options"></div>
+            <div class="quiz-nav">
+              <span class="quiz-counter" id="q-counter">Question 1 of 10</span>
+              <button class="btn btn-primary btn-sm" id="q-next-btn" onclick="nextQuizQuestion()">Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="quiz-result-view" class="hidden">
+        <div style="max-width:500px;margin:0 auto">
+          <div class="card">
+            <div class="result-card">
+              <div class="result-score-circle"><div class="result-score-num" id="res-score">0</div><div class="result-score-label">out of 100</div></div>
+              <div class="result-grade" id="res-grade">–</div>
+              <div class="result-remark" id="res-remark">–</div>
+              <div id="res-breakdown" style="margin-bottom:24px"></div>
+              <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+                <button class="btn btn-primary" onclick="goBackToQuizList()"><i class="fas fa-list"></i> All Quizzes</button>
+                <button class="btn btn-gold" onclick="showStudentSection('certificate','Certificate')"><i class="fas fa-certificate"></i> View Certificate</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ASSIGNMENTS ===== -->
+    <div class="dash-section" id="section-assignments">
+      <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;margin-bottom:6px">Assignments</h2>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px">Submit your assignments before the due date.</p>
+      <div id="assignments-list"></div>
+    </div>
+
+    <!-- ===== NOTIFICATIONS ===== -->
+    <div class="dash-section" id="section-notifications">
+      <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;margin-bottom:6px">Notifications</h2>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px">Your alerts, reminders, and messages.</p>
+      <div class="notif-list" id="notif-list"></div>
+    </div>
+
+    <!-- ===== CERTIFICATE ===== -->
+    <div class="dash-section" id="section-certificate">
+      <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;margin-bottom:6px">My Certificate</h2>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px">Your official Certificate of Achievement from Pariya Academy.</p>
+      <div style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="downloadCertificate()"><i class="fas fa-download"></i> Download PDF</button>
+        <button class="btn" style="border:1px solid var(--border);color:var(--text)" onclick="window.print()"><i class="fas fa-print"></i> Print Certificate</button>
+      </div>
+      <div id="certificate-preview"></div>
+    </div>
+
+    <!-- ===== PROFILE ===== -->
+    <div class="dash-section" id="section-profile">
+      <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;margin-bottom:24px">My Profile</h2>
+      <div class="card" style="max-width:560px">
+        <div class="card-body" style="padding:32px">
+          <div style="display:flex;align-items:center;gap:20px;margin-bottom:28px">
+            <div style="width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,var(--primary),var(--gold));display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;color:var(--white)" id="profile-avatar-big">A</div>
+            <div>
+              <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--text)" id="profile-name">Student Name</div>
+              <div style="font-size:14px;color:var(--text-muted)" id="profile-class">Class</div>
+              <div style="margin-top:6px" id="profile-status-badge"></div>
+            </div>
+          </div>
+          <div id="profile-info-grid" style="display:grid;gap:16px"></div>
+          <div class="form-group" style="margin-top:24px"><label class="form-label">Change Password</label><input class="form-control" id="new-pass" type="password" placeholder="New password"/></div>
+          <button class="btn btn-primary btn-sm" onclick="changePassword()"><i class="fas fa-save"></i> Save Changes</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- main-content -->
+</div><!-- page-student -->
+
+<!-- ============================
+     ===== ADMIN DASHBOARD =====
+     ============================ -->
+<div id="page-admin" class="page">
+  <div class="sidebar admin-sidebar" id="admin-sidebar">
+    <div class="sidebar-logo">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+        <div style="width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--primary-dark)"><i class="fas fa-shield-alt"></i></div>
+        <div class="sidebar-logo-text">Admin Panel<small>Pariya Academy</small></div>
+      </div>
+    </div>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar"><i class="fas fa-user-shield"></i></div>
+      <div>
+        <div class="sidebar-user-name">Administrator</div>
+        <div class="sidebar-user-class"><span class="admin-badge">ADMIN</span></div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-nav-label">Management</div>
+      <div class="sidebar-nav-item active" onclick="showAdminSection('a-overview','Overview')"><i class="fas fa-chart-pie"></i> Overview</div>
+      <div class="sidebar-nav-item" onclick="showAdminSection('a-students','Students')"><i class="fas fa-users"></i> Students</div>
+      <div class="sidebar-nav-item" onclick="showAdminSection('a-lessons','Lessons')"><i class="fas fa-book"></i> Lessons</div>
+      <div class="sidebar-nav-item" onclick="showAdminSection('a-quizzes','Quizzes')"><i class="fas fa-question-circle"></i> Quizzes</div>
+      <div class="sidebar-nav-item" onclick="showAdminSection('a-assignments','Assignments')"><i class="fas fa-tasks"></i> Assignments</div>
+      <div class="sidebar-nav-label">Communication</div>
+      <div class="sidebar-nav-item" onclick="showAdminSection('a-announcements','Announcements')"><i class="fas fa-bullhorn"></i> Announcements</div>
+      <div class="sidebar-nav-item" onclick="showAdminSection('a-analytics','Analytics')"><i class="fas fa-chart-bar"></i> Analytics</div>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-nav-item" onclick="logout()" style="color:rgba(220,38,38,.9)"><i class="fas fa-sign-out-alt"></i> Logout</div>
+    </div>
+  </div>
+  <div class="sidebar-overlay" id="admin-overlay" onclick="closeMobileSidebar()"></div>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="sidebar-toggle" onclick="openMobileSidebar('admin-sidebar','admin-overlay')"><i class="fas fa-bars"></i></div>
+        <div class="topbar-title" id="topbar-title-a">Overview</div>
+      </div>
+      <div class="topbar-actions">
+        <label class="theme-toggle" id="theme-toggle-a" title="Toggle theme"></label>
+        <button class="btn btn-gold btn-sm" onclick="openModal('add-student-modal')"><i class="fas fa-user-plus"></i> Add Student</button>
+      </div>
+    </div>
+
+    <!-- ===== ADMIN OVERVIEW ===== -->
+    <div class="dash-section active" id="section-a-overview">
+      <div class="welcome-banner">
+        <h2>Admin Dashboard 🎓</h2>
+        <p>Manage students, lessons, quizzes, and monitor platform performance.</p>
+      </div>
+      <div class="analytics-grid">
+        <div class="analytics-card"><div class="a-icon">👥</div><div class="a-num" id="a-total-students">0</div><div class="a-label">Total Students</div><div class="a-change up"><i class="fas fa-arrow-up"></i> Active this term</div></div>
+        <div class="analytics-card"><div class="a-icon">✅</div><div class="a-num" id="a-active-students">0</div><div class="a-label">Active Students</div></div>
+        <div class="analytics-card"><div class="a-icon">🚫</div><div class="a-num" id="a-suspended-students">0</div><div class="a-label">Suspended</div></div>
+        <div class="analytics-card"><div class="a-icon">📚</div><div class="a-num" id="a-total-lessons">0</div><div class="a-label">Total Lessons</div></div>
+        <div class="analytics-card"><div class="a-icon">⚡</div><div class="a-num" id="a-avg-score">0%</div><div class="a-label">Avg Score</div></div>
+      </div>
+      <!-- Per-class progress -->
+      <div class="card mb-2">
+        <div class="card-header"><span class="card-title">Class Performance Overview</span></div>
+        <div class="card-body" id="class-performance-bars"></div>
+      </div>
+      <!-- Top Students Table -->
+      <div class="card">
+        <div class="card-header"><span class="card-title">Top Performing Students</span></div>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>#</th><th>Student</th><th>Class</th><th>Score</th><th>Grade</th><th>Status</th></tr></thead>
+              <tbody id="top-students-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ADMIN STUDENTS ===== -->
+    <div class="dash-section" id="section-a-students">
+      <div class="filter-bar">
+        <div class="search-input-wrap"><i class="fas fa-search"></i><input class="search-input" id="admin-student-search" placeholder="Search students..." oninput="filterAdminStudents()"/></div>
+        <select class="filter-select" id="admin-class-filter" onchange="filterAdminStudents()">
+          <option value="All">All Classes</option><option>JSS1</option><option>JSS2</option><option>JSS3</option><option>SS1</option><option>SS2</option><option>SS3</option>
+        </select>
+        <select class="filter-select" id="admin-status-filter" onchange="filterAdminStudents()">
+          <option value="All">All Status</option><option value="Active">Active</option><option value="Suspended">Suspended</option>
+        </select>
+        <button class="btn btn-primary btn-sm" onclick="openModal('add-student-modal')"><i class="fas fa-plus"></i> Add Student</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>ID</th><th>Student</th><th>Class</th><th>Score</th><th>Grade</th><th>Warnings</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="students-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===== ADMIN LESSONS ===== -->
+    <div class="dash-section" id="section-a-lessons">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+        <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900">Manage Lessons</h2>
+        <button class="btn btn-primary btn-sm" onclick="openModal('add-lesson-modal')"><i class="fas fa-plus"></i> Add Lesson</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>#</th><th>Title</th><th>Class</th><th>Category</th><th>Video</th><th>Actions</th></tr></thead>
+          <tbody id="lessons-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===== ADMIN QUIZZES ===== -->
+    <div class="dash-section" id="section-a-quizzes">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+        <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900">Quiz Results</h2>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Student</th><th>Class</th><th>Quiz</th><th>Score</th><th>Grade</th><th>Date</th></tr></thead>
+          <tbody id="quiz-results-table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===== ADMIN ASSIGNMENTS ===== -->
+    <div class="dash-section" id="section-a-assignments">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+        <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900">Assignments & Marking</h2>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Student</th><th>Class</th><th>Assignment</th><th>Submitted</th><th>Score</th><th>Remarks</th><th>Actions</th></tr></thead>
+          <tbody id="assignments-admin-table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===== ADMIN ANNOUNCEMENTS ===== -->
+    <div class="dash-section" id="section-a-announcements">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+        <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900">Announcements</h2>
+        <button class="btn btn-primary btn-sm" onclick="openModal('announcement-modal')"><i class="fas fa-plus"></i> Post Announcement</button>
+      </div>
+      <div id="announcements-admin-list"></div>
+    </div>
+
+    <!-- ===== ADMIN ANALYTICS ===== -->
+    <div class="dash-section" id="section-a-analytics">
+      <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;margin-bottom:24px">Analytics & Reports</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;flex-wrap:wrap" class="progress-grid-row">
+        <div class="card">
+          <div class="card-header"><span class="card-title">Grade Distribution</span></div>
+          <div class="card-body">
+            <div id="grade-distribution-bars"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">Lesson Completion by Class</span></div>
+          <div class="card-body">
+            <div class="simple-chart" id="class-chart"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card mt-2">
+        <div class="card-header"><span class="card-title">Full Student Report</span></div>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>Student</th><th>Class</th><th>Quiz Avg</th><th>Assignment Avg</th><th>Total</th><th>Grade</th><th>Lessons</th></tr></thead>
+              <tbody id="full-report-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- main-content -->
+</div><!-- page-admin -->
+
+<!-- ==============================
+     ===== JAVASCRIPT =====
+     ============================== -->
+<script>
+/* =========================================================
+   CONFIGURATION — Replace APPS_SCRIPT_URL with your deployed
+   Google Apps Script Web App URL after deployment.
+   ========================================================= */
+const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+const USE_DEMO_DATA = true; // Set to false when using real backend
+
+/* =====================
+   THEME SYSTEM
+   ===================== */
+let currentTheme = localStorage.getItem('pa-theme') || 'light';
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  currentTheme=t;
+  localStorage.setItem('pa-theme',t);
+  ['theme-toggle-home','theme-toggle-s','theme-toggle-a'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.classList.toggle('on',t==='dark');
+  });
+}
+applyTheme(currentTheme);
+['theme-toggle-home','theme-toggle-s','theme-toggle-a'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) el.addEventListener('click',()=>applyTheme(currentTheme==='dark'?'light':'dark'));
+});
+
+/* =====================
+   TOAST NOTIFICATIONS
+   ===================== */
+function showToast(msg,type='info'){
+  const icons={success:'fa-check-circle',error:'fa-times-circle',warning:'fa-exclamation-triangle',info:'fa-info-circle'};
+  const t=document.createElement('div');
+  t.className=`toast ${type}`;
+  t.innerHTML=`<i class="fas ${icons[type]}"></i><span>${msg}</span>`;
+  document.getElementById('toast-container').appendChild(t);
+  setTimeout(()=>t.remove(),3100);
+}
+
+/* =====================
+   MODAL SYSTEM
+   ===================== */
+function openModal(id){document.getElementById(id).classList.add('active')}
+function closeModal(id){document.getElementById(id).classList.remove('active')}
+function handleModalOverlayClick(e,id){if(e.target.id===id)closeModal(id)}
+
+/* =====================
+   PAGE SYSTEM
+   ===================== */
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>{p.classList.remove('active');p.style.display='none'});
+  const pg=document.getElementById(id);
+  if(id==='page-home'){pg.style.display='block';pg.classList.add('active');}
+  else if(id==='page-student'){pg.style.display='flex';pg.classList.add('active');}
+  else if(id==='page-admin'){pg.style.display='flex';pg.classList.add('active');}
+}
+
+/* =====================
+   LOADING
+   ===================== */
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.getElementById('loading-overlay').classList.add('hidden');
+    initHome();
+  },2000);
+});
+
+/* =====================
+   NAVBAR SCROLL
+   ===================== */
+window.addEventListener('scroll',()=>{
+  const nb=document.getElementById('navbar');
+  if(nb)nb.classList.toggle('scrolled',window.scrollY>60);
+  const fab=document.getElementById('fab-btn');
+  if(fab)fab.classList.toggle('hidden',window.scrollY<300);
+});
+document.getElementById('fab-btn').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* =====================
+   MOBILE MENU
+   ===================== */
+function toggleMobileMenu(){
+  const m=document.getElementById('mobile-menu');
+  m.style.display=m.style.display==='flex'?'none':'flex';
+}
+function openMobileSidebar(sid,oid){
+  document.getElementById(sid).classList.add('open');
+  document.getElementById(oid).classList.add('active');
+}
+function closeMobileSidebar(){
+  document.querySelectorAll('.sidebar').forEach(s=>s.classList.remove('open'));
+  document.querySelectorAll('.sidebar-overlay').forEach(o=>o.classList.remove('active'));
+}
+
+/* =====================
+   TYPING ANIMATION
+   ===================== */
+const typingWords=['Like a Pro!','With Confidence!','Grammar Fast!','& Excel Today!'];
+let ti=0,ci=0,deleting=false;
+function typeLoop(){
+  const el=document.getElementById('typing-text');
+  if(!el)return;
+  const w=typingWords[ti];
+  el.textContent=deleting?w.substring(0,ci-1):w.substring(0,ci+1);
+  deleting?ci--:ci++;
+  if(!deleting&&ci===w.length){setTimeout(()=>{deleting=true;typeLoop()},1800);return;}
+  if(deleting&&ci===0){deleting=false;ti=(ti+1)%typingWords.length;}
+  setTimeout(typeLoop,deleting?60:100);
+}
+
+/* =====================
+   SCROLL REVEAL
+   ===================== */
+function initReveal(){
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+
+/* =====================
+   COUNTER ANIMATION
+   ===================== */
+function animateCounters(){
+  document.querySelectorAll('.counter').forEach(el=>{
+    const target=parseInt(el.dataset.target);
+    let cur=0;
+    const step=Math.max(1,Math.floor(target/60));
+    const t=setInterval(()=>{
+      cur+=step;
+      if(cur>=target){cur=target;clearInterval(t);}
+      el.textContent=cur.toLocaleString();
+    },30);
+  });
+}
+
+/* =====================
+   QUOTE ROTATOR
+   ===================== */
+const quotes=[
+  {text:'"The limits of my language mean the limits of my world."',author:'— Ludwig Wittgenstein'},
+  {text:'"One language sets you in a corridor for life. Two languages open every door along the way."',author:'— Frank Smith'},
+  {text:'"Language is the road map of a culture. It tells you where its people come from and where they are going."',author:'— Rita Mae Brown'},
+  {text:'"To have another language is to possess a second soul."',author:'— Charlemagne'},
+  {text:'"The more that you read, the more things you will know."',author:'— Dr. Seuss'},
+];
+let qi=0,qAuto;
+function showQuote(i){
+  qi=i;
+  const d=document.getElementById('quote-display');
+  const dots=document.getElementById('quote-dots');
+  if(!d||!dots)return;
+  d.innerHTML=`${quotes[i].text}<span class="quote-author">${quotes[i].author}</span>`;
+  d.classList.remove('visible');
+  setTimeout(()=>d.classList.add('visible'),50);
+  dots.querySelectorAll('.quote-dot').forEach((dot,idx)=>dot.classList.toggle('active',idx===i));
+}
+function initQuotes(){
+  const dots=document.getElementById('quote-dots');
+  if(!dots)return;
+  quotes.forEach((_,i)=>{const d=document.createElement('div');d.className='quote-dot'+(i===0?' active':'');d.onclick=()=>{showQuote(i);clearInterval(qAuto);qAuto=setInterval(()=>showQuote((qi+1)%quotes.length),4500)};dots.appendChild(d)});
+  showQuote(0);
+  qAuto=setInterval(()=>showQuote((qi+1)%quotes.length),4500);
+}
+
+/* =====================
+   HOME INIT
+   ===================== */
+function initHome(){
+  typeLoop();
+  initReveal();
+  animateCounters();
+  initQuotes();
+  // Re-init reveal after DOM settles
+  setTimeout(initReveal,300);
+}
+
+/* =====================
+   DEMO DATA
+   ===================== */
+let DB={
+  students:[
+    {id:'PAR-001',name:'Aisha Mohammed',class:'SS2',username:'aisha.m',password:'student123',status:'Active',warnings:0,quizScores:[85,78,92,88],assignmentScores:[80,75],completedLessons:[0,1,2,3,4],grade:'A'},
+    {id:'PAR-002',name:'Ibrahim Yusuf',class:'JSS3',username:'ibrahim.y',password:'student123',status:'Active',warnings:1,quizScores:[62,70,58],assignmentScores:[65],completedLessons:[0,1,2],grade:'B'},
+    {id:'PAR-003',name:'Fatima Abdullahi',class:'SS1',username:'fatima.a',password:'student123',status:'Active',warnings:0,quizScores:[45,50,48],assignmentScores:[52],completedLessons:[0,1],grade:'C'},
+    {id:'PAR-004',name:'Musa Aliyu',class:'JSS1',username:'musa.a',password:'student123',status:'Suspended',warnings:3,quizScores:[30,35],assignmentScores:[40],completedLessons:[0],grade:'F'},
+    {id:'PAR-005',name:'Zainab Hassan',class:'SS3',username:'zainab.h',password:'student123',status:'Active',warnings:0,quizScores:[95,98,92,96],assignmentScores:[90,88],completedLessons:[0,1,2,3,4,5,6,7],grade:'A'},
+    {id:'PAR-006',name:'Usman Bello',class:'JSS2',username:'usman.b',password:'student123',status:'Active',warnings:2,quizScores:[55,60,52],assignmentScores:[58],completedLessons:[0,1,2,3],grade:'C'},
+  ],
+  lessons:[
+    {id:0,title:'Parts of Speech',class:'JSS1',category:'Grammar',desc:'Learn about nouns, pronouns, verbs, adjectives, adverbs, prepositions, conjunctions, and interjections with detailed examples.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'📝'},
+    {id:1,title:'Essay Writing',class:'SS1',category:'Essay Writing',desc:'Master the art of writing compelling essays — from introduction to conclusion, thesis statements, body paragraphs, and concluding thoughts.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'✍️'},
+    {id:2,title:'Vocabulary Building',class:'JSS2',category:'Vocabulary',desc:'Expand your English vocabulary with roots, prefixes, suffixes, synonyms, antonyms, and contextual word usage.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'📖'},
+    {id:3,title:'English Tenses',class:'JSS3',category:'Tenses',desc:'Deep dive into all 12 English tenses — present, past, future, and their simple, continuous, perfect, and perfect continuous forms.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'⏰'},
+    {id:4,title:'Comprehension Skills',class:'SS2',category:'Comprehension',desc:'Develop critical reading skills, answering comprehension questions accurately, making inferences, and summarizing passages.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'🔍'},
+    {id:5,title:'Oral English & Phonetics',class:'SS1',category:'Oral English',desc:'Master English pronunciation, stress, rhythm, intonation, and phonetic symbols with practical speaking exercises.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'🎙️'},
+    {id:6,title:'Letter Writing',class:'JSS2',category:'Letter Writing',desc:'Learn formal and informal letter writing — structure, salutations, body, closing, and appropriate language for different contexts.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'✉️'},
+    {id:7,title:'Grammar Mastery',class:'SS3',category:'Grammar',desc:'Advanced grammar covering sentence structures, clauses, phrases, reported speech, conditionals, and common grammatical errors.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'🎯'},
+  ],
+  quizzes:[
+    {id:0,title:'Parts of Speech Quiz',category:'Grammar',questions:[
+      {q:'Which of the following is a noun?',opts:['Quickly','Beautiful','London','Run'],ans:2},
+      {q:'What is the verb in: "She sings beautifully"?',opts:['She','Sings','Beautifully','Beautiful'],ans:1},
+      {q:'Which word is a pronoun?',opts:['Table','He','Blue','Fast'],ans:1},
+      {q:'Identify the adjective: "The tall boy ran fast"',opts:['Boy','Ran','Fast','Tall'],ans:3},
+      {q:'Which is an adverb?',opts:['Slowly','Tree','Happy','Car'],ans:0},
+      {q:'"And" is which part of speech?',opts:['Noun','Verb','Conjunction','Preposition'],ans:2},
+      {q:'Which is a preposition?',opts:['Jump','Over','Blue','She'],ans:1},
+      {q:'What type of noun is "happiness"?',opts:['Proper','Common','Abstract','Collective'],ans:2},
+      {q:'Which sentence has a transitive verb?',opts:['She slept','He runs fast','She ate the apple','Birds fly'],ans:2},
+      {q:'"Wow!" is an example of?',opts:['Noun','Verb','Adjective','Interjection'],ans:3},
+    ]},
+    {id:1,title:'Tenses Quiz',category:'Tenses',questions:[
+      {q:'Which tense is: "I am eating"?',opts:['Simple Present','Present Continuous','Past Simple','Future'],ans:1},
+      {q:'"She had left before he arrived" is which tense?',opts:['Past Perfect','Past Simple','Present Perfect','Future Perfect'],ans:0},
+      {q:'Which is correct? "He ___ to school yesterday."',opts:['go','goes','went','going'],ans:2},
+      {q:'"They will have finished by noon" is?',opts:['Future Simple','Future Continuous','Future Perfect','Present Perfect'],ans:2},
+      {q:'Identify the simple present: ',opts:['She is running','He ran','She runs daily','They will go'],ans:2},
+      {q:'"I have lived here for 5 years" uses?',opts:['Past Simple','Present Perfect','Present Continuous','Past Continuous'],ans:1},
+      {q:'What is the past tense of "write"?',opts:['Writed','Written','Wrote','Writing'],ans:2},
+      {q:'"She was cooking when he called" — "was cooking" is?',opts:['Past Simple','Past Perfect','Past Continuous','Present Continuous'],ans:2},
+      {q:'Which sentence is in future tense?',opts:['He played','She plays','They will travel','I was reading'],ans:2},
+      {q:'"By 2030, he will have graduated" is?',opts:['Future Simple','Future Perfect','Future Continuous','Present Future'],ans:1},
+    ]},
+    {id:2,title:'Vocabulary Quiz',category:'Vocabulary',questions:[
+      {q:'What is the synonym of "happy"?',opts:['Sad','Joyful','Angry','Tired'],ans:1},
+      {q:'What is the antonym of "ancient"?',opts:['Old','Historic','Modern','Aged'],ans:2},
+      {q:'The word "amicable" means?',opts:['Hostile','Friendly','Strange','Boring'],ans:1},
+      {q:'Which word means "very large"?',opts:['Tiny','Gigantic','Average','Slim'],ans:1},
+      {q:'"Benevolent" means?',opts:['Cruel','Kind-hearted','Lazy','Silent'],ans:1},
+      {q:'What does "verbose" mean?',opts:['Silent','Brief','Using too many words','Clear'],ans:2},
+      {q:'The prefix "un-" usually means?',opts:['Again','Not','Before','After'],ans:1},
+      {q:'"Ephemeral" means?',opts:['Permanent','Lasting a short time','Very large','Important'],ans:1},
+      {q:'What is a homophone of "hear"?',opts:['Here','Hair','Heir','Hire'],ans:0},
+      {q:'"Gregarious" means?',opts:['Shy','Sociable','Angry','Lazy'],ans:1},
+    ]},
+  ],
+  assignments:[
+    {id:0,title:'Write a Formal Letter',class:'SS2',instructions:'Write a formal letter to your principal requesting a school trip to Lagos. Your letter should have proper heading, salutation, body (3 paragraphs), and subscription. Minimum 250 words.',dueDate:'2026-06-15',maxScore:100},
+    {id:1,title:'Essay: My Future Career',class:'JSS3',instructions:'Write a descriptive essay about your future career goals. Include why you chose it, skills needed, and how it will help your community. Minimum 300 words.',dueDate:'2026-06-20',maxScore:100},
+    {id:2,title:'Comprehension Practice',class:'SS1',instructions:'Read the provided passage and answer all 10 comprehension questions in complete sentences. Show evidence from the text in each answer.',dueDate:'2026-06-25',maxScore:100},
+  ],
+  submissions:[
+    {studentId:'PAR-001',assignmentId:0,submitted:true,score:82,remarks:'Excellent formal letter structure! Well done.'},
+    {studentId:'PAR-002',assignmentId:0,submitted:true,score:65,remarks:'Good effort. Work on your subscription format.'},
+    {studentId:'PAR-001',assignmentId:1,submitted:false,score:null,remarks:''},
+  ],
+  announcements:[
+    {id:0,title:'Mid-Term Examinations',class:'All',message:'Mid-term examinations will be held from June 20–25, 2026. Students should review all completed lessons and quizzes. Good luck!',date:'2026-05-20',author:'Admin'},
+    {id:1,title:'Quiz Score Updates',class:'SS2',message:'Quiz scores for Parts of Speech have been updated. Login to view your results on your dashboard.',date:'2026-05-18',author:'Admin'},
+    {id:2,title:'New Lesson Added',class:'All',message:'A new lesson on "Grammar Mastery" has been added for SS3 students. Please check the Lessons section.',date:'2026-05-15',author:'Admin'},
+  ],
+  quizResults:[
+    {studentId:'PAR-001',studentName:'Aisha Mohammed',class:'SS2',quizTitle:'Parts of Speech Quiz',score:85,grade:'A',date:'2026-05-10'},
+    {studentId:'PAR-001',studentName:'Aisha Mohammed',class:'SS2',quizTitle:'Tenses Quiz',score:78,grade:'B',date:'2026-05-12'},
+    {studentId:'PAR-002',studentName:'Ibrahim Yusuf',class:'JSS3',quizTitle:'Vocabulary Quiz',score:62,grade:'B',date:'2026-05-11'},
+    {studentId:'PAR-005',studentName:'Zainab Hassan',class:'SS3',quizTitle:'Parts of Speech Quiz',score:95,grade:'A',date:'2026-05-09'},
+    {studentId:'PAR-003',studentName:'Fatima Abdullahi',class:'SS1',quizTitle:'Tenses Quiz',score:50,grade:'C',date:'2026-05-13'},
+  ],
+  admins:[{username:'admin',password:'admin2026'}],
+};
+
+/* =====================
+   GRADING SYSTEM
+   ===================== */
+function getGrade(score){
+  if(score>=70)return{grade:'A',remark:'Excellent',color:'var(--success)'};
+  if(score>=60)return{grade:'B',remark:'Very Good',color:'var(--info)'};
+  if(score>=50)return{grade:'C',remark:'Good',color:'var(--primary)'};
+  if(score>=45)return{grade:'D',remark:'Fair',color:'var(--warning)'};
+  if(score>=40)return{grade:'E',remark:'Pass',color:'var(--gold-dark)'};
+  return{grade:'F',remark:'Fail',color:'var(--danger)'};
+}
+function calcTotalScore(student){
+  const qs=student.quizScores||[];
+  const as=student.assignmentScores||[];
+  const all=[...qs,...as];
+  if(!all.length)return 0;
+  return Math.round(all.reduce((a,b)=>a+b,0)/all.length);
+}
+
+/* =====================
+   AUTH
+   ===================== */
+let currentUser=null, currentRole=null;
+
+function studentLogin(){
+  const id=document.getElementById('s-login-id').value.trim();
+  const pass=document.getElementById('s-login-pass').value;
+  if(!id||!pass){showToast('Please fill all fields','warning');return;}
+  const student=DB.students.find(s=>s.id===id&&s.password===pass);
+  if(!student){showToast('Invalid Student ID or Password','error');return;}
+  if(student.status==='Suspended'){showToast('Your account is suspended. Contact admin.','error');return;}
+  currentUser=student;currentRole='student';
+  closeModal('student-login-modal');
+  initStudentDashboard(student);
+  showPage('page-student');
+  showToast(`Welcome back, ${student.name.split(' ')[0]}! 🎉`,'success');
+}
+
+function adminLogin(){
+  const user=document.getElementById('a-login-user').value.trim();
+  const pass=document.getElementById('a-login-pass').value;
+  if(!user||!pass){showToast('Please fill all fields','warning');return;}
+  const admin=DB.admins.find(a=>a.username===user&&a.password===pass);
+  if(!admin){showToast('Invalid admin credentials','error');return;}
+  currentUser={username:user};currentRole='admin';
+  closeModal('admin-login-modal');
+  initAdminDashboard();
+  showPage('page-admin');
+  showToast('Welcome, Administrator! 🛡️','success');
+}
+
+function logout(){
+  currentUser=null;currentRole=null;
+  showPage('page-home');
+  showToast('Logged out successfully','info');
+}
+
+/* =====================
+   PASSWORD TOGGLE
+   ===================== */
+function togglePass(inputId,icon){
+  const input=document.getElementById(inputId);
+  if(input.type==='password'){input.type='text';icon.classList.replace('fa-eye','fa-eye-slash');}
+  else{input.type='password';icon.classList.replace('fa-eye-slash','fa-eye');}
+}
+
+/* =====================
+   SECTION NAVIGATION
+   ===================== */
+function showStudentSection(id,title){
+  document.querySelectorAll('#page-student .dash-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('section-'+id).classList.add('active');
+  document.getElementById('topbar-title-s').textContent=title;
+  document.querySelectorAll('#page-student .sidebar-nav-item').forEach(i=>i.classList.remove('active'));
+  event.currentTarget && event.currentTarget.classList.add('active');
+  closeMobileSidebar();
+  if(id==='certificate')renderCertificate();
+  if(id==='lessons')renderLessons();
+  if(id==='quizzes')renderQuizList();
+  if(id==='assignments')renderAssignments();
+  if(id==='notifications')renderNotifications();
+  if(id==='profile')renderProfile();
+}
+function showAdminSection(id,title){
+  document.querySelectorAll('#page-admin .dash-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('section-'+id).classList.add('active');
+  document.getElementById('topbar-title-a').textContent=title;
+  document.querySelectorAll('#page-admin .sidebar-nav-item').forEach(i=>i.classList.remove('active'));
+  event.currentTarget && event.currentTarget.classList.add('active');
+  closeMobileSidebar();
+}
+
+/* ================================
+   STUDENT DASHBOARD INITIALIZATION
+   ================================ */
+function initStudentDashboard(student){
+  const name=student.name.split(' ')[0];
+  const initial=student.name[0].toUpperCase();
+  // Sidebar
+  document.getElementById('sidebar-avatar-s').textContent=initial;
+  document.getElementById('sidebar-name-s').textContent=student.name;
+  document.getElementById('sidebar-class-s').textContent=student.class;
+  document.getElementById('topbar-avatar-s').textContent=initial;
+  // Welcome
+  document.getElementById('welcome-name').textContent=name;
+  const score=calcTotalScore(student);
+  const {grade,remark}=getGrade(score);
+  // Stats
+  document.getElementById('ov-total-score').textContent=score;
+  document.getElementById('ov-grade').textContent=grade;
+  document.getElementById('ov-remark').textContent=remark;
+  document.getElementById('ov-lessons').textContent=`${student.completedLessons.length}/${DB.lessons.length}`;
+  document.getElementById('ov-warnings').textContent=student.warnings;
+  // Alerts
+  let alerts='';
+  if(student.warnings>0&&student.warnings<3){alerts+=`<div class="warning-box"><i class="fas fa-exclamation-triangle warning-icon"></i><div class="warning-text"><h4>⚠️ Warning Notice</h4><p>You have ${student.warnings} active warning(s). Please improve your performance to avoid suspension.</p></div></div>`;}
+  if(student.warnings>=3){alerts+=`<div class="warning-box danger"><i class="fas fa-ban warning-icon"></i><div class="warning-text"><h4>🚫 Final Warning</h4><p>You have reached the maximum warnings. Your account may be suspended soon. Contact your teacher immediately.</p></div></div>`;}
+  document.getElementById('student-alerts').innerHTML=alerts;
+  // Progress Ring
+  const pct=Math.round((student.completedLessons.length/DB.lessons.length)*100);
+  const quizAvg=student.quizScores.length?Math.round(student.quizScores.reduce((a,b)=>a+b,0)/student.quizScores.length):0;
+  const assAvg=student.assignmentScores.length?Math.round(student.assignmentScores.reduce((a,b)=>a+b,0)/student.assignmentScores.length):0;
+  setTimeout(()=>{
+    const circle=document.getElementById('progress-ring-circle');
+    if(circle){const offset=283-(283*(pct/100));circle.style.strokeDashoffset=offset;}
+    document.getElementById('progress-pct').textContent=pct+'%';
+    setProgressBar('pb-quiz','pb-quiz-fill',quizAvg);
+    setProgressBar('pb-assign','pb-assign-fill',assAvg);
+    setProgressBar('pb-lessons','pb-lessons-fill',pct);
+  },500);
+  // Quiz chart
+  renderStudentQuizChart(student.quizScores);
+  // Announcements
+  renderStudentAnnouncements(student.class);
+  // Notifications
+  renderNotifications();
+}
+function setProgressBar(labelId,fillId,pct){
+  const el=document.getElementById(labelId);const fill=document.getElementById(fillId);
+  if(el)el.textContent=pct+'%';
+  if(fill)fill.style.width=pct+'%';
+}
+function renderStudentQuizChart(scores){
+  const wrap=document.getElementById('quiz-chart');
+  if(!wrap)return;
+  const labels=['Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8'];
+  const maxH=120;
+  wrap.innerHTML=scores.slice(0,8).map((s,i)=>`
+    <div class="chart-bar-wrap">
+      <div class="chart-bar-val">${s}</div>
+      <div style="flex:1;display:flex;align-items:flex-end;width:100%">
+        <div class="chart-bar-inner" style="height:${(s/100)*maxH}px;width:100%;background:linear-gradient(180deg,${s>=70?'var(--success)':s>=50?'var(--gold)':'var(--danger)'},transparent)"></div>
+      </div>
+      <div class="chart-bar-label">${labels[i]}</div>
+    </div>`).join('');
+}
+function renderStudentAnnouncements(cls){
+  const list=document.getElementById('student-announcements-list');
+  if(!list)return;
+  const relevant=DB.announcements.filter(a=>a.class==='All'||a.class===cls);
+  if(!relevant.length){list.innerHTML='<p style="color:var(--text-muted);font-size:14px">No announcements at this time.</p>';return;}
+  list.innerHTML=relevant.slice(0,3).map(a=>`
+    <div class="announcement-card">
+      <h4>${a.title} <span class="badge badge-info" style="font-size:10px;vertical-align:middle">${a.class}</span></h4>
+      <p>${a.message}</p>
+      <div class="a-meta"><span><i class="fas fa-calendar-alt"></i> ${a.date}</span><span><i class="fas fa-user"></i> ${a.author}</span></div>
+    </div>`).join('');
+}
+
+/* =====================
+   LESSONS
+   ===================== */
+function renderLessons(){
+  const grid=document.getElementById('lessons-grid');
+  if(!grid)return;
+  const search=(document.getElementById('lesson-search')||{}).value||'';
+  const cat=(document.getElementById('lesson-category-filter')||{}).value||'All';
+  const filtered=DB.lessons.filter(l=>{
+    const matchSearch=l.title.toLowerCase().includes(search.toLowerCase())||l.desc.toLowerCase().includes(search.toLowerCase());
+    const matchCat=cat==='All'||l.category===cat;
+    return matchSearch&&matchCat;
+  });
+  const completed=currentUser.completedLessons||[];
+  grid.innerHTML=filtered.map(l=>`
+    <div class="lesson-card" onclick="openLesson(${l.id})">
+      <div class="lesson-card-cover" style="background:linear-gradient(135deg,${lessonColors[l.id%lessonColors.length]})">
+        <div class="lesson-emoji">${l.emoji}</div>
+        <span class="lesson-card-tag">${l.category}</span>
+      </div>
+      <div class="lesson-card-body">
+        <div class="lesson-card-title">${l.title}</div>
+        <div class="lesson-card-desc">${l.desc.substring(0,90)}...</div>
+        <div class="lesson-card-footer">
+          <span class="badge badge-info">${l.class}</span>
+          ${completed.includes(l.id)?'<span class="lesson-complete-badge"><i class="fas fa-check-circle"></i> Completed</span>':'<span class="badge" style="background:var(--border);color:var(--text-muted)"><i class="fas fa-play-circle"></i> Watch</span>'}
+        </div>
+      </div>
+    </div>`).join('');
+}
+const lessonColors=['#0a2463,#1e3a8a','#065f46,#047857','#7f1d1d,#991b1b','#4c1d95,#6d28d9','#78350f,#92400e','#1e3a8a,#2563eb','#064e3b,#059669','#312e81,#4338ca'];
+function filterLessons(){renderLessons();}
+function openLesson(id){
+  const l=DB.lessons.find(x=>x.id===id);
+  if(!l)return;
+  const completed=currentUser.completedLessons.includes(id);
+  document.getElementById('lesson-modal-content').innerHTML=`
+    <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;margin-bottom:4px">${l.emoji} ${l.title}</h2>
+    <div style="display:flex;gap:8px;margin-bottom:20px"><span class="badge badge-info">${l.class}</span><span class="badge badge-gold">${l.category}</span></div>
+    <div class="lesson-video-wrap">
+      <iframe src="https://www.youtube.com/embed/${l.videoId}" allowfullscreen></iframe>
+    </div>
+    <div class="lesson-content-text">${l.desc}</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      ${l.pdfLink&&l.pdfLink!='#'?`<a href="${l.pdfLink}" target="_blank" class="btn btn-sm" style="border:1px solid var(--border);color:var(--text)"><i class="fas fa-file-pdf" style="color:var(--danger)"></i> Download Notes</a>`:''}
+      ${!completed?`<button class="btn btn-success btn-sm" onclick="markLessonComplete(${id})"><i class="fas fa-check"></i> Mark as Completed</button>`:`<span class="lesson-complete-badge"><i class="fas fa-check-circle"></i> Lesson Completed!</span>`}
+    </div>`;
+  openModal('lesson-modal');
+}
+function markLessonComplete(id){
+  if(!currentUser.completedLessons.includes(id)){
+    currentUser.completedLessons.push(id);
+    const student=DB.students.find(s=>s.id===currentUser.id);
+    if(student)student.completedLessons=currentUser.completedLessons;
+    showToast('Lesson marked as completed! 🎉','success');
+    closeModal('lesson-modal');
+    renderLessons();
+    // Update stats
+    document.getElementById('ov-lessons').textContent=`${currentUser.completedLessons.length}/${DB.lessons.length}`;
+    const pct=Math.round((currentUser.completedLessons.length/DB.lessons.length)*100);
+    const circle=document.getElementById('progress-ring-circle');
+    if(circle){circle.style.strokeDashoffset=283-(283*(pct/100));}
+    document.getElementById('progress-pct').textContent=pct+'%';
+    setProgressBar('pb-lessons','pb-lessons-fill',pct);
+  }
+  apiCall('saveLesson',{studentId:currentUser.id,lessonId:id});
+}
+
+/* =====================
+   QUIZZES
+   ===================== */
+function renderQuizList(){
+  const grid=document.getElementById('quiz-list-grid');
+  if(!grid)return;
+  grid.innerHTML=DB.quizzes.map((q,i)=>`
+    <div class="lesson-card" style="cursor:pointer" onclick="startQuiz(${i})">
+      <div class="lesson-card-cover" style="background:linear-gradient(135deg,#1e3a8a,#0a2463)">
+        <div style="font-size:48px">${['📝','⏰','📖'][i%3]}</div>
+        <span class="lesson-card-tag">${q.category}</span>
+      </div>
+      <div class="lesson-card-body">
+        <div class="lesson-card-title">${q.title}</div>
+        <div class="lesson-card-desc">${q.questions.length} questions · 100 marks total · Auto-graded</div>
+        <div class="lesson-card-footer">
+          <span class="badge badge-info">${q.questions.length} Qs</span>
+          <button class="btn btn-primary btn-sm">Start Quiz</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+let activeQuiz=null, currentQ=0, userAnswers=[], selectedOption=null;
+function startQuiz(idx){
+  activeQuiz=DB.quizzes[idx];
+  currentQ=0;userAnswers=[];selectedOption=null;
+  document.getElementById('quiz-list-view').classList.add('hidden');
+  document.getElementById('quiz-result-view').classList.add('hidden');
+  document.getElementById('quiz-active-view').classList.remove('hidden');
+  document.getElementById('active-quiz-title').textContent=activeQuiz.title;
+  renderQuizQuestion();
+}
+function renderQuizQuestion(){
+  const q=activeQuiz.questions[currentQ];
+  const total=activeQuiz.questions.length;
+  document.getElementById('q-progress-fill').style.width=`${((currentQ+1)/total)*100}%`;
+  document.getElementById('q-counter').textContent=`Question ${currentQ+1} of ${total}`;
+  document.getElementById('q-question').textContent=q.q;
+  const letters='ABCD';
+  document.getElementById('q-options').innerHTML=q.opts.map((o,i)=>`
+    <div class="quiz-option" onclick="selectOption(${i})" id="opt-${i}">
+      <div class="quiz-option-letter">${letters[i]}</div>
+      <span>${o}</span>
+    </div>`).join('');
+  document.getElementById('q-next-btn').textContent=currentQ===activeQuiz.questions.length-1?'Submit':'Next ›';
+  selectedOption=null;
+}
+function selectOption(i){
+  if(selectedOption!==null)return;
+  selectedOption=i;
+  document.querySelectorAll('.quiz-option').forEach(o=>o.classList.remove('selected'));
+  document.getElementById('opt-'+i).classList.add('selected');
+}
+function nextQuizQuestion(){
+  if(selectedOption===null){showToast('Please select an answer','warning');return;}
+  userAnswers.push(selectedOption);
+  const q=activeQuiz.questions[currentQ];
+  // Show correct/wrong briefly
+  const opts=document.querySelectorAll('.quiz-option');
+  opts.forEach((o,i)=>{
+    if(i===q.ans)o.classList.add('correct');
+    else if(i===selectedOption&&i!==q.ans)o.classList.add('wrong');
+  });
+  setTimeout(()=>{
+    if(currentQ<activeQuiz.questions.length-1){currentQ++;renderQuizQuestion();}
+    else{showQuizResult();}
+  },700);
+}
+function showQuizResult(){
+  let correct=0;
+  userAnswers.forEach((ans,i)=>{if(ans===activeQuiz.questions[i].ans)correct++;});
+  const score=Math.round((correct/activeQuiz.questions.length)*100);
+  const {grade,remark,color}=getGrade(score);
+  document.getElementById('quiz-active-view').classList.add('hidden');
+  document.getElementById('quiz-result-view').classList.remove('hidden');
+  document.getElementById('res-score').textContent=score;
+  document.getElementById('res-grade').textContent=grade;
+  document.getElementById('res-grade').style.color=color;
+  document.getElementById('res-remark').textContent=remark;
+  document.getElementById('res-breakdown').innerHTML=`<p style="color:var(--text-muted);font-size:14px">Correct: <strong>${correct}</strong> / ${activeQuiz.questions.length} &nbsp;|&nbsp; Score: <strong>${score}/100</strong></p>`;
+  // Save score
+  currentUser.quizScores.push(score);
+  const student=DB.students.find(s=>s.id===currentUser.id);
+  if(student)student.quizScores=currentUser.quizScores;
+  DB.quizResults.push({studentId:currentUser.id,studentName:currentUser.name,class:currentUser.class,quizTitle:activeQuiz.title,score,grade,date:new Date().toISOString().split('T')[0]});
+  // Update dashboard
+  const total=calcTotalScore(currentUser);
+  const g=getGrade(total);
+  document.getElementById('ov-total-score').textContent=total;
+  document.getElementById('ov-grade').textContent=g.grade;
+  document.getElementById('ov-remark').textContent=g.remark;
+  renderStudentQuizChart(currentUser.quizScores);
+  showToast(`Quiz complete! You scored ${score}/100 — Grade ${grade}`,'success');
+  apiCall('saveQuiz',{studentId:currentUser.id,quizTitle:activeQuiz.title,score,grade});
+}
+function exitQuiz(){
+  document.getElementById('quiz-active-view').classList.add('hidden');
+  document.getElementById('quiz-result-view').classList.add('hidden');
+  document.getElementById('quiz-list-view').classList.remove('hidden');
+}
+function goBackToQuizList(){
+  document.getElementById('quiz-result-view').classList.add('hidden');
+  document.getElementById('quiz-list-view').classList.remove('hidden');
+}
+
+/* =====================
+   ASSIGNMENTS
+   ===================== */
+function renderAssignments(){
+  const list=document.getElementById('assignments-list');
+  if(!list)return;
+  list.innerHTML=DB.assignments.map(a=>{
+    const sub=DB.submissions.find(s=>s.studentId===currentUser.id&&s.assignmentId===a.id);
+    return `
+    <div class="assignment-card">
+      <div class="assignment-header">
+        <div>
+          <div class="assignment-title">${a.title}</div>
+          <div class="assignment-due"><i class="fas fa-calendar-alt"></i> Due: ${a.dueDate} &nbsp;|&nbsp; Max: ${a.maxScore} marks</div>
+        </div>
+        ${sub?`<span class="badge ${sub.score>=70?'badge-success':sub.score>=50?'badge-info':'badge-warning'}">${sub.submitted?'Submitted':''} ${sub.score?'· '+sub.score+'/100':''}</span>`:'<span class="badge badge-warning">Pending</span>'}
+      </div>
+      <div class="assignment-instructions">${a.instructions}</div>
+      ${sub&&sub.remarks?`<div class="warning-box" style="background:rgba(5,150,105,.08);border-color:rgba(5,150,105,.3)"><i class="fas fa-comment-dots warning-icon" style="color:var(--success)"></i><div class="warning-text"><h4 style="color:var(--success)">Teacher's Remarks</h4><p>${sub.remarks}</p></div></div>`:''}
+      ${!sub||!sub.submitted?`<div class="assignment-upload" onclick="submitAssignment(${a.id},this)">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <p>Click to submit your assignment<br><small style="color:var(--text-muted)">Supported: PDF, Word, Image</small></p>
+      </div>`:'<div class="assignment-upload submitted"><i class="fas fa-check-circle" style="color:var(--success)"></i><p style="color:var(--success);font-weight:600">Assignment Submitted!</p></div>'}
+    </div>`;
+  }).join('');
+}
+function submitAssignment(id,el){
+  el.classList.add('submitted');
+  el.innerHTML='<i class="fas fa-check-circle" style="color:var(--success)"></i><p style="color:var(--success);font-weight:600">Assignment Submitted!</p>';
+  const existing=DB.submissions.find(s=>s.studentId===currentUser.id&&s.assignmentId===id);
+  if(!existing){DB.submissions.push({studentId:currentUser.id,assignmentId:id,submitted:true,score:null,remarks:''});}
+  showToast('Assignment submitted successfully!','success');
+  apiCall('saveAssignment',{studentId:currentUser.id,assignmentId:id});
+}
+
+/* =====================
+   NOTIFICATIONS
+   ===================== */
+function renderNotifications(){
+  const list=document.getElementById('notif-list');
+  if(!list)return;
+  const notifs=[];
+  const anns=DB.announcements.filter(a=>a.class==='All'||a.class===currentUser.class);
+  anns.forEach(a=>notifs.push({type:'info',icon:'fas fa-bullhorn',title:a.title,desc:a.message,time:a.date}));
+  if(currentUser.warnings>0)notifs.push({type:'warning',icon:'fas fa-exclamation-triangle',title:'Warning Issued',desc:`You have ${currentUser.warnings} warning(s) on your account.`,time:'Recently'});
+  notifs.push({type:'success',icon:'fas fa-trophy',title:'Quiz Score Updated',desc:`Your latest quiz score has been recorded on your dashboard.`,time:'Today'});
+  list.innerHTML=notifs.map(n=>`
+    <div class="notif-item">
+      <div class="notif-icon ${n.type}"><i class="${n.icon}"></i></div>
+      <div class="notif-content"><div class="notif-title">${n.title}</div><div class="notif-desc">${n.desc}</div></div>
+      <div class="notif-time">${n.time}</div>
+    </div>`).join('');
+  // Badge
+  document.getElementById('notif-badge').textContent=notifs.length;
+  document.getElementById('notif-dot-s').style.display=notifs.length?'block':'none';
+}
+
+/* =====================
+   CERTIFICATE
+   ===================== */
+function renderCertificate(){
+  const student=currentUser;
+  const total=calcTotalScore(student);
+  const {grade,remark}=getGrade(total);
+  const today=new Date().toLocaleDateString('en-GB',{year:'numeric',month:'long',day:'numeric'});
+  const passed=total>=40;
+  document.getElementById('certificate-preview').innerHTML=`
+  <div class="cert-outer">
+    <div class="cert-inner">
+      <div class="cert-top-bar"></div>
+      <div class="cert-seal"><i class="fas fa-star"></i></div>
+      <div class="cert-school">Pariya Academy for Modern Science & Quran</div>
+      <div class="cert-title">Certificate of Achievement</div>
+      <div class="cert-subtitle">English Language Programme</div>
+      <div class="cert-divider"><div class="cert-divider-line"></div><div class="cert-divider-star">✦</div><div class="cert-divider-line"></div></div>
+      <div class="cert-presented">This certificate is proudly presented to</div>
+      <div class="cert-name">${student.name}</div>
+      <div class="cert-class">${student.class} Student</div>
+      <div class="cert-statement">
+        For successfully ${passed?'completing':'participating in'} the English Language Learning Programme at<br>
+        <strong>Pariya Academy for Modern Science & Quran</strong>,<br>
+        demonstrating dedication, effort, and academic ${passed?'excellence':'commitment'}.
+      </div>
+      <div class="cert-score-box">
+        <div class="cert-score-item"><div class="val">${total}</div><div class="lbl">Total Score</div></div>
+        <div class="cert-score-item"><div class="val">${grade}</div><div class="lbl">Grade</div></div>
+        <div class="cert-score-item"><div class="val">${remark}</div><div class="lbl">Remarks</div></div>
+      </div>
+      <div class="cert-sigs">
+        <div class="cert-sig"><div class="cert-sig-line"></div><div class="cert-sig-name">Arabo Modibbo</div><div class="cert-sig-title">Founder & Director</div></div>
+        <div class="cert-sig"><div class="cert-sig-line"></div><div class="cert-sig-name">Head of English Dept.</div><div class="cert-sig-title">English Department</div></div>
+      </div>
+      <div class="cert-date">Issued on: ${today}</div>
+    </div>
+  </div>`;
+}
+function downloadCertificate(){
+  showToast('Certificate download started! Use Print → Save as PDF','info');
+  window.print();
+}
+
+/* =====================
+   PROFILE
+   ===================== */
+function renderProfile(){
+  const s=currentUser;
+  const initial=s.name[0];
+  document.getElementById('profile-avatar-big').textContent=initial;
+  document.getElementById('profile-name').textContent=s.name;
+  document.getElementById('profile-class').textContent=`Class: ${s.class} · ID: ${s.id}`;
+  document.getElementById('profile-status-badge').innerHTML=`<span class="badge ${s.status==='Active'?'badge-success':'badge-danger'}">${s.status}</span>`;
+  const total=calcTotalScore(s);
+  const {grade,remark}=getGrade(total);
+  document.getElementById('profile-info-grid').innerHTML=`
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      ${profileItem('fas fa-id-badge','Student ID',s.id)}
+      ${profileItem('fas fa-users','Class',s.class)}
+      ${profileItem('fas fa-user','Username',s.username)}
+      ${profileItem('fas fa-trophy','Total Score',total+'/100')}
+      ${profileItem('fas fa-star','Grade',grade+' — '+remark)}
+      ${profileItem('fas fa-book','Lessons Done',s.completedLessons.length+'/'+DB.lessons.length)}
+      ${profileItem('fas fa-exclamation-triangle','Warnings',s.warnings)}
+      ${profileItem('fas fa-circle','Status',s.status)}
+    </div>`;
+}
+function profileItem(icon,label,val){
+  return `<div style="background:var(--bg);border-radius:var(--radius-sm);padding:14px">
+    <div style="font-size:11px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px"><i class="${icon}" style="margin-right:4px"></i>${label}</div>
+    <div style="font-size:15px;font-weight:700;color:var(--text)">${val}</div>
+  </div>`;
+}
+function changePassword(){
+  const np=document.getElementById('new-pass').value;
+  if(!np||np.length<6){showToast('Password must be at least 6 characters','warning');return;}
+  currentUser.password=np;
+  const s=DB.students.find(x=>x.id===currentUser.id);
+  if(s)s.password=np;
+  document.getElementById('new-pass').value='';
+  showToast('Password changed successfully','success');
+}
+
+/* ================================
+   ADMIN DASHBOARD INITIALIZATION
+   ================================ */
+function initAdminDashboard(){
+  updateAdminStats();
+  renderStudentsTable();
+  renderLessonsTable();
+  renderQuizResultsTable();
+  renderAssignmentsAdminTable();
+  renderAdminAnnouncements();
+  renderClassPerformanceBars();
+  renderTopStudentsTable();
+  renderAdminAnalytics();
+}
+function updateAdminStats(){
+  const total=DB.students.length;
+  const active=DB.students.filter(s=>s.status==='Active').length;
+  const suspended=DB.students.filter(s=>s.status==='Suspended').length;
+  const lessons=DB.lessons.length;
+  const scores=DB.students.map(s=>calcTotalScore(s)).filter(x=>x>0);
+  const avg=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):0;
+  document.getElementById('a-total-students').textContent=total;
+  document.getElementById('a-active-students').textContent=active;
+  document.getElementById('a-suspended-students').textContent=suspended;
+  document.getElementById('a-total-lessons').textContent=lessons;
+  document.getElementById('a-avg-score').textContent=avg+'%';
+}
+function renderStudentsTable(filtered){
+  const list=filtered||DB.students;
+  document.getElementById('students-table-body').innerHTML=list.map(s=>{
+    const score=calcTotalScore(s);
+    const {grade}=getGrade(score);
+    return `<tr>
+      <td><span style="font-family:var(--mono,monospace);font-size:12px;color:var(--text-muted)">${s.id}</span></td>
+      <td><div style="display:flex;align-items:center"><div class="table-avatar">${s.name[0]}</div>${s.name}</div></td>
+      <td><span class="badge badge-info">${s.class}</span></td>
+      <td><strong>${score}</strong>/100</td>
+      <td><strong style="color:${getGrade(score).color}">${grade}</strong></td>
+      <td>${s.warnings>0?`<span class="badge badge-warning">${s.warnings} warning${s.warnings>1?'s':''}</span>`:'<span class="badge badge-success">Clean</span>'}</td>
+      <td><span class="badge ${s.status==='Active'?'badge-success':'badge-danger'}">${s.status}</span></td>
+      <td>
+        <div style="display:flex;gap:4px;flex-wrap:wrap">
+          <button class="btn btn-sm" style="border:1px solid var(--border);color:var(--text-muted);padding:5px 10px" onclick="adminWarnStudent('${s.id}')" title="Warn"><i class="fas fa-exclamation-triangle"></i></button>
+          <button class="btn btn-sm" style="border:1px solid var(--border);color:${s.status==='Active'?'var(--danger)':'var(--success)'};padding:5px 10px" onclick="adminToggleSuspend('${s.id}')" title="${s.status==='Active'?'Suspend':'Unsuspend'}"><i class="fas fa-${s.status==='Active'?'ban':'check'}"></i></button>
+          <button class="btn btn-sm btn-danger" style="padding:5px 10px" onclick="adminDeleteStudent('${s.id}')" title="Delete"><i class="fas fa-trash"></i></button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+function filterAdminStudents(){
+  const search=document.getElementById('admin-student-search').value.toLowerCase();
+  const cls=document.getElementById('admin-class-filter').value;
+  const status=document.getElementById('admin-status-filter').value;
+  const filtered=DB.students.filter(s=>{
+    const ms=s.name.toLowerCase().includes(search)||s.id.toLowerCase().includes(search);
+    const mc=cls==='All'||s.class===cls;
+    const mst=status==='All'||s.status===status;
+    return ms&&mc&&mst;
+  });
+  renderStudentsTable(filtered);
+}
+function adminWarnStudent(id){
+  const s=DB.students.find(x=>x.id===id);
+  if(!s)return;
+  s.warnings++;
+  renderStudentsTable();
+  updateAdminStats();
+  showToast(`Warning issued to ${s.name}`,'warning');
+  apiCall('warnStudent',{studentId:id});
+}
+function adminToggleSuspend(id){
+  const s=DB.students.find(x=>x.id===id);
+  if(!s)return;
+  s.status=s.status==='Active'?'Suspended':'Active';
+  renderStudentsTable();
+  updateAdminStats();
+  showToast(`${s.name} is now ${s.status}`,'info');
+  apiCall('suspendStudent',{studentId:id,status:s.status});
+}
+function adminDeleteStudent(id){
+  if(!confirm('Delete this student? This cannot be undone.'))return;
+  const idx=DB.students.findIndex(s=>s.id===id);
+  if(idx>-1){const name=DB.students[idx].name;DB.students.splice(idx,1);renderStudentsTable();updateAdminStats();showToast(`${name} deleted`,'success');}
+}
+function adminAddStudent(){
+  const name=document.getElementById('ns-name').value.trim();
+  const cls=document.getElementById('ns-class').value;
+  const user=document.getElementById('ns-username').value.trim();
+  const pass=document.getElementById('ns-password').value;
+  if(!name||!user||!pass){showToast('Fill all fields','warning');return;}
+  const newId='PAR-'+String(DB.students.length+1).padStart(3,'0');
+  DB.students.push({id:newId,name,class:cls,username:user,password:pass,status:'Active',warnings:0,quizScores:[],assignmentScores:[],completedLessons:[],grade:'–'});
+  closeModal('add-student-modal');
+  renderStudentsTable();updateAdminStats();renderTopStudentsTable();
+  showToast(`Student ${name} added! ID: ${newId}`,'success');
+  ['ns-name','ns-username','ns-password'].forEach(id=>document.getElementById(id).value='');
+  apiCall('addStudent',{name,class:cls,username:user,password:pass});
+}
+function renderLessonsTable(){
+  document.getElementById('lessons-table-body').innerHTML=DB.lessons.map((l,i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td><strong>${l.emoji} ${l.title}</strong></td>
+      <td><span class="badge badge-info">${l.class}</span></td>
+      <td><span class="badge badge-gold">${l.category}</span></td>
+      <td>${l.videoId&&l.videoId!='dQw4w9WgXcQ'?'<span class="badge badge-success">Yes</span>':'<span class="badge badge-warning">Demo</span>'}</td>
+      <td><button class="btn btn-sm btn-danger" onclick="adminDeleteLesson(${l.id})"><i class="fas fa-trash"></i></button></td>
+    </tr>`).join('');
+}
+function adminAddLesson(){
+  const title=document.getElementById('nl-title').value.trim();
+  const cls=document.getElementById('nl-class').value;
+  const cat=document.getElementById('nl-category').value;
+  const desc=document.getElementById('nl-desc').value.trim();
+  const video=document.getElementById('nl-video').value.trim();
+  const pdf=document.getElementById('nl-pdf').value.trim();
+  if(!title||!desc){showToast('Fill required fields','warning');return;}
+  const emojis={'Grammar':'🎯','Essay Writing':'✍️','Vocabulary':'📖','Tenses':'⏰','Comprehension':'🔍','Oral English':'🎙️','Letter Writing':'✉️','Literature':'📚'};
+  const newId=DB.lessons.length;
+  DB.lessons.push({id:newId,title,class:cls,category:cat,desc,videoId:video||'dQw4w9WgXcQ',pdfLink:pdf||'#',emoji:emojis[cat]||'📝'});
+  closeModal('add-lesson-modal');
+  renderLessonsTable();
+  document.getElementById('a-total-lessons').textContent=DB.lessons.length;
+  showToast(`Lesson "${title}" added!`,'success');
+  ['nl-title','nl-desc','nl-video','nl-pdf'].forEach(id=>document.getElementById(id).value='');
+}
+function adminDeleteLesson(id){
+  if(!confirm('Delete this lesson?'))return;
+  const idx=DB.lessons.findIndex(l=>l.id===id);
+  if(idx>-1){DB.lessons.splice(idx,1);renderLessonsTable();}
+}
+function renderQuizResultsTable(){
+  document.getElementById('quiz-results-table').innerHTML=DB.quizResults.map(r=>`
+    <tr>
+      <td><div style="display:flex;align-items:center"><div class="table-avatar">${r.studentName[0]}</div>${r.studentName}</div></td>
+      <td><span class="badge badge-info">${r.class}</span></td>
+      <td>${r.quizTitle}</td>
+      <td><strong>${r.score}</strong>/100</td>
+      <td><strong style="color:${getGrade(r.score).color}">${r.grade}</strong></td>
+      <td>${r.date}</td>
+    </tr>`).join('');
+}
+function renderAssignmentsAdminTable(){
+  const rows=[];
+  DB.assignments.forEach(a=>{
+    DB.students.forEach(s=>{
+      const sub=DB.submissions.find(x=>x.studentId===s.id&&x.assignmentId===a.id);
+      rows.push({student:s,assignment:a,sub:sub||null});
+    });
+  });
+  document.getElementById('assignments-admin-table').innerHTML=rows.map(r=>`
+    <tr>
+      <td><div style="display:flex;align-items:center"><div class="table-avatar">${r.student.name[0]}</div>${r.student.name}</div></td>
+      <td><span class="badge badge-info">${r.student.class}</span></td>
+      <td>${r.assignment.title}</td>
+      <td>${r.sub?`<span class="badge badge-success">Yes</span>`:'<span class="badge badge-warning">No</span>'}</td>
+      <td>${r.sub&&r.sub.score?`<strong>${r.sub.score}</strong>/100`:'—'}</td>
+      <td style="max-width:180px;font-size:13px">${r.sub&&r.sub.remarks?r.sub.remarks:'—'}</td>
+      <td>
+        ${r.sub&&!r.sub.score?`<button class="btn btn-sm btn-primary" onclick="markAssignment('${r.student.id}',${r.assignment.id})"><i class="fas fa-check"></i> Mark</button>`:
+        r.sub?'<span class="badge badge-success">Marked</span>':'—'}
+      </td>
+    </tr>`).join('');
+}
+function markAssignment(studentId,assignmentId){
+  const score=prompt('Enter score (0–100):');
+  if(score===null)return;
+  const s=parseInt(score);
+  if(isNaN(s)||s<0||s>100){showToast('Invalid score','error');return;}
+  const remark=prompt('Enter remarks:');
+  const sub=DB.submissions.find(x=>x.studentId===studentId&&x.assignmentId===assignmentId);
+  if(sub){sub.score=s;sub.remarks=remark||'';}
+  const student=DB.students.find(x=>x.id===studentId);
+  if(student)student.assignmentScores.push(s);
+  renderAssignmentsAdminTable();
+  showToast('Assignment marked successfully!','success');
+}
+function renderAdminAnnouncements(){
+  document.getElementById('announcements-admin-list').innerHTML=DB.announcements.map(a=>`
+    <div class="announcement-card" style="border-left-color:var(--gold)">
+      <h4>${a.title} <span class="badge badge-info" style="font-size:10px;vertical-align:middle">${a.class}</span></h4>
+      <p>${a.message}</p>
+      <div class="a-meta"><span><i class="fas fa-calendar-alt"></i> ${a.date}</span><span><i class="fas fa-user"></i> ${a.author}</span><button class="btn btn-sm btn-danger" style="padding:3px 10px;margin-left:auto" onclick="deleteAnnouncement(${a.id})"><i class="fas fa-trash"></i></button></div>
+    </div>`).join('');
+}
+function adminPostAnnouncement(){
+  const title=document.getElementById('ann-title').value.trim();
+  const cls=document.getElementById('ann-class').value;
+  const msg=document.getElementById('ann-msg').value.trim();
+  if(!title||!msg){showToast('Fill all fields','warning');return;}
+  DB.announcements.unshift({id:Date.now(),title,class:cls,message:msg,date:new Date().toISOString().split('T')[0],author:'Admin'});
+  closeModal('announcement-modal');
+  renderAdminAnnouncements();
+  showToast('Announcement posted!','success');
+  ['ann-title','ann-msg'].forEach(id=>document.getElementById(id).value='');
+}
+function deleteAnnouncement(id){
+  DB.announcements=DB.announcements.filter(a=>a.id!==id);
+  renderAdminAnnouncements();
+  showToast('Announcement deleted','info');
+}
+function renderClassPerformanceBars(){
+  const classes=['JSS1','JSS2','JSS3','SS1','SS2','SS3'];
+  document.getElementById('class-performance-bars').innerHTML=classes.map(cls=>{
+    const students=DB.students.filter(s=>s.class===cls);
+    const avg=students.length?Math.round(students.map(s=>calcTotalScore(s)).reduce((a,b)=>a+b,0)/students.length):0;
+    return `<div class="progress-bar-wrap"><div class="progress-bar-label"><span>${cls} (${students.length} students)</span><span>${avg}%</span></div><div class="progress-bar"><div class="progress-bar-fill ${['blue','gold','green','blue','gold','green'][classes.indexOf(cls)]}" style="width:${avg}%"></div></div></div>`;
+  }).join('');
+}
+function renderTopStudentsTable(){
+  const sorted=[...DB.students].sort((a,b)=>calcTotalScore(b)-calcTotalScore(a)).slice(0,5);
+  document.getElementById('top-students-table').innerHTML=sorted.map((s,i)=>{
+    const score=calcTotalScore(s);const {grade}=getGrade(score);
+    return `<tr><td><strong>${['🥇','🥈','🥉','4','5'][i]}</strong></td><td><div style="display:flex;align-items:center"><div class="table-avatar">${s.name[0]}</div>${s.name}</div></td><td><span class="badge badge-info">${s.class}</span></td><td><strong>${score}</strong>/100</td><td><strong style="color:${getGrade(score).color}">${grade}</strong></td><td><span class="badge ${s.status==='Active'?'badge-success':'badge-danger'}">${s.status}</span></td></tr>`;
+  }).join('');
+}
+function renderAdminAnalytics(){
+  // Grade distribution
+  const gradeCounts={A:0,B:0,C:0,D:0,E:0,F:0};
+  DB.students.forEach(s=>{const {grade}=getGrade(calcTotalScore(s));gradeCounts[grade]++;});
+  const maxG=Math.max(...Object.values(gradeCounts))||1;
+  document.getElementById('grade-distribution-bars').innerHTML=Object.entries(gradeCounts).map(([g,c])=>`
+    <div class="progress-bar-wrap"><div class="progress-bar-label"><span>Grade ${g}</span><span>${c} students</span></div><div class="progress-bar"><div class="progress-bar-fill ${g==='A'?'green':g==='F'?'':g==='B'?'blue':'gold'}" style="width:${(c/maxG)*100}%;background:${getGrade(g==='A'?80:g==='B'?65:g==='C'?55:g==='D'?47:g==='E'?42:30).color}"></div></div></div>`).join('');
+  // Class chart
+  const classes=['JSS1','JSS2','JSS3','SS1','SS2','SS3'];
+  document.getElementById('class-chart').innerHTML=classes.map(cls=>{
+    const s=DB.students.filter(x=>x.class===cls);
+    const completedAvg=s.length?Math.round(s.map(x=>x.completedLessons.length).reduce((a,b)=>a+b,0)/s.length):0;
+    const pct=Math.round((completedAvg/DB.lessons.length)*100);
+    return `<div class="chart-bar-wrap"><div class="chart-bar-val">${pct}%</div><div style="flex:1;display:flex;align-items:flex-end;width:100%"><div class="chart-bar-inner" style="height:${pct||4}%;width:100%"></div></div><div class="chart-bar-label">${cls}</div></div>`;
+  }).join('');
+  // Full report
+  document.getElementById('full-report-table').innerHTML=DB.students.map(s=>{
+    const qAvg=s.quizScores.length?Math.round(s.quizScores.reduce((a,b)=>a+b,0)/s.quizScores.length):0;
+    const aAvg=s.assignmentScores.length?Math.round(s.assignmentScores.reduce((a,b)=>a+b,0)/s.assignmentScores.length):0;
+    const total=calcTotalScore(s);const {grade}=getGrade(total);
+    return `<tr><td><div style="display:flex;align-items:center"><div class="table-avatar">${s.name[0]}</div>${s.name}</div></td><td><span class="badge badge-info">${s.class}</span></td><td>${qAvg||'—'}</td><td>${aAvg||'—'}</td><td><strong>${total}</strong></td><td><strong style="color:${getGrade(total).color}">${grade}</strong></td><td>${s.completedLessons.length}/${DB.lessons.length}</td></tr>`;
+  }).join('');
+}
+
+/* =====================
+   API INTEGRATION
+   ===================== */
+async function apiCall(action,data={}){
+  if(USE_DEMO_DATA)return; // Skip in demo mode
+  try{
+    const res=await fetch(APPS_SCRIPT_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({action,...data}),
+    });
+    const json=await res.json();
+    return json;
+  }catch(e){console.warn('API call failed:',action,e);}
+}
+
+/* =====================
+   SCROLL ANCHOR
+   ===================== */
+function scrollTo(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
+
+/* =====================
+   KEYBOARD SHORTCUTS
+   ===================== */
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document.querySelectorAll('.modal-overlay.active').forEach(m=>m.classList.remove('active'));
+  }
+});
+
+/* =====================
+   SIDEBAR NAV CLICK FIX
+   (Ensure active class updates correctly)
+   ===================== */
+document.querySelectorAll('#page-student .sidebar-nav-item').forEach(item=>{
+  item.addEventListener('click',function(){
+    document.querySelectorAll('#page-student .sidebar-nav-item').forEach(i=>i.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+document.querySelectorAll('#page-admin .sidebar-nav-item').forEach(item=>{
+  item.addEventListener('click',function(){
+    document.querySelectorAll('#page-admin .sidebar-nav-item').forEach(i=>i.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+/* =====================
+   SCROLL REVEAL OBSERVER
+   (re-usable, called on init)
+   ===================== */
+function initReveal(){
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+  },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+
+/* =====================
+   GRADING COLOR FIX
+   ===================== */
+// Extend getGrade to always return color
+const _getGrade=getGrade;
+function getGrade(score){
+  if(typeof score==='string'){
+    // called with grade letter for display
+    const map={A:'var(--success)',B:'var(--info)',C:'var(--primary)',D:'var(--warning)',E:'var(--gold-dark)',F:'var(--danger)'};
+    return{grade:score,remark:'',color:map[score]||'var(--text)'};
+  }
+  return _getGrade(score);
+}
+
+/* =====================
+   STUDENT DASHBOARD — 
+   OVERVIEW CHART FIX
+   ===================== */
+function renderStudentQuizChart(scores){
+  const wrap=document.getElementById('quiz-chart');
+  if(!wrap)return;
+  const labels=['Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8'];
+  if(!scores||!scores.length){
+    wrap.innerHTML='<p style="color:var(--text-muted);font-size:13px;padding:20px 0">No quiz scores yet. Take a quiz to see your history!</p>';
+    return;
+  }
+  const maxH=110;
+  wrap.innerHTML=scores.slice(0,8).map((s,i)=>{
+    const clr=s>=70?'#059669':s>=50?'#c9a84c':'#dc2626';
+    return `<div class="chart-bar-wrap">
+      <div class="chart-bar-val" style="font-size:11px;color:${clr}">${s}</div>
+      <div style="flex:1;display:flex;align-items:flex-end;width:100%">
+        <div style="width:100%;height:${Math.max(4,Math.round((s/100)*maxH))}px;background:linear-gradient(180deg,${clr}99,${clr}33);border-radius:4px 4px 0 0;transition:height 1.2s cubic-bezier(.34,1.56,.64,1)"></div>
+      </div>
+      <div class="chart-bar-label">${labels[i]||'Q'+(i+1)}</div>
+    </div>`;
+  }).join('');
+}
+
+/* =====================
+   ADMIN ANALYTICS CHART FIX
+   ===================== */
+function renderAdminAnalytics(){
+  // Grade distribution
+  const gradeCounts={A:0,B:0,C:0,D:0,E:0,F:0};
+  DB.students.forEach(s=>{
+    const sc=calcTotalScore(s);
+    const g=sc>=70?'A':sc>=60?'B':sc>=50?'C':sc>=45?'D':sc>=40?'E':'F';
+    gradeCounts[g]++;
+  });
+  const gradeColors={A:'#059669',B:'#0284c7',C:'#0a2463',D:'#d97706',E:'#9b7a2f',F:'#dc2626'};
+  const maxG=Math.max(...Object.values(gradeCounts),1);
+  const gEl=document.getElementById('grade-distribution-bars');
+  if(gEl){
+    gEl.innerHTML=Object.entries(gradeCounts).map(([g,c])=>`
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-label"><span>Grade <strong>${g}</strong></span><span>${c} student${c!==1?'s':''}</span></div>
+        <div class="progress-bar"><div class="progress-bar-fill" style="width:${maxG?Math.round((c/maxG)*100):0}%;background:${gradeColors[g]};transition:width 1.2s ease"></div></div>
+      </div>`).join('');
+  }
+
+  // Class chart
+  const classes=['JSS1','JSS2','JSS3','SS1','SS2','SS3'];
+  const classChartEl=document.getElementById('class-chart');
+  if(classChartEl){
+    classChartEl.innerHTML=classes.map(cls=>{
+      const students=DB.students.filter(x=>x.class===cls);
+      const avgLessons=students.length
+        ?Math.round(students.map(x=>x.completedLessons.length).reduce((a,b)=>a+b,0)/students.length)
+        :0;
+      const pct=DB.lessons.length?Math.round((avgLessons/DB.lessons.length)*100):0;
+      return `<div class="chart-bar-wrap">
+        <div class="chart-bar-val" style="font-size:11px">${pct}%</div>
+        <div style="flex:1;display:flex;align-items:flex-end;width:100%">
+          <div style="width:100%;height:${Math.max(4,pct)}%;background:linear-gradient(180deg,var(--primary-light),var(--primary));border-radius:4px 4px 0 0;transition:height 1.2s ease"></div>
+        </div>
+        <div class="chart-bar-label">${cls}</div>
+      </div>`;
+    }).join('');
+  }
+
+  // Full report table
+  const reportEl=document.getElementById('full-report-table');
+  if(reportEl){
+    reportEl.innerHTML=DB.students.map(s=>{
+      const qAvg=s.quizScores.length?Math.round(s.quizScores.reduce((a,b)=>a+b,0)/s.quizScores.length):0;
+      const aAvg=s.assignmentScores.length?Math.round(s.assignmentScores.reduce((a,b)=>a+b,0)/s.assignmentScores.length):0;
+      const total=calcTotalScore(s);
+      const sc=total>=70?'A':total>=60?'B':total>=50?'C':total>=45?'D':total>=40?'E':'F';
+      return `<tr>
+        <td><div style="display:flex;align-items:center"><div class="table-avatar">${s.name[0]}</div><span>${s.name}</span></div></td>
+        <td><span class="badge badge-info">${s.class}</span></td>
+        <td>${qAvg||'—'}</td>
+        <td>${aAvg||'—'}</td>
+        <td><strong>${total}</strong>/100</td>
+        <td><strong style="color:${gradeColors[sc]}">${sc}</strong></td>
+        <td>${s.completedLessons.length}/${DB.lessons.length}</td>
+      </tr>`;
+    }).join('');
+  }
+}
+
+/* =====================
+   LIVE SEARCH ENHANCEMENTS
+   ===================== */
+document.addEventListener('DOMContentLoaded',()=>{
+  // Enter key login
+  ['s-login-pass','a-login-pass'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){
+      el.addEventListener('keydown',e=>{
+        if(e.key==='Enter'){
+          id.startsWith('s')?studentLogin():adminLogin();
+        }
+      });
+    }
+  });
+});
+
+/* =====================
+   SECTION NAVIGATION FIX
+   (Override to always work even without event)
+   ===================== */
+function showStudentSection(id,title){
+  document.querySelectorAll('#page-student .dash-section').forEach(s=>s.classList.remove('active'));
+  const sec=document.getElementById('section-'+id);
+  if(sec)sec.classList.add('active');
+  const titleEl=document.getElementById('topbar-title-s');
+  if(titleEl)titleEl.textContent=title;
+  document.querySelectorAll('#page-student .sidebar-nav-item').forEach(i=>{
+    i.classList.toggle('active',i.textContent.trim().toLowerCase().includes(title.toLowerCase().split(' ')[0]));
+  });
+  closeMobileSidebar();
+  if(id==='certificate')renderCertificate();
+  if(id==='lessons')renderLessons();
+  if(id==='quizzes'){renderQuizList();document.getElementById('quiz-active-view').classList.add('hidden');document.getElementById('quiz-result-view').classList.add('hidden');document.getElementById('quiz-list-view').classList.remove('hidden');}
+  if(id==='assignments')renderAssignments();
+  if(id==='notifications')renderNotifications();
+  if(id==='profile')renderProfile();
+}
+function showAdminSection(id,title){
+  document.querySelectorAll('#page-admin .dash-section').forEach(s=>s.classList.remove('active'));
+  const sec=document.getElementById('section-'+id);
+  if(sec)sec.classList.add('active');
+  const titleEl=document.getElementById('topbar-title-a');
+  if(titleEl)titleEl.textContent=title;
+  document.querySelectorAll('#page-admin .sidebar-nav-item').forEach(i=>{
+    i.classList.toggle('active',i.textContent.trim().toLowerCase().includes(title.toLowerCase().split(' ')[0]));
+  });
+  closeMobileSidebar();
+  if(id==='a-overview'){renderTopStudentsTable();renderClassPerformanceBars();}
+  if(id==='a-students')renderStudentsTable();
+  if(id==='a-lessons')renderLessonsTable();
+  if(id==='a-quizzes')renderQuizResultsTable();
+  if(id==='a-assignments')renderAssignmentsAdminTable();
+  if(id==='a-announcements')renderAdminAnnouncements();
+  if(id==='a-analytics')renderAdminAnalytics();
+}
+
+/* =====================
+   GOOGLE APPS SCRIPT
+   BACKEND REFERENCE
+   (Copy this code to your
+    Google Apps Script editor)
+   =====================
+
+const SHEET_ID = 'YOUR_GOOGLE_SHEET_ID_HERE';
+
+const SHEETS = {
+  STUDENTS:      'Students',
+  LESSONS:       'Lessons',
+  QUIZZES:       'Quizzes',
+  ASSIGNMENTS:   'Assignments',
+  RESULTS:       'Results',
+  CERTIFICATES:  'Certificates',
+  WARNINGS:      'Warnings',
+  SUSPENSIONS:   'Suspensions',
+  ANNOUNCEMENTS: 'Announcements',
+  ADMINS:        'Admins',
+};
+
+function getSheet(name) {
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  let sheet = ss.getSheetByName(name);
+  if (!sheet) {
+    sheet = ss.insertSheet(name);
+    initSheetHeaders(sheet, name);
+  }
+  return sheet;
+}
+
+function initSheetHeaders(sheet, name) {
+  const headers = {
+    Students:      ['StudentID','FullName','Class','Username','Password','Status','Warnings','QuizScores','AssignmentScores','CompletedLessons','TotalScore','Grade','CertificateLink','DateAdded'],
+    Lessons:       ['LessonID','Title','Class','Category','Description','VideoID','PDFLink','DateAdded'],
+    Quizzes:       ['QuizID','Title','Category','QuestionsJSON'],
+    Assignments:   ['AssignmentID','Title','Class','Instructions','DueDate','MaxScore'],
+    Results:       ['ResultID','StudentID','StudentName','Class','QuizTitle','Score','Grade','Date'],
+    Certificates:  ['CertID','StudentID','StudentName','Class','TotalScore','Grade','IssueDate'],
+    Warnings:      ['WarningID','StudentID','Reason','IssuedBy','Date'],
+    Suspensions:   ['SuspensionID','StudentID','Reason','StartDate','EndDate','Status'],
+    Announcements: ['AnnouncementID','Title','Class','Message','Author','Date'],
+    Admins:        ['Username','Password','FullName','Role'],
+  };
+  const h = headers[name] || ['ID','Data'];
+  sheet.appendRow(h);
+  sheet.getRange(1,1,1,h.length).setFontWeight('bold').setBackground('#0a2463').setFontColor('#ffffff');
+}
+
+function doGet(e) {
+  const action = e.parameter.action || '';
+  let result;
+  try {
+    switch(action) {
+      case 'getStudents':      result = getStudents(e.parameter);   break;
+      case 'getLessons':       result = getLessons(e.parameter);    break;
+      case 'getAnnouncements': result = getAnnouncements();         break;
+      case 'getResults':       result = getResults(e.parameter);    break;
+      default: result = {error: 'Unknown action: ' + action};
+    }
+  } catch(err) {
+    result = {error: err.message};
+  }
+  return ContentService
+    .createTextOutput(JSON.stringify({success:!result.error, data:result}))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function doPost(e) {
+  let body, result;
+  try {
+    body = JSON.parse(e.postData.contents);
+    const action = body.action || '';
+    switch(action) {
+      case 'login':             result = login(body);             break;
+      case 'addStudent':        result = addStudent(body);        break;
+      case 'editStudent':       result = editStudent(body);       break;
+      case 'deleteStudent':     result = deleteStudent(body);     break;
+      case 'suspendStudent':    result = suspendStudent(body);    break;
+      case 'warnStudent':       result = warnStudent(body);       break;
+      case 'saveQuiz':          result = saveQuizResult(body);    break;
+      case 'saveAssignment':    result = saveAssignment(body);    break;
+      case 'saveLesson':        result = saveLessonComplete(body);break;
+      case 'generateCert':      result = generateCertificate(body);break;
+      case 'postAnnouncement':  result = postAnnouncement(body);  break;
+      case 'markAssignment':    result = markAssignment(body);    break;
+      default: result = {error: 'Unknown action: ' + action};
+    }
+  } catch(err) {
+    result = {error: err.message};
+  }
+  return ContentService
+    .createTextOutput(JSON.stringify({success:!result.error, data:result}))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// ---- AUTH ----
+function login(body) {
+  const sheet = getSheet(SHEETS.STUDENTS);
+  const data  = sheet.getDataRange().getValues();
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][0] === body.studentId && data[i][4] === body.password) {
+      if (data[i][5] === 'Suspended') return {error:'Account suspended'};
+      return {
+        studentId: data[i][0], name: data[i][1], class: data[i][2],
+        username:  data[i][3], status: data[i][5], warnings: data[i][6],
+        quizScores: data[i][7], assignmentScores: data[i][8],
+        completedLessons: data[i][9], totalScore: data[i][10], grade: data[i][11],
+      };
+    }
+  }
+  return {error:'Invalid credentials'};
+}
+
+// ---- STUDENTS CRUD ----
+function getStudents(params) {
+  const sheet = getSheet(SHEETS.STUDENTS);
+  const data  = sheet.getDataRange().getValues();
+  const headers = data[0];
+  return data.slice(1).map(row => {
+    const obj = {};
+    headers.forEach((h,i) => obj[h] = row[i]);
+    return obj;
+  });
+}
+
+function addStudent(body) {
+  const sheet = getSheet(SHEETS.STUDENTS);
+  const id = 'PAR-' + String(sheet.getLastRow()).padStart(3,'0');
+  sheet.appendRow([
+    id, body.name, body.class, body.username, body.password,
+    'Active', 0, '[]', '[]', '[]', 0, '-', '', new Date().toISOString()
+  ]);
+  return {studentId: id, message: 'Student added successfully'};
+}
+
+function editStudent(body) {
+  const sheet = getSheet(SHEETS.STUDENTS);
+  const data  = sheet.getDataRange().getValues();
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][0] === body.studentId) {
+      if (body.name)     sheet.getRange(i+1,2).setValue(body.name);
+      if (body.class)    sheet.getRange(i+1,3).setValue(body.class);
+      if (body.username) sheet.getRange(i+1,4).setValue(body.username);
+      if (body.password) sheet.getRange(i+1,5).setValue(body.password);
+      return {message: 'Student updated'};
+    }
+  }
+  return {error: 'Student not found'};
+}
+
+function deleteStudent(body) {
+  const sheet = getSheet(SHEETS.STUDENTS);
+  const data  = sheet.getDataRange().getValues();
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][0] === body.studentId) {
+      sheet.deleteRow(i+1);
+      return {message: 'Student deleted'};
+    }
+  }
+  return {error: 'Student not found'};
+}
+
+function suspendStudent(body) {
+  const sheet = getSheet(SHEETS.STUDENTS);
+  const data  = sheet.getDataRange().getValues();
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][0] === body.studentId) {
+      sheet.getRange(i+1,6).setValue(body.status || 'Suspended');
+      // Log suspension
+      const sSheet = getSheet(SHEETS.SUSPENSIONS);
+      sSheet.appendRow([
+        Date.now(), body.studentId, body.reason||'Admin action',
+        new Date().toISOString(), body.endDate||'', body.status||'Suspended'
+      ]);
+      return {message: 'Status updated to ' + (body.status||'Suspended')};
+    }
+  }
+  return {error: 'Student not found'};
+}
+
+function warnStudent(body) {
+  const sheet = getSheet(SHEETS.STUDENTS);
+  const data  = sheet.getDataRange().getValues();
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][0] === body.studentId) {
+      const warnings = (parseInt(data[i][6])||0) + 1;
+      sheet.getRange(i+1,7).setValue(warnings);
+      // Log warning
+      const wSheet = getSheet(SHEETS.WARNINGS);
+      wSheet.appendRow([Date.now(), body.studentId, body.reason||'Admin warning', 'Admin', new Date().toISOString()]);
+      return {message: 'Warning issued. Total warnings: ' + warnings};
+    }
+  }
+  return {error: 'Student not found'};
+}
+
+// ---- LESSONS ----
+function getLessons(params) {
+  const sheet = getSheet(SHEETS.LESSONS);
+  const data  = sheet.getDataRange().getValues();
+  const headers = data[0];
+  return data.slice(1).map(row=>{
+    const obj={};headers.forEach((h,i)=>obj[h]=row[i]);return obj;
+  });
+}
+
+// ---- QUIZ RESULTS ----
+function saveQuizResult(body) {
+  const sheet = getSheet(SHEETS.RESULTS);
+  sheet.appendRow([
+    Date.now(), body.studentId, body.studentName||'', body.class||'',
+    body.quizTitle, body.score, body.grade, new Date().toISOString().split('T')[0]
+  ]);
+  // Update student total score
+  updateStudentScore(body.studentId);
+  return {message: 'Quiz result saved'};
+}
+
+function getResults(params) {
+  const sheet = getSheet(SHEETS.RESULTS);
+  const data  = sheet.getDataRange().getValues();
+  const headers = data[0];
+  let rows = data.slice(1).map(row=>{
+    const obj={};headers.forEach((h,i)=>obj[h]=row[i]);return obj;
+  });
+  if (params.studentId) rows = rows.filter(r=>r.StudentID===params.studentId);
+  return rows;
+}
+
+// ---- ASSIGNMENTS ----
+function saveAssignment(body) {
+  const sheet = getSheet(SHEETS.ASSIGNMENTS);
+  sheet.appendRow([
+    Date.now(), body.studentId, body.assignmentId,
+    'Submitted', null, '', new Date().toISOString()
+  ]);
+  return {message: 'Assignment submitted'};
+}
+
+function markAssignment(body) {
+  // Find submission row and add score/remark
+  const sheet = getSheet(SHEETS.ASSIGNMENTS);
+  const data  = sheet.getDataRange().getValues();
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][1]===body.studentId && String(data[i][2])===String(body.assignmentId)) {
+      sheet.getRange(i+1,5).setValue(body.score);
+      sheet.getRange(i+1,6).setValue(body.remarks||'');
+      updateStudentScore(body.studentId);
+      return {message: 'Assignment marked'};
+    }
+  }
+  return {error: 'Submission not found'};
+}
+
+// ---- LESSON COMPLETION ----
+function saveLessonComplete(body) {
+  const sheet = getSheet(SHEETS.STUDENTS);
+  const data  = sheet.getDataRange().getValues();
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][0] === body.studentId) {
+      let completed = JSON.parse(data[i][9]||'[]');
+      if (!completed.includes(body.lessonId)) {
+        completed.push(body.lessonId);
+        sheet.getRange(i+1,10).setValue(JSON.stringify(completed));
+      }
+      return {message: 'Lesson marked complete'};
+    }
+  }
+  return {error: 'Student not found'};
+}
+
+// ---- CERTIFICATES ----
+function generateCertificate(body) {
+  const sheet = getSheet(SHEETS.CERTIFICATES);
+  const certId = 'CERT-' + Date.now();
+  sheet.appendRow([
+    certId, body.studentId, body.studentName, body.class,
+    body.totalScore, body.grade, new Date().toISOString().split('T')[0]
+  ]);
+  // Update student certificate link
+  const sSheet = getSheet(SHEETS.STUDENTS);
+  const data   = sSheet.getDataRange().getValues();
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][0] === body.studentId) {
+      sSheet.getRange(i+1,13).setValue(certId);
+      break;
+    }
+  }
+  return {certId, message: 'Certificate generated'};
+}
+
+// ---- ANNOUNCEMENTS ----
+function getAnnouncements() {
+  const sheet = getSheet(SHEETS.ANNOUNCEMENTS);
+  const data  = sheet.getDataRange().getValues();
+  const headers = data[0];
+  return data.slice(1).map(row=>{
+    const obj={};headers.forEach((h,i)=>obj[h]=row[i]);return obj;
+  });
+}
+
+function postAnnouncement(body) {
+  const sheet = getSheet(SHEETS.ANNOUNCEMENTS);
+  sheet.appendRow([
+    Date.now(), body.title, body.class||'All',
+    body.message, body.author||'Admin', new Date().toISOString().split('T')[0]
+  ]);
+  return {message: 'Announcement posted'};
+}
+
+// ---- HELPERS ----
+function updateStudentScore(studentId) {
+  // Recalculate and update student's total score and grade
+  const rSheet = getSheet(SHEETS.RESULTS);
+  const rData  = rSheet.getDataRange().getValues();
+  const scores = rData.slice(1)
+    .filter(r=>r[1]===studentId)
+    .map(r=>Number(r[5])||0);
+  const avg = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : 0;
+  const grade = avg>=70?'A':avg>=60?'B':avg>=50?'C':avg>=45?'D':avg>=40?'E':'F';
+
+  const sSheet = getSheet(SHEETS.STUDENTS);
+  const sData  = sSheet.getDataRange().getValues();
+  for (let i = 1; i < sData.length; i++) {
+    if (sData[i][0] === studentId) {
+      sSheet.getRange(i+1,11).setValue(avg);
+      sSheet.getRange(i+1,12).setValue(grade);
+      break;
+    }
+  }
+}
+
+// ---- SETUP FUNCTION ----
+// Run this once to initialize all sheets
+function setupSheets() {
+  Object.values(SHEETS).forEach(name => getSheet(name));
+  // Add default admin
+  const admins = getSheet(SHEETS.ADMINS);
+  if (admins.getLastRow() < 2) {
+    admins.appendRow(['admin','admin2026','Administrator','superadmin']);
+  }
+  Logger.log('Sheets initialized successfully!');
+}
+
+   =====================
+   END GOOGLE APPS SCRIPT
+   ===================== */
+
+/* =====================
+   INIT ON PAGE LOAD
+   ===================== */
+document.addEventListener('DOMContentLoaded',()=>{
+  // Apply theme toggles
+  ['theme-toggle-home','theme-toggle-s','theme-toggle-a'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){
+      el.classList.toggle('on',currentTheme==='dark');
+      el.addEventListener('click',()=>{
+        applyTheme(currentTheme==='dark'?'light':'dark');
+      });
+    }
+  });
+  // Enter key on login fields
+  document.getElementById('s-login-pass')?.addEventListener('keydown',e=>{if(e.key==='Enter')studentLogin();});
+  document.getElementById('a-login-pass')?.addEventListener('keydown',e=>{if(e.key==='Enter')adminLogin();});
+  document.getElementById('s-login-id')?.addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('s-login-pass')?.focus();});
+  document.getElementById('a-login-user')?.addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('a-login-pass')?.focus();});
+});
+
+/* =====================
+   BACK TO TOP FAB SHOW
+   ===================== */
+window.addEventListener('scroll',()=>{
+  const fab=document.getElementById('fab-btn');
+  if(fab){
+    if(window.scrollY>400){fab.classList.remove('hidden');}
+    else{fab.classList.add('hidden');}
+  }
+},{ passive:true });
+
+/* =====================
+   EXTRA POLISH:
+   Animate stat cards on
+   admin section load
+   ===================== */
+function animateAdminCounters(){
+  document.querySelectorAll('.analytics-card .a-num').forEach(el=>{
+    const txt=el.textContent;
+    const num=parseInt(txt);
+    if(isNaN(num))return;
+    let c=0;
+    const step=Math.max(1,Math.floor(num/40));
+    const t=setInterval(()=>{
+      c+=step;
+      if(c>=num){c=num;clearInterval(t);}
+      el.textContent=txt.includes('%')?c+'%':c;
+    },25);
+  });
+}
+
+/* =====================
+   ADMIN DASHBOARD INIT
+   (Override to also animate)
+   ===================== */
+const _initAdminDashboard=initAdminDashboard;
+function initAdminDashboard(){
+  _initAdminDashboard();
+  setTimeout(animateAdminCounters,400);
+}
+
+/* =====================
+   RESPONSIVE GRID 
+   FIX FOR ADMIN/STUDENT
+   ===================== */
+function checkGridResponsive(){
+  const isMobile=window.innerWidth<=768;
+  document.querySelectorAll('.progress-grid-row').forEach(el=>{
+    el.style.gridTemplateColumns=isMobile?'1fr':'1fr 1fr';
+  });
+}
+window.addEventListener('resize',checkGridResponsive,{passive:true});
+checkGridResponsive();
+
+/* =====================
+   AUTO-REFRESH ANNOUNCEMENTS
+   Every 5 minutes if logged in
+   ===================== */
+setInterval(()=>{
+  if(currentRole==='student'&&currentUser){
+    renderStudentAnnouncements(currentUser.class);
+  }
+},300000);
+</script>
+
+</body>
+</html>
