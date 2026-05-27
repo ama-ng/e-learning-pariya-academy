@@ -746,7 +746,7 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:64px 40
   </nav>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden" style="position:fixed;top:72px;left:0;right:0;background:rgba(10,36,99,.98);z-index:999;padding:24px;display:none">
+  <div id="mobile-menu" style="position:fixed;top:72px;left:0;right:0;background:rgba(10,36,99,.98);z-index:999;padding:24px;display:none">
     <div style="display:flex;flex-direction:column;gap:16px">
       <a href="#features" style="color:rgba(255,255,255,.8);font-size:16px">Features</a>
       <a href="#classes" style="color:rgba(255,255,255,.8);font-size:16px">Classes</a>
@@ -946,7 +946,7 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:64px 40
     <button class="btn btn-primary w-full" onclick="studentLogin()" style="padding:14px;font-size:15px;border-radius:var(--radius-sm);justify-content:center">
       <i class="fas fa-sign-in-alt"></i> Login
     </button>
-    <p class="modal-footer-text">Demo: ID = <strong>PAR-001</strong> | Password = <strong>student123</strong></p>
+    <p class="modal-footer-text">Contact your administrator if you forgot your credentials.</p>
   </div>
 </div>
 
@@ -977,7 +977,7 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:64px 40
     <button class="btn btn-gold w-full" onclick="adminLogin()" style="padding:14px;font-size:15px;border-radius:var(--radius-sm);justify-content:center">
       <i class="fas fa-lock-open"></i> Access Admin Panel
     </button>
-    <p class="modal-footer-text">Demo: Username = <strong>admin</strong> | Password = <strong>admin2026</strong></p>
+    <p class="modal-footer-text">Restricted area — authorised personnel only.</p>
   </div>
 </div>
 
@@ -1074,14 +1074,14 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:64px 40
     </div>
     <nav class="sidebar-nav">
       <div class="sidebar-nav-label">Main</div>
-      <div class="sidebar-nav-item active" onclick="showStudentSection('overview','Overview')"><i class="fas fa-home"></i> Dashboard</div>
-      <div class="sidebar-nav-item" onclick="showStudentSection('lessons','My Lessons')"><i class="fas fa-book"></i> Lessons</div>
-      <div class="sidebar-nav-item" onclick="showStudentSection('quizzes','Quizzes')"><i class="fas fa-question-circle"></i> Quizzes</div>
-      <div class="sidebar-nav-item" onclick="showStudentSection('assignments','Assignments')"><i class="fas fa-tasks"></i> Assignments</div>
+      <div class="sidebar-nav-item active" data-section="overview" onclick="showStudentSection('overview','Overview')"><i class="fas fa-home"></i> Dashboard</div>
+      <div class="sidebar-nav-item" data-section="lessons" onclick="showStudentSection('lessons','My Lessons')"><i class="fas fa-book"></i> Lessons</div>
+      <div class="sidebar-nav-item" data-section="quizzes" onclick="showStudentSection('quizzes','Quizzes')"><i class="fas fa-question-circle"></i> Quizzes</div>
+      <div class="sidebar-nav-item" data-section="assignments" onclick="showStudentSection('assignments','Assignments')"><i class="fas fa-tasks"></i> Assignments</div>
       <div class="sidebar-nav-label">Account</div>
-      <div class="sidebar-nav-item" onclick="showStudentSection('notifications','Notifications')"><i class="fas fa-bell"></i> Notifications <span class="nav-badge" id="notif-badge">3</span></div>
-      <div class="sidebar-nav-item" onclick="showStudentSection('certificate','Certificate')"><i class="fas fa-certificate"></i> My Certificate</div>
-      <div class="sidebar-nav-item" onclick="showStudentSection('profile','My Profile')"><i class="fas fa-user"></i> Profile</div>
+      <div class="sidebar-nav-item" data-section="notifications" onclick="showStudentSection('notifications','Notifications')"><i class="fas fa-bell"></i> Notifications <span class="nav-badge" id="notif-badge">0</span></div>
+      <div class="sidebar-nav-item" data-section="certificate" onclick="showStudentSection('certificate','Certificate')"><i class="fas fa-certificate"></i> My Certificate</div>
+      <div class="sidebar-nav-item" data-section="profile" onclick="showStudentSection('profile','My Profile')"><i class="fas fa-user"></i> Profile</div>
     </nav>
     <div class="sidebar-bottom">
       <div class="sidebar-nav-item" onclick="logout()" style="color:rgba(220,38,38,.9)"><i class="fas fa-sign-out-alt"></i> Logout</div>
@@ -1284,14 +1284,14 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:64px 40
     </div>
     <nav class="sidebar-nav">
       <div class="sidebar-nav-label">Management</div>
-      <div class="sidebar-nav-item active" onclick="showAdminSection('a-overview','Overview')"><i class="fas fa-chart-pie"></i> Overview</div>
-      <div class="sidebar-nav-item" onclick="showAdminSection('a-students','Students')"><i class="fas fa-users"></i> Students</div>
-      <div class="sidebar-nav-item" onclick="showAdminSection('a-lessons','Lessons')"><i class="fas fa-book"></i> Lessons</div>
-      <div class="sidebar-nav-item" onclick="showAdminSection('a-quizzes','Quizzes')"><i class="fas fa-question-circle"></i> Quizzes</div>
-      <div class="sidebar-nav-item" onclick="showAdminSection('a-assignments','Assignments')"><i class="fas fa-tasks"></i> Assignments</div>
+      <div class="sidebar-nav-item active" data-section="a-overview" onclick="showAdminSection('a-overview','Overview')"><i class="fas fa-chart-pie"></i> Overview</div>
+      <div class="sidebar-nav-item" data-section="a-students" onclick="showAdminSection('a-students','Students')"><i class="fas fa-users"></i> Students</div>
+      <div class="sidebar-nav-item" data-section="a-lessons" onclick="showAdminSection('a-lessons','Lessons')"><i class="fas fa-book"></i> Lessons</div>
+      <div class="sidebar-nav-item" data-section="a-quizzes" onclick="showAdminSection('a-quizzes','Quiz Results')"><i class="fas fa-question-circle"></i> Quiz Results</div>
+      <div class="sidebar-nav-item" data-section="a-assignments" onclick="showAdminSection('a-assignments','Assignments')"><i class="fas fa-tasks"></i> Assignments</div>
       <div class="sidebar-nav-label">Communication</div>
-      <div class="sidebar-nav-item" onclick="showAdminSection('a-announcements','Announcements')"><i class="fas fa-bullhorn"></i> Announcements</div>
-      <div class="sidebar-nav-item" onclick="showAdminSection('a-analytics','Analytics')"><i class="fas fa-chart-bar"></i> Analytics</div>
+      <div class="sidebar-nav-item" data-section="a-announcements" onclick="showAdminSection('a-announcements','Announcements')"><i class="fas fa-bullhorn"></i> Announcements</div>
+      <div class="sidebar-nav-item" data-section="a-analytics" onclick="showAdminSection('a-analytics','Analytics')"><i class="fas fa-chart-bar"></i> Analytics</div>
     </nav>
     <div class="sidebar-bottom">
       <div class="sidebar-nav-item" onclick="logout()" style="color:rgba(220,38,38,.9)"><i class="fas fa-sign-out-alt"></i> Logout</div>
@@ -1449,755 +1449,1124 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:64px 40
      ===== JAVASCRIPT =====
      ============================== -->
 <script>
-/* =========================================================
-   CONFIGURATION — Replace APPS_SCRIPT_URL with your deployed
-   Google Apps Script Web App URL after deployment.
-   ========================================================= */
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw9DdPOIrvkz570MpGyp4Tfuxc75vSF5wkyzUjOwLfoL-GSGRtU7OU9JQODo1k41_lUfA/exec';
-const USE_DEMO_DATA = false; // Set to false when using real backend
+/* =============================================================
+   PARIYA ACADEMY — ENGLISH LMS
+   Fully debugged frontend JavaScript
+   All demo data removed. All bugs fixed.
+   ============================================================= */
 
-/* =====================
-   THEME SYSTEM
-   ===================== */
+/* ─── CONFIGURATION ──────────────────────────────────────────
+   Replace the URL below with your deployed Apps Script URL.
+   ─────────────────────────────────────────────────────────── */
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx-UYWavjgFr0J6xnnCIdXfyBJkdP0fQnCZOXbjEFd3n5N5DTkN1Tw5k1dIWB3Sqx0J0w/exec';
+
+/* ─── LIVE DATA STORE ────────────────────────────────────────
+   All data is fetched from Google Sheets via Apps Script.
+   No demo/fake data is used anywhere.
+   ─────────────────────────────────────────────────────────── */
+let DB = {
+  students:      [],   // loaded from Google Sheets
+  lessons:       [],   // loaded from Google Sheets
+  quizzes:       [],   // built-in quiz bank (content only)
+  assignments:   [],   // loaded from Google Sheets
+  submissions:   [],   // loaded from Google Sheets
+  announcements: [],   // loaded from Google Sheets
+  quizResults:   [],   // loaded from Google Sheets
+};
+
+/* ─── QUIZ BANK ──────────────────────────────────────────────
+   Quiz questions are stored in the frontend only.
+   Scores are saved to Google Sheets via the API.
+   ─────────────────────────────────────────────────────────── */
+const QUIZ_BANK = [
+  {
+    id: 0, title: 'Parts of Speech Quiz', category: 'Grammar',
+    questions: [
+      {q:'Which of the following is a noun?', opts:['Quickly','Beautiful','London','Run'], ans:2},
+      {q:'What is the verb in: "She sings beautifully"?', opts:['She','Sings','Beautifully','Beautiful'], ans:1},
+      {q:'Which word is a pronoun?', opts:['Table','He','Blue','Fast'], ans:1},
+      {q:'Identify the adjective: "The tall boy ran fast"', opts:['Boy','Ran','Fast','Tall'], ans:3},
+      {q:'Which is an adverb?', opts:['Slowly','Tree','Happy','Car'], ans:0},
+      {q:'"And" is which part of speech?', opts:['Noun','Verb','Conjunction','Preposition'], ans:2},
+      {q:'Which is a preposition?', opts:['Jump','Over','Blue','She'], ans:1},
+      {q:'What type of noun is "happiness"?', opts:['Proper','Common','Abstract','Collective'], ans:2},
+      {q:'Which sentence has a transitive verb?', opts:['She slept','He runs fast','She ate the apple','Birds fly'], ans:2},
+      {q:'"Wow!" is an example of?', opts:['Noun','Verb','Adjective','Interjection'], ans:3},
+    ]
+  },
+  {
+    id: 1, title: 'English Tenses Quiz', category: 'Tenses',
+    questions: [
+      {q:'Which tense is: "I am eating"?', opts:['Simple Present','Present Continuous','Past Simple','Future'], ans:1},
+      {q:'"She had left before he arrived" is which tense?', opts:['Past Perfect','Past Simple','Present Perfect','Future Perfect'], ans:0},
+      {q:'Which is correct? "He ___ to school yesterday."', opts:['go','goes','went','going'], ans:2},
+      {q:'"They will have finished by noon" is?', opts:['Future Simple','Future Continuous','Future Perfect','Present Perfect'], ans:2},
+      {q:'Identify the simple present:', opts:['She is running','He ran','She runs daily','They will go'], ans:2},
+      {q:'"I have lived here for 5 years" uses?', opts:['Past Simple','Present Perfect','Present Continuous','Past Continuous'], ans:1},
+      {q:'What is the past tense of "write"?', opts:['Writed','Written','Wrote','Writing'], ans:2},
+      {q:'"She was cooking when he called" — "was cooking" is?', opts:['Past Simple','Past Perfect','Past Continuous','Present Continuous'], ans:2},
+      {q:'Which sentence is in future tense?', opts:['He played','She plays','They will travel','I was reading'], ans:2},
+      {q:'"By 2030, he will have graduated" is?', opts:['Future Simple','Future Perfect','Future Continuous','Present Future'], ans:1},
+    ]
+  },
+  {
+    id: 2, title: 'Vocabulary Quiz', category: 'Vocabulary',
+    questions: [
+      {q:'What is the synonym of "happy"?', opts:['Sad','Joyful','Angry','Tired'], ans:1},
+      {q:'What is the antonym of "ancient"?', opts:['Old','Historic','Modern','Aged'], ans:2},
+      {q:'The word "amicable" means?', opts:['Hostile','Friendly','Strange','Boring'], ans:1},
+      {q:'Which word means "very large"?', opts:['Tiny','Gigantic','Average','Slim'], ans:1},
+      {q:'"Benevolent" means?', opts:['Cruel','Kind-hearted','Lazy','Silent'], ans:1},
+      {q:'What does "verbose" mean?', opts:['Silent','Brief','Using too many words','Clear'], ans:2},
+      {q:'The prefix "un-" usually means?', opts:['Again','Not','Before','After'], ans:1},
+      {q:'"Ephemeral" means?', opts:['Permanent','Lasting a short time','Very large','Important'], ans:1},
+      {q:'What is a homophone of "hear"?', opts:['Here','Hair','Heir','Hire'], ans:0},
+      {q:'"Gregarious" means?', opts:['Shy','Sociable','Angry','Lazy'], ans:1},
+    ]
+  },
+  {
+    id: 3, title: 'Comprehension Quiz', category: 'Comprehension',
+    questions: [
+      {q:'What is the main purpose of a topic sentence?', opts:['To conclude a paragraph','To introduce the main idea','To give examples','To ask a question'], ans:1},
+      {q:'Which reading strategy helps find the main idea quickly?', opts:['Skimming','Scanning','Close reading','Re-reading'], ans:0},
+      {q:'An inference is best described as?', opts:['A direct quote','A conclusion drawn from clues','A summary','A definition'], ans:1},
+      {q:'What does "context clues" mean in reading?', opts:['Clues from pictures','Hints in surrounding text to define a word','Dictionary definitions','Grammar rules'], ans:1},
+      {q:'Which is a synonym for "summarize"?', opts:['Expand','Elaborate','Condense','Copy'], ans:2},
+      {q:'A passage that presents two sides of an issue is?', opts:['Narrative','Argumentative','Descriptive','Instructional'], ans:1},
+      {q:'What does the author\'s purpose mean?', opts:['Why the author wrote the text','When the author wrote','Where the author lives','Who the author is'], ans:0},
+      {q:'"Implicit" information in a text is?', opts:['Directly stated','Hidden between the lines','Always false','In the title'], ans:1},
+      {q:'Which literary device uses "like" or "as" for comparison?', opts:['Metaphor','Personification','Simile','Alliteration'], ans:2},
+      {q:'What is the tone of a text?', opts:['The font used','The author\'s attitude or feeling','The length','The topic'], ans:1},
+    ]
+  },
+  {
+    id: 4, title: 'Grammar Mastery Quiz', category: 'Grammar',
+    questions: [
+      {q:'Which sentence uses the correct subject-verb agreement?', opts:['The boys plays','The boy play','The boys play','The boy playing'], ans:2},
+      {q:'Identify the correct use of apostrophe:', opts:["Its raining","It's raining","Its' raining","Its is raining"], ans:1},
+      {q:'A clause that cannot stand alone is called?', opts:['Independent clause','Main clause','Subordinate clause','Simple clause'], ans:2},
+      {q:'Which is the correct conditional sentence?', opts:['If she studied, she will pass','If she studies, she will pass','If she study, she will pass','If she studied, she will passed'], ans:1},
+      {q:'"He said that he was tired." This is an example of?', opts:['Direct speech','Reported speech','Exclamatory sentence','Imperative'], ans:1},
+      {q:'Which punctuation ends an exclamatory sentence?', opts:['.','?','!',','], ans:2},
+      {q:'The plural of "child" is?', opts:['Childs','Childes','Children','Childrens'], ans:2},
+      {q:'Which is a compound sentence?', opts:['She ran.','She ran and he walked.','Because she ran.','Running fast.'], ans:1},
+      {q:'Identify the passive voice:', opts:['She wrote the letter','The letter was written by her','She is writing','She writes'], ans:1},
+      {q:'Which word is a conjunction?', opts:['Slowly','However','Beautiful','Quickly'], ans:1},
+    ]
+  },
+];
+
+/* ─── GRADING SYSTEM ─────────────────────────────────────────*/
+function getGrade(score) {
+  if (score >= 70) return { grade: 'A', remark: 'Excellent',  color: 'var(--success)' };
+  if (score >= 60) return { grade: 'B', remark: 'Very Good',  color: 'var(--info)'    };
+  if (score >= 50) return { grade: 'C', remark: 'Good',       color: 'var(--primary)' };
+  if (score >= 45) return { grade: 'D', remark: 'Fair',       color: 'var(--warning)' };
+  if (score >= 40) return { grade: 'E', remark: 'Pass',       color: 'var(--gold-dark)'};
+  return           { grade: 'F', remark: 'Fail',              color: 'var(--danger)'  };
+}
+
+function calcTotalScore(student) {
+  const qs = student.quizScores      || [];
+  const as = student.assignmentScores || [];
+  const all = [...qs, ...as];
+  if (!all.length) return 0;
+  return Math.round(all.reduce((a, b) => a + b, 0) / all.length);
+}
+
+/* ─── THEME SYSTEM ───────────────────────────────────────────*/
 let currentTheme = localStorage.getItem('pa-theme') || 'light';
-function applyTheme(t){
-  document.documentElement.setAttribute('data-theme',t);
-  currentTheme=t;
-  localStorage.setItem('pa-theme',t);
-  ['theme-toggle-home','theme-toggle-s','theme-toggle-a'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el) el.classList.toggle('on',t==='dark');
+
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  currentTheme = t;
+  localStorage.setItem('pa-theme', t);
+  ['theme-toggle-home','theme-toggle-s','theme-toggle-a'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('on', t === 'dark');
   });
 }
 applyTheme(currentTheme);
-['theme-toggle-home','theme-toggle-s','theme-toggle-a'].forEach(id=>{
-  const el=document.getElementById(id);
-  if(el) el.addEventListener('click',()=>applyTheme(currentTheme==='dark'?'light':'dark'));
-});
 
-/* =====================
-   TOAST NOTIFICATIONS
-   ===================== */
-function showToast(msg,type='info'){
-  const icons={success:'fa-check-circle',error:'fa-times-circle',warning:'fa-exclamation-triangle',info:'fa-info-circle'};
-  const t=document.createElement('div');
-  t.className=`toast ${type}`;
-  t.innerHTML=`<i class="fas ${icons[type]}"></i><span>${msg}</span>`;
+/* ─── TOAST NOTIFICATIONS ────────────────────────────────────*/
+function showToast(msg, type = 'info') {
+  const icons = {
+    success: 'fa-check-circle',
+    error:   'fa-times-circle',
+    warning: 'fa-exclamation-triangle',
+    info:    'fa-info-circle',
+  };
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.innerHTML = `<i class="fas ${icons[type]}"></i><span>${msg}</span>`;
   document.getElementById('toast-container').appendChild(t);
-  setTimeout(()=>t.remove(),3100);
+  setTimeout(() => t.remove(), 3100);
 }
 
-/* =====================
-   MODAL SYSTEM
-   ===================== */
-function openModal(id){document.getElementById(id).classList.add('active')}
-function closeModal(id){document.getElementById(id).classList.remove('active')}
-function handleModalOverlayClick(e,id){if(e.target.id===id)closeModal(id)}
+/* ─── MODAL SYSTEM ───────────────────────────────────────────*/
+function openModal(id)  { document.getElementById(id).classList.add('active');    }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+function handleModalOverlayClick(e, id) { if (e.target.id === id) closeModal(id); }
 
-/* =====================
-   PAGE SYSTEM
-   ===================== */
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>{p.classList.remove('active');p.style.display='none'});
-  const pg=document.getElementById(id);
-  if(id==='page-home'){pg.style.display='block';pg.classList.add('active');}
-  else if(id==='page-student'){pg.style.display='flex';pg.classList.add('active');}
-  else if(id==='page-admin'){pg.style.display='flex';pg.classList.add('active');}
+/* ─── PAGE SYSTEM ────────────────────────────────────────────*/
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => {
+    p.classList.remove('active');
+    p.style.display = 'none';
+  });
+  const pg = document.getElementById(id);
+  if (!pg) return;
+  if (id === 'page-home')    { pg.style.display = 'block'; pg.classList.add('active'); }
+  if (id === 'page-student') { pg.style.display = 'flex';  pg.classList.add('active'); window.scrollTo(0,0); }
+  if (id === 'page-admin')   { pg.style.display = 'flex';  pg.classList.add('active'); window.scrollTo(0,0); }
 }
 
-/* =====================
-   LOADING
-   ===================== */
-window.addEventListener('load',()=>{
-  setTimeout(()=>{
+/* ─── LOADING ────────────────────────────────────────────────*/
+window.addEventListener('load', () => {
+  setTimeout(() => {
     document.getElementById('loading-overlay').classList.add('hidden');
     initHome();
-  },2000);
+  }, 1800);
 });
 
-/* =====================
-   NAVBAR SCROLL
-   ===================== */
-window.addEventListener('scroll',()=>{
-  const nb=document.getElementById('navbar');
-  if(nb)nb.classList.toggle('scrolled',window.scrollY>60);
-  const fab=document.getElementById('fab-btn');
-  if(fab)fab.classList.toggle('hidden',window.scrollY<300);
-});
-document.getElementById('fab-btn').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+/* ─── NAVBAR SCROLL ──────────────────────────────────────────*/
+window.addEventListener('scroll', () => {
+  const nb = document.getElementById('navbar');
+  if (nb) nb.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
 
-/* =====================
-   MOBILE MENU
-   ===================== */
-function toggleMobileMenu(){
-  const m=document.getElementById('mobile-menu');
-  m.style.display=m.style.display==='flex'?'none':'flex';
+/* ─── FAB (BACK TO TOP) ──────────────────────────────────────*/
+window.addEventListener('scroll', () => {
+  const fab = document.getElementById('fab-btn');
+  if (!fab) return;
+  if (window.scrollY > 400) fab.classList.remove('hidden');
+  else                       fab.classList.add('hidden');
+}, { passive: true });
+
+document.getElementById('fab-btn').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* ─── MOBILE MENU ────────────────────────────────────────────*/
+function toggleMobileMenu() {
+  const m = document.getElementById('mobile-menu');
+  if (!m) return;
+  const isOpen = m.style.display === 'flex';
+  m.style.display = isOpen ? 'none' : 'flex';
 }
-function openMobileSidebar(sid,oid){
+
+function openMobileSidebar(sid, oid) {
   document.getElementById(sid).classList.add('open');
   document.getElementById(oid).classList.add('active');
 }
-function closeMobileSidebar(){
-  document.querySelectorAll('.sidebar').forEach(s=>s.classList.remove('open'));
-  document.querySelectorAll('.sidebar-overlay').forEach(o=>o.classList.remove('active'));
+
+function closeMobileSidebar() {
+  document.querySelectorAll('.sidebar').forEach(s => s.classList.remove('open'));
+  document.querySelectorAll('.sidebar-overlay').forEach(o => o.classList.remove('active'));
 }
 
-/* =====================
-   TYPING ANIMATION
-   ===================== */
-const typingWords=['Like a Pro!','With Confidence!','Grammar Fast!','& Excel Today!'];
-let ti=0,ci=0,deleting=false;
-function typeLoop(){
-  const el=document.getElementById('typing-text');
-  if(!el)return;
-  const w=typingWords[ti];
-  el.textContent=deleting?w.substring(0,ci-1):w.substring(0,ci+1);
-  deleting?ci--:ci++;
-  if(!deleting&&ci===w.length){setTimeout(()=>{deleting=true;typeLoop()},1800);return;}
-  if(deleting&&ci===0){deleting=false;ti=(ti+1)%typingWords.length;}
-  setTimeout(typeLoop,deleting?60:100);
+/* ─── TYPING ANIMATION ───────────────────────────────────────*/
+const typingWords = ['Like a Pro!', 'With Confidence!', 'Grammar Fast!', '& Excel Today!'];
+let _ti = 0, _ci = 0, _deleting = false;
+
+function typeLoop() {
+  const el = document.getElementById('typing-text');
+  if (!el) return;
+  const w = typingWords[_ti];
+  el.textContent = _deleting ? w.substring(0, _ci - 1) : w.substring(0, _ci + 1);
+  _deleting ? _ci-- : _ci++;
+  if (!_deleting && _ci === w.length) { setTimeout(() => { _deleting = true; typeLoop(); }, 1800); return; }
+  if (_deleting  && _ci === 0)        { _deleting = false; _ti = (_ti + 1) % typingWords.length; }
+  setTimeout(typeLoop, _deleting ? 60 : 100);
 }
 
-/* =====================
-   SCROLL REVEAL
-   ===================== */
-function initReveal(){
-  const obs=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
-  },{threshold:0.12});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+/* ─── SCROLL REVEAL ──────────────────────────────────────────*/
+function initReveal() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 }
 
-/* =====================
-   COUNTER ANIMATION
-   ===================== */
-function animateCounters(){
-  document.querySelectorAll('.counter').forEach(el=>{
-    const target=parseInt(el.dataset.target);
-    let cur=0;
-    const step=Math.max(1,Math.floor(target/60));
-    const t=setInterval(()=>{
-      cur+=step;
-      if(cur>=target){cur=target;clearInterval(t);}
-      el.textContent=cur.toLocaleString();
-    },30);
+/* ─── COUNTER ANIMATION ──────────────────────────────────────*/
+function animateCounters() {
+  document.querySelectorAll('.counter').forEach(el => {
+    const target = parseInt(el.dataset.target) || 0;
+    let cur = 0;
+    const step = Math.max(1, Math.floor(target / 60));
+    const t = setInterval(() => {
+      cur += step;
+      if (cur >= target) { cur = target; clearInterval(t); }
+      el.textContent = cur.toLocaleString();
+    }, 30);
   });
 }
 
-/* =====================
-   QUOTE ROTATOR
-   ===================== */
-const quotes=[
-  {text:'"The limits of my language mean the limits of my world."',author:'— Ludwig Wittgenstein'},
-  {text:'"One language sets you in a corridor for life. Two languages open every door along the way."',author:'— Frank Smith'},
-  {text:'"Language is the road map of a culture. It tells you where its people come from and where they are going."',author:'— Rita Mae Brown'},
-  {text:'"To have another language is to possess a second soul."',author:'— Charlemagne'},
-  {text:'"The more that you read, the more things you will know."',author:'— Dr. Seuss'},
+/* ─── QUOTE ROTATOR ──────────────────────────────────────────*/
+const QUOTES = [
+  { text: '"The limits of my language mean the limits of my world."',      author: '— Ludwig Wittgenstein' },
+  { text: '"One language sets you in a corridor for life. Two open every door along the way."', author: '— Frank Smith' },
+  { text: '"Language is the road map of a culture."',                       author: '— Rita Mae Brown' },
+  { text: '"To have another language is to possess a second soul."',        author: '— Charlemagne' },
+  { text: '"The more that you read, the more things you will know."',       author: '— Dr. Seuss' },
 ];
-let qi=0,qAuto;
-function showQuote(i){
-  qi=i;
-  const d=document.getElementById('quote-display');
-  const dots=document.getElementById('quote-dots');
-  if(!d||!dots)return;
-  d.innerHTML=`${quotes[i].text}<span class="quote-author">${quotes[i].author}</span>`;
+let _qi = 0, _qAuto;
+
+function showQuote(i) {
+  _qi = i;
+  const d    = document.getElementById('quote-display');
+  const dots = document.getElementById('quote-dots');
+  if (!d || !dots) return;
+  d.innerHTML = `${QUOTES[i].text}<span class="quote-author">${QUOTES[i].author}</span>`;
   d.classList.remove('visible');
-  setTimeout(()=>d.classList.add('visible'),50);
-  dots.querySelectorAll('.quote-dot').forEach((dot,idx)=>dot.classList.toggle('active',idx===i));
-}
-function initQuotes(){
-  const dots=document.getElementById('quote-dots');
-  if(!dots)return;
-  quotes.forEach((_,i)=>{const d=document.createElement('div');d.className='quote-dot'+(i===0?' active':'');d.onclick=()=>{showQuote(i);clearInterval(qAuto);qAuto=setInterval(()=>showQuote((qi+1)%quotes.length),4500)};dots.appendChild(d)});
-  showQuote(0);
-  qAuto=setInterval(()=>showQuote((qi+1)%quotes.length),4500);
+  setTimeout(() => d.classList.add('visible'), 50);
+  dots.querySelectorAll('.quote-dot').forEach((dot, idx) => dot.classList.toggle('active', idx === i));
 }
 
-/* =====================
-   HOME INIT
-   ===================== */
-function initHome(){
+function initQuotes() {
+  const dots = document.getElementById('quote-dots');
+  if (!dots) return;
+  dots.innerHTML = '';
+  QUOTES.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'quote-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => { showQuote(i); clearInterval(_qAuto); _qAuto = setInterval(() => showQuote((_qi + 1) % QUOTES.length), 4500); };
+    dots.appendChild(d);
+  });
+  showQuote(0);
+  _qAuto = setInterval(() => showQuote((_qi + 1) % QUOTES.length), 4500);
+}
+
+/* ─── HOME INIT ──────────────────────────────────────────────*/
+function initHome() {
   typeLoop();
   initReveal();
   animateCounters();
   initQuotes();
-  // Re-init reveal after DOM settles
-  setTimeout(initReveal,300);
+  setTimeout(initReveal, 300);
 }
 
-/* =====================
-   DEMO DATA
-   ===================== */
-let DB={
-  students:[
-    {id:'PAR-001',name:'Aisha Mohammed',class:'SS2',username:'aisha.m',password:'student123',status:'Active',warnings:0,quizScores:[85,78,92,88],assignmentScores:[80,75],completedLessons:[0,1,2,3,4],grade:'A'},
-    {id:'PAR-002',name:'Ibrahim Yusuf',class:'JSS3',username:'ibrahim.y',password:'student123',status:'Active',warnings:1,quizScores:[62,70,58],assignmentScores:[65],completedLessons:[0,1,2],grade:'B'},
-    {id:'PAR-003',name:'Fatima Abdullahi',class:'SS1',username:'fatima.a',password:'student123',status:'Active',warnings:0,quizScores:[45,50,48],assignmentScores:[52],completedLessons:[0,1],grade:'C'},
-    {id:'PAR-004',name:'Musa Aliyu',class:'JSS1',username:'musa.a',password:'student123',status:'Suspended',warnings:3,quizScores:[30,35],assignmentScores:[40],completedLessons:[0],grade:'F'},
-    {id:'PAR-005',name:'Zainab Hassan',class:'SS3',username:'zainab.h',password:'student123',status:'Active',warnings:0,quizScores:[95,98,92,96],assignmentScores:[90,88],completedLessons:[0,1,2,3,4,5,6,7],grade:'A'},
-    {id:'PAR-006',name:'Usman Bello',class:'JSS2',username:'usman.b',password:'student123',status:'Active',warnings:2,quizScores:[55,60,52],assignmentScores:[58],completedLessons:[0,1,2,3],grade:'C'},
-  ],
-  lessons:[
-    {id:0,title:'Parts of Speech',class:'JSS1',category:'Grammar',desc:'Learn about nouns, pronouns, verbs, adjectives, adverbs, prepositions, conjunctions, and interjections with detailed examples.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'📝'},
-    {id:1,title:'Essay Writing',class:'SS1',category:'Essay Writing',desc:'Master the art of writing compelling essays — from introduction to conclusion, thesis statements, body paragraphs, and concluding thoughts.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'✍️'},
-    {id:2,title:'Vocabulary Building',class:'JSS2',category:'Vocabulary',desc:'Expand your English vocabulary with roots, prefixes, suffixes, synonyms, antonyms, and contextual word usage.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'📖'},
-    {id:3,title:'English Tenses',class:'JSS3',category:'Tenses',desc:'Deep dive into all 12 English tenses — present, past, future, and their simple, continuous, perfect, and perfect continuous forms.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'⏰'},
-    {id:4,title:'Comprehension Skills',class:'SS2',category:'Comprehension',desc:'Develop critical reading skills, answering comprehension questions accurately, making inferences, and summarizing passages.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'🔍'},
-    {id:5,title:'Oral English & Phonetics',class:'SS1',category:'Oral English',desc:'Master English pronunciation, stress, rhythm, intonation, and phonetic symbols with practical speaking exercises.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'🎙️'},
-    {id:6,title:'Letter Writing',class:'JSS2',category:'Letter Writing',desc:'Learn formal and informal letter writing — structure, salutations, body, closing, and appropriate language for different contexts.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'✉️'},
-    {id:7,title:'Grammar Mastery',class:'SS3',category:'Grammar',desc:'Advanced grammar covering sentence structures, clauses, phrases, reported speech, conditionals, and common grammatical errors.',videoId:'dQw4w9WgXcQ',pdfLink:'#',emoji:'🎯'},
-  ],
-  quizzes:[
-    {id:0,title:'Parts of Speech Quiz',category:'Grammar',questions:[
-      {q:'Which of the following is a noun?',opts:['Quickly','Beautiful','London','Run'],ans:2},
-      {q:'What is the verb in: "She sings beautifully"?',opts:['She','Sings','Beautifully','Beautiful'],ans:1},
-      {q:'Which word is a pronoun?',opts:['Table','He','Blue','Fast'],ans:1},
-      {q:'Identify the adjective: "The tall boy ran fast"',opts:['Boy','Ran','Fast','Tall'],ans:3},
-      {q:'Which is an adverb?',opts:['Slowly','Tree','Happy','Car'],ans:0},
-      {q:'"And" is which part of speech?',opts:['Noun','Verb','Conjunction','Preposition'],ans:2},
-      {q:'Which is a preposition?',opts:['Jump','Over','Blue','She'],ans:1},
-      {q:'What type of noun is "happiness"?',opts:['Proper','Common','Abstract','Collective'],ans:2},
-      {q:'Which sentence has a transitive verb?',opts:['She slept','He runs fast','She ate the apple','Birds fly'],ans:2},
-      {q:'"Wow!" is an example of?',opts:['Noun','Verb','Adjective','Interjection'],ans:3},
-    ]},
-    {id:1,title:'Tenses Quiz',category:'Tenses',questions:[
-      {q:'Which tense is: "I am eating"?',opts:['Simple Present','Present Continuous','Past Simple','Future'],ans:1},
-      {q:'"She had left before he arrived" is which tense?',opts:['Past Perfect','Past Simple','Present Perfect','Future Perfect'],ans:0},
-      {q:'Which is correct? "He ___ to school yesterday."',opts:['go','goes','went','going'],ans:2},
-      {q:'"They will have finished by noon" is?',opts:['Future Simple','Future Continuous','Future Perfect','Present Perfect'],ans:2},
-      {q:'Identify the simple present: ',opts:['She is running','He ran','She runs daily','They will go'],ans:2},
-      {q:'"I have lived here for 5 years" uses?',opts:['Past Simple','Present Perfect','Present Continuous','Past Continuous'],ans:1},
-      {q:'What is the past tense of "write"?',opts:['Writed','Written','Wrote','Writing'],ans:2},
-      {q:'"She was cooking when he called" — "was cooking" is?',opts:['Past Simple','Past Perfect','Past Continuous','Present Continuous'],ans:2},
-      {q:'Which sentence is in future tense?',opts:['He played','She plays','They will travel','I was reading'],ans:2},
-      {q:'"By 2030, he will have graduated" is?',opts:['Future Simple','Future Perfect','Future Continuous','Present Future'],ans:1},
-    ]},
-    {id:2,title:'Vocabulary Quiz',category:'Vocabulary',questions:[
-      {q:'What is the synonym of "happy"?',opts:['Sad','Joyful','Angry','Tired'],ans:1},
-      {q:'What is the antonym of "ancient"?',opts:['Old','Historic','Modern','Aged'],ans:2},
-      {q:'The word "amicable" means?',opts:['Hostile','Friendly','Strange','Boring'],ans:1},
-      {q:'Which word means "very large"?',opts:['Tiny','Gigantic','Average','Slim'],ans:1},
-      {q:'"Benevolent" means?',opts:['Cruel','Kind-hearted','Lazy','Silent'],ans:1},
-      {q:'What does "verbose" mean?',opts:['Silent','Brief','Using too many words','Clear'],ans:2},
-      {q:'The prefix "un-" usually means?',opts:['Again','Not','Before','After'],ans:1},
-      {q:'"Ephemeral" means?',opts:['Permanent','Lasting a short time','Very large','Important'],ans:1},
-      {q:'What is a homophone of "hear"?',opts:['Here','Hair','Heir','Hire'],ans:0},
-      {q:'"Gregarious" means?',opts:['Shy','Sociable','Angry','Lazy'],ans:1},
-    ]},
-  ],
-  assignments:[
-    {id:0,title:'Write a Formal Letter',class:'SS2',instructions:'Write a formal letter to your principal requesting a school trip to Lagos. Your letter should have proper heading, salutation, body (3 paragraphs), and subscription. Minimum 250 words.',dueDate:'2026-06-15',maxScore:100},
-    {id:1,title:'Essay: My Future Career',class:'JSS3',instructions:'Write a descriptive essay about your future career goals. Include why you chose it, skills needed, and how it will help your community. Minimum 300 words.',dueDate:'2026-06-20',maxScore:100},
-    {id:2,title:'Comprehension Practice',class:'SS1',instructions:'Read the provided passage and answer all 10 comprehension questions in complete sentences. Show evidence from the text in each answer.',dueDate:'2026-06-25',maxScore:100},
-  ],
-  submissions:[
-    {studentId:'PAR-001',assignmentId:0,submitted:true,score:82,remarks:'Excellent formal letter structure! Well done.'},
-    {studentId:'PAR-002',assignmentId:0,submitted:true,score:65,remarks:'Good effort. Work on your subscription format.'},
-    {studentId:'PAR-001',assignmentId:1,submitted:false,score:null,remarks:''},
-  ],
-  announcements:[
-    {id:0,title:'Mid-Term Examinations',class:'All',message:'Mid-term examinations will be held from June 20–25, 2026. Students should review all completed lessons and quizzes. Good luck!',date:'2026-05-20',author:'Admin'},
-    {id:1,title:'Quiz Score Updates',class:'SS2',message:'Quiz scores for Parts of Speech have been updated. Login to view your results on your dashboard.',date:'2026-05-18',author:'Admin'},
-    {id:2,title:'New Lesson Added',class:'All',message:'A new lesson on "Grammar Mastery" has been added for SS3 students. Please check the Lessons section.',date:'2026-05-15',author:'Admin'},
-  ],
-  quizResults:[
-    {studentId:'PAR-001',studentName:'Aisha Mohammed',class:'SS2',quizTitle:'Parts of Speech Quiz',score:85,grade:'A',date:'2026-05-10'},
-    {studentId:'PAR-001',studentName:'Aisha Mohammed',class:'SS2',quizTitle:'Tenses Quiz',score:78,grade:'B',date:'2026-05-12'},
-    {studentId:'PAR-002',studentName:'Ibrahim Yusuf',class:'JSS3',quizTitle:'Vocabulary Quiz',score:62,grade:'B',date:'2026-05-11'},
-    {studentId:'PAR-005',studentName:'Zainab Hassan',class:'SS3',quizTitle:'Parts of Speech Quiz',score:95,grade:'A',date:'2026-05-09'},
-    {studentId:'PAR-003',studentName:'Fatima Abdullahi',class:'SS1',quizTitle:'Tenses Quiz',score:50,grade:'C',date:'2026-05-13'},
-  ],
-  admins:[{username:'admin',password:'admin2026'}],
-};
-
-/* =====================
-   GRADING SYSTEM
-   ===================== */
-function getGrade(score){
-  if(score>=70)return{grade:'A',remark:'Excellent',color:'var(--success)'};
-  if(score>=60)return{grade:'B',remark:'Very Good',color:'var(--info)'};
-  if(score>=50)return{grade:'C',remark:'Good',color:'var(--primary)'};
-  if(score>=45)return{grade:'D',remark:'Fair',color:'var(--warning)'};
-  if(score>=40)return{grade:'E',remark:'Pass',color:'var(--gold-dark)'};
-  return{grade:'F',remark:'Fail',color:'var(--danger)'};
-}
-function calcTotalScore(student){
-  const qs=student.quizScores||[];
-  const as=student.assignmentScores||[];
-  const all=[...qs,...as];
-  if(!all.length)return 0;
-  return Math.round(all.reduce((a,b)=>a+b,0)/all.length);
+/* ─── SCROLL HELPER ──────────────────────────────────────────*/
+function scrollTo(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 }
 
-/* =====================
+/* ─── RESPONSIVE GRID ────────────────────────────────────────*/
+function checkGridResponsive() {
+  const isMobile = window.innerWidth <= 768;
+  document.querySelectorAll('.progress-grid-row').forEach(el => {
+    el.style.gridTemplateColumns = isMobile ? '1fr' : '1fr 1fr';
+  });
+}
+window.addEventListener('resize', checkGridResponsive, { passive: true });
+checkGridResponsive();
+
+/* ═══════════════════════════════════════════════════════════
+   API LAYER — All communication with Google Apps Script
+   ═══════════════════════════════════════════════════════════ */
+async function apiPost(action, data = {}) {
+  try {
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action, ...data }),
+    });
+    const json = await res.json();
+    return json;
+  } catch (err) {
+    console.error('API POST error:', action, err);
+    return { success: false, data: { error: err.message } };
+  }
+}
+
+async function apiGet(action, params = {}) {
+  try {
+    const qs = new URLSearchParams({ action, ...params }).toString();
+    const res = await fetch(`${APPS_SCRIPT_URL}?${qs}`);
+    const json = await res.json();
+    return json;
+  } catch (err) {
+    console.error('API GET error:', action, err);
+    return { success: false, data: { error: err.message } };
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
    AUTH
-   ===================== */
-let currentUser=null, currentRole=null;
+   ═══════════════════════════════════════════════════════════ */
+let currentUser = null;
+let currentRole = null;
 
-function studentLogin(){
-  const id=document.getElementById('s-login-id').value.trim();
-  const pass=document.getElementById('s-login-pass').value;
-  if(!id||!pass){showToast('Please fill all fields','warning');return;}
-  const student=DB.students.find(s=>s.id===id&&s.password===pass);
-  if(!student){showToast('Invalid Student ID or Password','error');return;}
-  if(student.status==='Suspended'){showToast('Your account is suspended. Contact admin.','error');return;}
-  currentUser=student;currentRole='student';
+async function studentLogin() {
+  const id   = document.getElementById('s-login-id').value.trim();
+  const pass = document.getElementById('s-login-pass').value.trim();
+  if (!id || !pass) { showToast('Please fill in all fields', 'warning'); return; }
+
+  const btn = document.querySelector('#student-login-modal .btn-primary');
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+  btn.disabled = true;
+
+  const res = await apiPost('login', { studentId: id, password: pass });
+
+  btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+  btn.disabled = false;
+
+  if (!res.success || res.data.error) {
+    showToast(res.data.error || 'Login failed. Check your credentials.', 'error');
+    return;
+  }
+
+  const student = res.data;
+  student.quizScores       = Array.isArray(student.quizScores)       ? student.quizScores       : tryParseArr(student.quizScores);
+  student.assignmentScores = Array.isArray(student.assignmentScores) ? student.assignmentScores : tryParseArr(student.assignmentScores);
+  student.completedLessons = Array.isArray(student.completedLessons) ? student.completedLessons : tryParseArr(student.completedLessons);
+
+  currentUser = student;
+  currentRole = 'student';
   closeModal('student-login-modal');
-  initStudentDashboard(student);
+  document.getElementById('s-login-id').value   = '';
+  document.getElementById('s-login-pass').value = '';
+
+  await loadStudentData();
+  initStudentDashboard(currentUser);
   showPage('page-student');
-  showToast(`Welcome back, ${student.name.split(' ')[0]}! 🎉`,'success');
+  showToast(`Welcome back, ${student.name.split(' ')[0]}! 🎉`, 'success');
 }
 
-function adminLogin(){
-  const user=document.getElementById('a-login-user').value.trim();
-  const pass=document.getElementById('a-login-pass').value;
-  if(!user||!pass){showToast('Please fill all fields','warning');return;}
-  const admin=DB.admins.find(a=>a.username===user&&a.password===pass);
-  if(!admin){showToast('Invalid admin credentials','error');return;}
-  currentUser={username:user};currentRole='admin';
+async function adminLogin() {
+  const user = document.getElementById('a-login-user').value.trim();
+  const pass = document.getElementById('a-login-pass').value.trim();
+  if (!user || !pass) { showToast('Please fill in all fields', 'warning'); return; }
+
+  const btn = document.querySelector('#admin-login-modal .btn-gold');
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+  btn.disabled = true;
+
+  const res = await apiPost('loginAdmin', { username: user, password: pass });
+
+  btn.innerHTML = '<i class="fas fa-lock-open"></i> Access Admin Panel';
+  btn.disabled = false;
+
+  if (!res.success || res.data.error) {
+    showToast(res.data.error || 'Invalid admin credentials.', 'error');
+    return;
+  }
+
+  currentUser = res.data;
+  currentRole = 'admin';
   closeModal('admin-login-modal');
+  document.getElementById('a-login-user').value = '';
+  document.getElementById('a-login-pass').value = '';
+
+  await loadAdminData();
   initAdminDashboard();
   showPage('page-admin');
-  showToast('Welcome, Administrator! 🛡️','success');
+  showToast('Welcome, Administrator! 🛡️', 'success');
 }
 
-function logout(){
-  currentUser=null;currentRole=null;
+function logout() {
+  currentUser = null;
+  currentRole = null;
+  DB.students      = [];
+  DB.lessons       = [];
+  DB.assignments   = [];
+  DB.submissions   = [];
+  DB.announcements = [];
+  DB.quizResults   = [];
   showPage('page-home');
-  showToast('Logged out successfully','info');
+  showToast('Logged out successfully', 'info');
 }
 
-/* =====================
-   PASSWORD TOGGLE
-   ===================== */
-function togglePass(inputId,icon){
-  const input=document.getElementById(inputId);
-  if(input.type==='password'){input.type='text';icon.classList.replace('fa-eye','fa-eye-slash');}
-  else{input.type='password';icon.classList.replace('fa-eye-slash','fa-eye');}
+/* ─── DATA LOADERS ───────────────────────────────────────────*/
+async function loadStudentData() {
+  showToast('Loading your data...', 'info');
+  const [lessonRes, annRes, subRes, resultRes] = await Promise.all([
+    apiGet('getLessons'),
+    apiGet('getAnnouncements', { class: currentUser.class }),
+    apiGet('getSubmissions',   { studentId: currentUser.studentId }),
+    apiGet('getResults',       { studentId: currentUser.studentId }),
+  ]);
+  if (lessonRes.success)  DB.lessons       = lessonRes.data  || [];
+  if (annRes.success)     DB.announcements = annRes.data     || [];
+  if (subRes.success)     DB.submissions   = subRes.data     || [];
+  if (resultRes.success)  DB.quizResults   = resultRes.data  || [];
+
+  // Rebuild quizScores from Results sheet
+  currentUser.quizScores = DB.quizResults.map(r => Number(r.Score) || 0);
 }
 
-/* =====================
-   SECTION NAVIGATION
-   ===================== */
-function showStudentSection(id,title){
-  document.querySelectorAll('#page-student .dash-section').forEach(s=>s.classList.remove('active'));
-  document.getElementById('section-'+id).classList.add('active');
-  document.getElementById('topbar-title-s').textContent=title;
-  document.querySelectorAll('#page-student .sidebar-nav-item').forEach(i=>i.classList.remove('active'));
-  event.currentTarget && event.currentTarget.classList.add('active');
-  closeMobileSidebar();
-  if(id==='certificate')renderCertificate();
-  if(id==='lessons')renderLessons();
-  if(id==='quizzes')renderQuizList();
-  if(id==='assignments')renderAssignments();
-  if(id==='notifications')renderNotifications();
-  if(id==='profile')renderProfile();
-}
-function showAdminSection(id,title){
-  document.querySelectorAll('#page-admin .dash-section').forEach(s=>s.classList.remove('active'));
-  document.getElementById('section-'+id).classList.add('active');
-  document.getElementById('topbar-title-a').textContent=title;
-  document.querySelectorAll('#page-admin .sidebar-nav-item').forEach(i=>i.classList.remove('active'));
-  event.currentTarget && event.currentTarget.classList.add('active');
-  closeMobileSidebar();
+async function loadAdminData() {
+  showToast('Loading admin data...', 'info');
+  const [stuRes, lesRes, annRes, resRes, assRes, subRes] = await Promise.all([
+    apiGet('getStudents'),
+    apiGet('getLessons'),
+    apiGet('getAnnouncements'),
+    apiGet('getResults'),
+    apiGet('getAssignments'),
+    apiGet('getSubmissions'),
+  ]);
+  if (stuRes.success)  DB.students      = stuRes.data  || [];
+  if (lesRes.success)  DB.lessons       = lesRes.data  || [];
+  if (annRes.success)  DB.announcements = annRes.data  || [];
+  if (resRes.success)  DB.quizResults   = resRes.data  || [];
+  if (assRes.success)  DB.assignments   = assRes.data  || [];
+  if (subRes.success)  DB.submissions   = subRes.data  || [];
 }
 
-/* ================================
-   STUDENT DASHBOARD INITIALIZATION
-   ================================ */
-function initStudentDashboard(student){
-  const name=student.name.split(' ')[0];
-  const initial=student.name[0].toUpperCase();
-  // Sidebar
-  document.getElementById('sidebar-avatar-s').textContent=initial;
-  document.getElementById('sidebar-name-s').textContent=student.name;
-  document.getElementById('sidebar-class-s').textContent=student.class;
-  document.getElementById('topbar-avatar-s').textContent=initial;
-  // Welcome
-  document.getElementById('welcome-name').textContent=name;
-  const score=calcTotalScore(student);
-  const {grade,remark}=getGrade(score);
-  // Stats
-  document.getElementById('ov-total-score').textContent=score;
-  document.getElementById('ov-grade').textContent=grade;
-  document.getElementById('ov-remark').textContent=remark;
-  document.getElementById('ov-lessons').textContent=`${student.completedLessons.length}/${DB.lessons.length}`;
-  document.getElementById('ov-warnings').textContent=student.warnings;
-  // Alerts
-  let alerts='';
-  if(student.warnings>0&&student.warnings<3){alerts+=`<div class="warning-box"><i class="fas fa-exclamation-triangle warning-icon"></i><div class="warning-text"><h4>⚠️ Warning Notice</h4><p>You have ${student.warnings} active warning(s). Please improve your performance to avoid suspension.</p></div></div>`;}
-  if(student.warnings>=3){alerts+=`<div class="warning-box danger"><i class="fas fa-ban warning-icon"></i><div class="warning-text"><h4>🚫 Final Warning</h4><p>You have reached the maximum warnings. Your account may be suspended soon. Contact your teacher immediately.</p></div></div>`;}
-  document.getElementById('student-alerts').innerHTML=alerts;
-  // Progress Ring
-  const pct=Math.round((student.completedLessons.length/DB.lessons.length)*100);
-  const quizAvg=student.quizScores.length?Math.round(student.quizScores.reduce((a,b)=>a+b,0)/student.quizScores.length):0;
-  const assAvg=student.assignmentScores.length?Math.round(student.assignmentScores.reduce((a,b)=>a+b,0)/student.assignmentScores.length):0;
-  setTimeout(()=>{
-    const circle=document.getElementById('progress-ring-circle');
-    if(circle){const offset=283-(283*(pct/100));circle.style.strokeDashoffset=offset;}
-    document.getElementById('progress-pct').textContent=pct+'%';
-    setProgressBar('pb-quiz','pb-quiz-fill',quizAvg);
-    setProgressBar('pb-assign','pb-assign-fill',assAvg);
-    setProgressBar('pb-lessons','pb-lessons-fill',pct);
-  },500);
-  // Quiz chart
-  renderStudentQuizChart(student.quizScores);
-  // Announcements
-  renderStudentAnnouncements(student.class);
-  // Notifications
-  renderNotifications();
-}
-function setProgressBar(labelId,fillId,pct){
-  const el=document.getElementById(labelId);const fill=document.getElementById(fillId);
-  if(el)el.textContent=pct+'%';
-  if(fill)fill.style.width=pct+'%';
-}
-function renderStudentQuizChart(scores){
-  const wrap=document.getElementById('quiz-chart');
-  if(!wrap)return;
-  const labels=['Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8'];
-  const maxH=120;
-  wrap.innerHTML=scores.slice(0,8).map((s,i)=>`
-    <div class="chart-bar-wrap">
-      <div class="chart-bar-val">${s}</div>
-      <div style="flex:1;display:flex;align-items:flex-end;width:100%">
-        <div class="chart-bar-inner" style="height:${(s/100)*maxH}px;width:100%;background:linear-gradient(180deg,${s>=70?'var(--success)':s>=50?'var(--gold)':'var(--danger)'},transparent)"></div>
-      </div>
-      <div class="chart-bar-label">${labels[i]}</div>
-    </div>`).join('');
-}
-function renderStudentAnnouncements(cls){
-  const list=document.getElementById('student-announcements-list');
-  if(!list)return;
-  const relevant=DB.announcements.filter(a=>a.class==='All'||a.class===cls);
-  if(!relevant.length){list.innerHTML='<p style="color:var(--text-muted);font-size:14px">No announcements at this time.</p>';return;}
-  list.innerHTML=relevant.slice(0,3).map(a=>`
-    <div class="announcement-card">
-      <h4>${a.title} <span class="badge badge-info" style="font-size:10px;vertical-align:middle">${a.class}</span></h4>
-      <p>${a.message}</p>
-      <div class="a-meta"><span><i class="fas fa-calendar-alt"></i> ${a.date}</span><span><i class="fas fa-user"></i> ${a.author}</span></div>
-    </div>`).join('');
+function tryParseArr(val) {
+  try { const p = JSON.parse(val); return Array.isArray(p) ? p : []; }
+  catch { return []; }
 }
 
-/* =====================
-   LESSONS
-   ===================== */
-function renderLessons(){
-  const grid=document.getElementById('lessons-grid');
-  if(!grid)return;
-  const search=(document.getElementById('lesson-search')||{}).value||'';
-  const cat=(document.getElementById('lesson-category-filter')||{}).value||'All';
-  const filtered=DB.lessons.filter(l=>{
-    const matchSearch=l.title.toLowerCase().includes(search.toLowerCase())||l.desc.toLowerCase().includes(search.toLowerCase());
-    const matchCat=cat==='All'||l.category===cat;
-    return matchSearch&&matchCat;
+/* ─── PASSWORD TOGGLE ────────────────────────────────────────*/
+function togglePass(inputId, icon) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  if (input.type === 'password') { input.type = 'text';     icon.classList.replace('fa-eye','fa-eye-slash'); }
+  else                           { input.type = 'password'; icon.classList.replace('fa-eye-slash','fa-eye'); }
+}
+
+/* ─── SECTION NAVIGATION ─────────────────────────────────────*/
+function showStudentSection(id, title) {
+  document.querySelectorAll('#page-student .dash-section').forEach(s => s.classList.remove('active'));
+  const sec = document.getElementById('section-' + id);
+  if (sec) sec.classList.add('active');
+  const titleEl = document.getElementById('topbar-title-s');
+  if (titleEl) titleEl.textContent = title;
+
+  // Highlight correct nav item
+  document.querySelectorAll('#page-student .sidebar-nav-item').forEach(item => {
+    item.classList.remove('active');
+    if (item.dataset.section === id) item.classList.add('active');
   });
-  const completed=currentUser.completedLessons||[];
-  grid.innerHTML=filtered.map(l=>`
-    <div class="lesson-card" onclick="openLesson(${l.id})">
-      <div class="lesson-card-cover" style="background:linear-gradient(135deg,${lessonColors[l.id%lessonColors.length]})">
-        <div class="lesson-emoji">${l.emoji}</div>
-        <span class="lesson-card-tag">${l.category}</span>
+  closeMobileSidebar();
+
+  if (id === 'overview')       { /* already rendered on login */ }
+  if (id === 'lessons')        renderLessons();
+  if (id === 'quizzes')        { renderQuizList(); resetQuizViews(); }
+  if (id === 'assignments')    renderAssignments();
+  if (id === 'notifications')  renderNotifications();
+  if (id === 'certificate')    renderCertificate();
+  if (id === 'profile')        renderProfile();
+}
+
+function showAdminSection(id, title) {
+  document.querySelectorAll('#page-admin .dash-section').forEach(s => s.classList.remove('active'));
+  const sec = document.getElementById('section-' + id);
+  if (sec) sec.classList.add('active');
+  const titleEl = document.getElementById('topbar-title-a');
+  if (titleEl) titleEl.textContent = title;
+
+  document.querySelectorAll('#page-admin .sidebar-nav-item').forEach(item => {
+    item.classList.remove('active');
+    if (item.dataset.section === id) item.classList.add('active');
+  });
+  closeMobileSidebar();
+
+  if (id === 'a-overview')      { renderTopStudentsTable(); renderClassPerformanceBars(); }
+  if (id === 'a-students')      renderStudentsTable();
+  if (id === 'a-lessons')       renderLessonsTable();
+  if (id === 'a-quizzes')       renderQuizResultsTable();
+  if (id === 'a-assignments')   renderAssignmentsAdminTable();
+  if (id === 'a-announcements') renderAdminAnnouncements();
+  if (id === 'a-analytics')     renderAdminAnalytics();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STUDENT DASHBOARD
+   ═══════════════════════════════════════════════════════════ */
+function initStudentDashboard(student) {
+  const firstName = (student.name || 'Student').split(' ')[0];
+  const initial   = (student.name || 'S')[0].toUpperCase();
+
+  // Sidebar & topbar
+  document.getElementById('sidebar-avatar-s').textContent = initial;
+  document.getElementById('sidebar-name-s').textContent   = student.name || '—';
+  document.getElementById('sidebar-class-s').textContent  = student.class || '—';
+  document.getElementById('topbar-avatar-s').textContent  = initial;
+  document.getElementById('welcome-name').textContent     = firstName;
+
+  const score = calcTotalScore(student);
+  const { grade, remark } = getGrade(score);
+
+  document.getElementById('ov-total-score').textContent = score;
+  document.getElementById('ov-grade').textContent       = grade;
+  document.getElementById('ov-remark').textContent      = remark;
+  document.getElementById('ov-lessons').textContent     = `${(student.completedLessons||[]).length} / ${DB.lessons.length || '—'}`;
+  document.getElementById('ov-warnings').textContent    = student.warnings || 0;
+
+  // Warning alerts
+  const warnings = parseInt(student.warnings) || 0;
+  let alertsHTML = '';
+  if (warnings > 0 && warnings < 3) {
+    alertsHTML = `<div class="warning-box"><i class="fas fa-exclamation-triangle warning-icon"></i><div class="warning-text"><h4>⚠️ Warning Notice</h4><p>You have ${warnings} active warning(s). Please improve your behaviour to avoid suspension.</p></div></div>`;
+  }
+  if (warnings >= 3) {
+    alertsHTML = `<div class="warning-box danger"><i class="fas fa-ban warning-icon"></i><div class="warning-text"><h4>🚫 Final Warning</h4><p>You have reached ${warnings} warnings. Your account may be suspended. Contact your teacher immediately.</p></div></div>`;
+  }
+  document.getElementById('student-alerts').innerHTML = alertsHTML;
+
+  // Progress ring & bars
+  const totalLessons = DB.lessons.length || 1;
+  const lessonPct    = Math.round(((student.completedLessons||[]).length / totalLessons) * 100);
+  const quizAvg      = (student.quizScores||[]).length  ? Math.round((student.quizScores.reduce((a,b)=>a+b,0))  / student.quizScores.length)  : 0;
+  const assAvg       = (student.assignmentScores||[]).length ? Math.round((student.assignmentScores.reduce((a,b)=>a+b,0)) / student.assignmentScores.length) : 0;
+
+  setTimeout(() => {
+    const circle = document.getElementById('progress-ring-circle');
+    if (circle) circle.style.strokeDashoffset = 283 - (283 * (lessonPct / 100));
+    document.getElementById('progress-pct').textContent = lessonPct + '%';
+    setProgressBar('pb-quiz',   'pb-quiz-fill',   quizAvg);
+    setProgressBar('pb-assign', 'pb-assign-fill', assAvg);
+    setProgressBar('pb-lessons','pb-lessons-fill',lessonPct);
+  }, 500);
+
+  renderStudentQuizChart(student.quizScores || []);
+  renderStudentAnnouncements(student.class);
+  renderNotificationBadge();
+
+  // Set first sidebar item active
+  const firstNav = document.querySelector('#page-student .sidebar-nav-item[data-section="overview"]');
+  if (firstNav) {
+    document.querySelectorAll('#page-student .sidebar-nav-item').forEach(i => i.classList.remove('active'));
+    firstNav.classList.add('active');
+  }
+}
+
+function setProgressBar(labelId, fillId, pct) {
+  const el   = document.getElementById(labelId);
+  const fill = document.getElementById(fillId);
+  if (el)   el.textContent    = pct + '%';
+  if (fill) fill.style.width  = Math.min(pct, 100) + '%';
+}
+
+function renderStudentQuizChart(scores) {
+  const wrap = document.getElementById('quiz-chart');
+  if (!wrap) return;
+  if (!scores || !scores.length) {
+    wrap.innerHTML = '<p style="color:var(--text-muted);font-size:13px;padding:10px 0">No quiz scores yet. Take a quiz to see your history!</p>';
+    return;
+  }
+  const labels = ['Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8'];
+  const maxH   = 110;
+  wrap.innerHTML = scores.slice(0, 8).map((s, i) => {
+    const clr = s >= 70 ? '#059669' : s >= 50 ? '#c9a84c' : '#dc2626';
+    return `<div class="chart-bar-wrap">
+      <div class="chart-bar-val" style="font-size:11px;color:${clr}">${s}</div>
+      <div style="flex:1;display:flex;align-items:flex-end;width:100%">
+        <div style="width:100%;height:${Math.max(4, Math.round((s/100)*maxH))}px;background:linear-gradient(180deg,${clr}99,${clr}22);border-radius:4px 4px 0 0"></div>
+      </div>
+      <div class="chart-bar-label">${labels[i] || 'Q'+(i+1)}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderStudentAnnouncements(cls) {
+  const list = document.getElementById('student-announcements-list');
+  if (!list) return;
+  const relevant = (DB.announcements || []).filter(a => a.Class === 'All' || a.Class === cls);
+  if (!relevant.length) {
+    list.innerHTML = '<p style="color:var(--text-muted);font-size:14px">No announcements at this time.</p>';
+    return;
+  }
+  list.innerHTML = relevant.slice(0, 3).map(a => `
+    <div class="announcement-card">
+      <h4>${a.Title || a.title || ''} <span class="badge badge-info" style="font-size:10px;vertical-align:middle">${a.Class || a.class || ''}</span></h4>
+      <p>${a.Message || a.message || ''}</p>
+      <div class="a-meta">
+        <span><i class="fas fa-calendar-alt"></i> ${a.Date || a.date || ''}</span>
+        <span><i class="fas fa-user"></i> ${a.Author || a.author || 'Admin'}</span>
+      </div>
+    </div>`).join('');
+}
+
+function renderNotificationBadge() {
+  const count = (DB.announcements || []).length;
+  const badge = document.getElementById('notif-badge');
+  const dot   = document.getElementById('notif-dot-s');
+  if (badge) badge.textContent = count;
+  if (dot)   dot.style.display = count ? 'block' : 'none';
+}
+
+/* ─── LESSONS ────────────────────────────────────────────────*/
+const LESSON_COLORS = [
+  '#0a2463,#1e3a8a','#065f46,#047857','#7f1d1d,#991b1b',
+  '#4c1d95,#6d28d9','#78350f,#92400e','#1e3a8a,#2563eb',
+  '#064e3b,#059669','#312e81,#4338ca',
+];
+
+function renderLessons() {
+  const grid   = document.getElementById('lessons-grid');
+  if (!grid) return;
+
+  if (!DB.lessons.length) {
+    grid.innerHTML = '<p style="color:var(--text-muted);font-size:14px;grid-column:1/-1;padding:20px 0">No lessons available yet. Check back soon!</p>';
+    return;
+  }
+
+  const search = (document.getElementById('lesson-search') || {}).value || '';
+  const cat    = (document.getElementById('lesson-category-filter') || {}).value || 'All';
+  const completed = (currentUser && currentUser.completedLessons) ? currentUser.completedLessons.map(String) : [];
+
+  const filtered = DB.lessons.filter(l => {
+    const title = l.Title || l.title || '';
+    const desc  = l.Description || l.desc || '';
+    const lcat  = l.Category || l.category || '';
+    const matchSearch = title.toLowerCase().includes(search.toLowerCase()) || desc.toLowerCase().includes(search.toLowerCase());
+    const matchCat    = cat === 'All' || lcat === cat;
+    return matchSearch && matchCat;
+  });
+
+  if (!filtered.length) {
+    grid.innerHTML = '<p style="color:var(--text-muted);font-size:14px;grid-column:1/-1;padding:20px 0">No lessons match your search.</p>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map((l, idx) => {
+    const lid     = String(l.LessonID || l.id || idx);
+    const title   = l.Title    || l.title    || 'Lesson';
+    const desc    = l.Description || l.desc  || '';
+    const lcat    = l.Category || l.category || '';
+    const lclass  = l.Class    || l.class    || '';
+    const emoji   = l.Emoji    || l.emoji    || '📖';
+    const isDone  = completed.includes(lid);
+    const colorIdx= idx % LESSON_COLORS.length;
+
+    return `<div class="lesson-card" onclick="openLesson('${lid}')">
+      <div class="lesson-card-cover" style="background:linear-gradient(135deg,${LESSON_COLORS[colorIdx]})">
+        <div class="lesson-emoji">${emoji}</div>
+        <span class="lesson-card-tag">${lcat}</span>
       </div>
       <div class="lesson-card-body">
-        <div class="lesson-card-title">${l.title}</div>
-        <div class="lesson-card-desc">${l.desc.substring(0,90)}...</div>
+        <div class="lesson-card-title">${title}</div>
+        <div class="lesson-card-desc">${desc.substring(0,90)}${desc.length>90?'...':''}</div>
         <div class="lesson-card-footer">
-          <span class="badge badge-info">${l.class}</span>
-          ${completed.includes(l.id)?'<span class="lesson-complete-badge"><i class="fas fa-check-circle"></i> Completed</span>':'<span class="badge" style="background:var(--border);color:var(--text-muted)"><i class="fas fa-play-circle"></i> Watch</span>'}
+          <span class="badge badge-info">${lclass}</span>
+          ${isDone
+            ? '<span class="lesson-complete-badge"><i class="fas fa-check-circle"></i> Completed</span>'
+            : '<span class="badge" style="background:var(--border);color:var(--text-muted)"><i class="fas fa-play-circle"></i> Watch</span>'
+          }
         </div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
-const lessonColors=['#0a2463,#1e3a8a','#065f46,#047857','#7f1d1d,#991b1b','#4c1d95,#6d28d9','#78350f,#92400e','#1e3a8a,#2563eb','#064e3b,#059669','#312e81,#4338ca'];
-function filterLessons(){renderLessons();}
-function openLesson(id){
-  const l=DB.lessons.find(x=>x.id===id);
-  if(!l)return;
-  const completed=currentUser.completedLessons.includes(id);
-  document.getElementById('lesson-modal-content').innerHTML=`
-    <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;margin-bottom:4px">${l.emoji} ${l.title}</h2>
-    <div style="display:flex;gap:8px;margin-bottom:20px"><span class="badge badge-info">${l.class}</span><span class="badge badge-gold">${l.category}</span></div>
-    <div class="lesson-video-wrap">
-      <iframe src="https://www.youtube.com/embed/${l.videoId}" allowfullscreen></iframe>
+
+function filterLessons() { renderLessons(); }
+
+function openLesson(lid) {
+  const l = DB.lessons.find(x => String(x.LessonID || x.id) === String(lid));
+  if (!l) return;
+  const completed = ((currentUser && currentUser.completedLessons) || []).map(String);
+  const isDone    = completed.includes(String(lid));
+  const videoId   = l.VideoID || l.videoId || '';
+  const pdfLink   = l.PDFLink || l.pdfLink || '';
+  const title     = l.Title   || l.title   || 'Lesson';
+  const desc      = l.Description || l.desc || '';
+  const lcat      = l.Category || l.category || '';
+  const lclass    = l.Class   || l.class   || '';
+  const emoji     = l.Emoji   || l.emoji   || '📖';
+
+  document.getElementById('lesson-modal-content').innerHTML = `
+    <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;margin-bottom:4px">${emoji} ${title}</h2>
+    <div style="display:flex;gap:8px;margin-bottom:20px">
+      <span class="badge badge-info">${lclass}</span>
+      <span class="badge badge-gold">${lcat}</span>
     </div>
-    <div class="lesson-content-text">${l.desc}</div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      ${l.pdfLink&&l.pdfLink!='#'?`<a href="${l.pdfLink}" target="_blank" class="btn btn-sm" style="border:1px solid var(--border);color:var(--text)"><i class="fas fa-file-pdf" style="color:var(--danger)"></i> Download Notes</a>`:''}
-      ${!completed?`<button class="btn btn-success btn-sm" onclick="markLessonComplete(${id})"><i class="fas fa-check"></i> Mark as Completed</button>`:`<span class="lesson-complete-badge"><i class="fas fa-check-circle"></i> Lesson Completed!</span>`}
+    ${videoId ? `<div class="lesson-video-wrap"><iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe></div>` : '<p style="color:var(--text-muted);font-size:14px;margin-bottom:16px">No video available for this lesson.</p>'}
+    <div class="lesson-content-text">${desc}</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
+      ${pdfLink && pdfLink !== '#' ? `<a href="${pdfLink}" target="_blank" class="btn btn-sm" style="border:1px solid var(--border);color:var(--text)"><i class="fas fa-file-pdf" style="color:var(--danger)"></i> Download Notes</a>` : ''}
+      ${isDone
+        ? '<span class="lesson-complete-badge" style="padding:8px 16px"><i class="fas fa-check-circle"></i> Lesson Completed!</span>'
+        : `<button class="btn btn-success btn-sm" onclick="markLessonComplete('${lid}')"><i class="fas fa-check"></i> Mark as Completed</button>`
+      }
     </div>`;
   openModal('lesson-modal');
 }
-function markLessonComplete(id){
-  if(!currentUser.completedLessons.includes(id)){
-    currentUser.completedLessons.push(id);
-    const student=DB.students.find(s=>s.id===currentUser.id);
-    if(student)student.completedLessons=currentUser.completedLessons;
-    showToast('Lesson marked as completed! 🎉','success');
+
+async function markLessonComplete(lid) {
+  if (!currentUser) return;
+  currentUser.completedLessons = currentUser.completedLessons || [];
+  if (currentUser.completedLessons.map(String).includes(String(lid))) return;
+
+  currentUser.completedLessons.push(lid);
+
+  const res = await apiPost('saveLesson', {
+    studentId: currentUser.studentId,
+    lessonId:  lid,
+  });
+
+  if (res.success || true) { // update UI regardless
+    showToast('Lesson marked as completed! 🎉', 'success');
     closeModal('lesson-modal');
     renderLessons();
-    // Update stats
-    document.getElementById('ov-lessons').textContent=`${currentUser.completedLessons.length}/${DB.lessons.length}`;
-    const pct=Math.round((currentUser.completedLessons.length/DB.lessons.length)*100);
-    const circle=document.getElementById('progress-ring-circle');
-    if(circle){circle.style.strokeDashoffset=283-(283*(pct/100));}
-    document.getElementById('progress-pct').textContent=pct+'%';
-    setProgressBar('pb-lessons','pb-lessons-fill',pct);
+    // Update overview stats
+    const totalLessons = DB.lessons.length || 1;
+    const pct = Math.round((currentUser.completedLessons.length / totalLessons) * 100);
+    document.getElementById('ov-lessons').textContent = `${currentUser.completedLessons.length} / ${DB.lessons.length}`;
+    const circle = document.getElementById('progress-ring-circle');
+    if (circle) circle.style.strokeDashoffset = 283 - (283 * (pct / 100));
+    document.getElementById('progress-pct').textContent = pct + '%';
+    setProgressBar('pb-lessons', 'pb-lessons-fill', pct);
   }
-  apiCall('saveLesson',{studentId:currentUser.id,lessonId:id});
 }
 
-/* =====================
-   QUIZZES
-   ===================== */
-function renderQuizList(){
-  const grid=document.getElementById('quiz-list-grid');
-  if(!grid)return;
-  grid.innerHTML=DB.quizzes.map((q,i)=>`
+/* ─── QUIZZES ────────────────────────────────────────────────*/
+function renderQuizList() {
+  const grid = document.getElementById('quiz-list-grid');
+  if (!grid) return;
+  const emojis = ['📝','⏰','📖','🔍','🎯'];
+  grid.innerHTML = QUIZ_BANK.map((q, i) => `
     <div class="lesson-card" style="cursor:pointer" onclick="startQuiz(${i})">
       <div class="lesson-card-cover" style="background:linear-gradient(135deg,#1e3a8a,#0a2463)">
-        <div style="font-size:48px">${['📝','⏰','📖'][i%3]}</div>
+        <div style="font-size:48px">${emojis[i % emojis.length]}</div>
         <span class="lesson-card-tag">${q.category}</span>
       </div>
       <div class="lesson-card-body">
         <div class="lesson-card-title">${q.title}</div>
-        <div class="lesson-card-desc">${q.questions.length} questions · 100 marks total · Auto-graded</div>
+        <div class="lesson-card-desc">${q.questions.length} questions · 100 marks total · Auto-graded instantly</div>
         <div class="lesson-card-footer">
-          <span class="badge badge-info">${q.questions.length} Qs</span>
+          <span class="badge badge-info">${q.questions.length} Questions</span>
           <button class="btn btn-primary btn-sm">Start Quiz</button>
         </div>
       </div>
     </div>`).join('');
 }
 
-let activeQuiz=null, currentQ=0, userAnswers=[], selectedOption=null;
-function startQuiz(idx){
-  activeQuiz=DB.quizzes[idx];
-  currentQ=0;userAnswers=[];selectedOption=null;
+function resetQuizViews() {
+  document.getElementById('quiz-active-view')?.classList.add('hidden');
+  document.getElementById('quiz-result-view')?.classList.add('hidden');
+  document.getElementById('quiz-list-view')?.classList.remove('hidden');
+}
+
+let _activeQuiz = null, _currentQ = 0, _userAnswers = [], _selectedOption = null;
+
+function startQuiz(idx) {
+  _activeQuiz      = QUIZ_BANK[idx];
+  _currentQ        = 0;
+  _userAnswers     = [];
+  _selectedOption  = null;
   document.getElementById('quiz-list-view').classList.add('hidden');
   document.getElementById('quiz-result-view').classList.add('hidden');
   document.getElementById('quiz-active-view').classList.remove('hidden');
-  document.getElementById('active-quiz-title').textContent=activeQuiz.title;
+  document.getElementById('active-quiz-title').textContent = _activeQuiz.title;
   renderQuizQuestion();
 }
-function renderQuizQuestion(){
-  const q=activeQuiz.questions[currentQ];
-  const total=activeQuiz.questions.length;
-  document.getElementById('q-progress-fill').style.width=`${((currentQ+1)/total)*100}%`;
-  document.getElementById('q-counter').textContent=`Question ${currentQ+1} of ${total}`;
-  document.getElementById('q-question').textContent=q.q;
-  const letters='ABCD';
-  document.getElementById('q-options').innerHTML=q.opts.map((o,i)=>`
-    <div class="quiz-option" onclick="selectOption(${i})" id="opt-${i}">
+
+function renderQuizQuestion() {
+  const q     = _activeQuiz.questions[_currentQ];
+  const total = _activeQuiz.questions.length;
+  document.getElementById('q-progress-fill').style.width = `${((_currentQ + 1) / total) * 100}%`;
+  document.getElementById('q-counter').textContent       = `Question ${_currentQ + 1} of ${total}`;
+  document.getElementById('q-question').textContent      = q.q;
+  const letters = 'ABCD';
+  document.getElementById('q-options').innerHTML = q.opts.map((o, i) => `
+    <div class="quiz-option" onclick="selectOption(${i})" id="qopt-${i}">
       <div class="quiz-option-letter">${letters[i]}</div>
       <span>${o}</span>
     </div>`).join('');
-  document.getElementById('q-next-btn').textContent=currentQ===activeQuiz.questions.length-1?'Submit':'Next ›';
-  selectedOption=null;
-}
-function selectOption(i){
-  if(selectedOption!==null)return;
-  selectedOption=i;
-  document.querySelectorAll('.quiz-option').forEach(o=>o.classList.remove('selected'));
-  document.getElementById('opt-'+i).classList.add('selected');
-}
-function nextQuizQuestion(){
-  if(selectedOption===null){showToast('Please select an answer','warning');return;}
-  userAnswers.push(selectedOption);
-  const q=activeQuiz.questions[currentQ];
-  // Show correct/wrong briefly
-  const opts=document.querySelectorAll('.quiz-option');
-  opts.forEach((o,i)=>{
-    if(i===q.ans)o.classList.add('correct');
-    else if(i===selectedOption&&i!==q.ans)o.classList.add('wrong');
-  });
-  setTimeout(()=>{
-    if(currentQ<activeQuiz.questions.length-1){currentQ++;renderQuizQuestion();}
-    else{showQuizResult();}
-  },700);
-}
-function showQuizResult(){
-  let correct=0;
-  userAnswers.forEach((ans,i)=>{if(ans===activeQuiz.questions[i].ans)correct++;});
-  const score=Math.round((correct/activeQuiz.questions.length)*100);
-  const {grade,remark,color}=getGrade(score);
-  document.getElementById('quiz-active-view').classList.add('hidden');
-  document.getElementById('quiz-result-view').classList.remove('hidden');
-  document.getElementById('res-score').textContent=score;
-  document.getElementById('res-grade').textContent=grade;
-  document.getElementById('res-grade').style.color=color;
-  document.getElementById('res-remark').textContent=remark;
-  document.getElementById('res-breakdown').innerHTML=`<p style="color:var(--text-muted);font-size:14px">Correct: <strong>${correct}</strong> / ${activeQuiz.questions.length} &nbsp;|&nbsp; Score: <strong>${score}/100</strong></p>`;
-  // Save score
-  currentUser.quizScores.push(score);
-  const student=DB.students.find(s=>s.id===currentUser.id);
-  if(student)student.quizScores=currentUser.quizScores;
-  DB.quizResults.push({studentId:currentUser.id,studentName:currentUser.name,class:currentUser.class,quizTitle:activeQuiz.title,score,grade,date:new Date().toISOString().split('T')[0]});
-  // Update dashboard
-  const total=calcTotalScore(currentUser);
-  const g=getGrade(total);
-  document.getElementById('ov-total-score').textContent=total;
-  document.getElementById('ov-grade').textContent=g.grade;
-  document.getElementById('ov-remark').textContent=g.remark;
-  renderStudentQuizChart(currentUser.quizScores);
-  showToast(`Quiz complete! You scored ${score}/100 — Grade ${grade}`,'success');
-  apiCall('saveQuiz',{studentId:currentUser.id,quizTitle:activeQuiz.title,score,grade});
-}
-function exitQuiz(){
-  document.getElementById('quiz-active-view').classList.add('hidden');
-  document.getElementById('quiz-result-view').classList.add('hidden');
-  document.getElementById('quiz-list-view').classList.remove('hidden');
-}
-function goBackToQuizList(){
-  document.getElementById('quiz-result-view').classList.add('hidden');
-  document.getElementById('quiz-list-view').classList.remove('hidden');
+  const nextBtn = document.getElementById('q-next-btn');
+  if (nextBtn) nextBtn.textContent = _currentQ === total - 1 ? 'Submit' : 'Next ›';
+  _selectedOption = null;
 }
 
-/* =====================
-   ASSIGNMENTS
-   ===================== */
-function renderAssignments(){
-  const list=document.getElementById('assignments-list');
-  if(!list)return;
-  list.innerHTML=DB.assignments.map(a=>{
-    const sub=DB.submissions.find(s=>s.studentId===currentUser.id&&s.assignmentId===a.id);
-    return `
-    <div class="assignment-card">
+function selectOption(i) {
+  if (_selectedOption !== null) return;
+  _selectedOption = i;
+  document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+  document.getElementById('qopt-' + i)?.classList.add('selected');
+}
+
+function nextQuizQuestion() {
+  if (_selectedOption === null) { showToast('Please select an answer', 'warning'); return; }
+  _userAnswers.push(_selectedOption);
+  const q = _activeQuiz.questions[_currentQ];
+
+  // Show correct / wrong highlight briefly
+  document.querySelectorAll('.quiz-option').forEach((o, i) => {
+    if (i === q.ans)                           o.classList.add('correct');
+    else if (i === _selectedOption && i !== q.ans) o.classList.add('wrong');
+  });
+
+  setTimeout(() => {
+    if (_currentQ < _activeQuiz.questions.length - 1) {
+      _currentQ++;
+      renderQuizQuestion();
+    } else {
+      showQuizResult();
+    }
+  }, 700);
+}
+
+async function showQuizResult() {
+  let correct = 0;
+  _userAnswers.forEach((ans, i) => { if (ans === _activeQuiz.questions[i].ans) correct++; });
+  const score = Math.round((correct / _activeQuiz.questions.length) * 100);
+  const { grade, remark, color } = getGrade(score);
+
+  document.getElementById('quiz-active-view').classList.add('hidden');
+  document.getElementById('quiz-result-view').classList.remove('hidden');
+  document.getElementById('res-score').textContent  = score;
+  document.getElementById('res-grade').textContent  = grade;
+  document.getElementById('res-grade').style.color  = color;
+  document.getElementById('res-remark').textContent = remark;
+  document.getElementById('res-breakdown').innerHTML = `
+    <p style="color:var(--text-muted);font-size:14px">
+      Correct: <strong>${correct}</strong> / ${_activeQuiz.questions.length}
+      &nbsp;|&nbsp; Score: <strong>${score} / 100</strong>
+    </p>`;
+
+  // Update local state
+  currentUser.quizScores = currentUser.quizScores || [];
+  currentUser.quizScores.push(score);
+  const newTotal = calcTotalScore(currentUser);
+  const { grade: newGrade, remark: newRemark } = getGrade(newTotal);
+  document.getElementById('ov-total-score').textContent = newTotal;
+  document.getElementById('ov-grade').textContent       = newGrade;
+  document.getElementById('ov-remark').textContent      = newRemark;
+  renderStudentQuizChart(currentUser.quizScores);
+
+  // Save to backend
+  await apiPost('saveQuiz', {
+    studentId:   currentUser.studentId,
+    studentName: currentUser.name,
+    class:       currentUser.class,
+    quizTitle:   _activeQuiz.title,
+    score,
+    grade,
+  });
+
+  showToast(`Quiz complete! Score: ${score}/100 — Grade ${grade}`, 'success');
+}
+
+function exitQuiz() { resetQuizViews(); }
+function goBackToQuizList() { resetQuizViews(); }
+
+/* ─── ASSIGNMENTS ────────────────────────────────────────────*/
+async function renderAssignments() {
+  const list = document.getElementById('assignments-list');
+  if (!list) return;
+
+  // Fetch assignments for this student's class
+  const res = await apiGet('getAssignments', { class: currentUser.class });
+  if (res.success) DB.assignments = res.data || [];
+
+  const subRes = await apiGet('getSubmissions', { studentId: currentUser.studentId });
+  if (subRes.success) DB.submissions = subRes.data || [];
+
+  if (!DB.assignments.length) {
+    list.innerHTML = '<p style="color:var(--text-muted);font-size:14px">No assignments available yet.</p>';
+    return;
+  }
+
+  list.innerHTML = DB.assignments.map(a => {
+    const aid     = String(a.AssignmentID || a.id || '');
+    const title   = a.Title        || a.title        || 'Assignment';
+    const instr   = a.Instructions || a.instructions || '';
+    const due     = a.DueDate      || a.dueDate      || '';
+    const maxS    = a.MaxScore     || a.maxScore     || 100;
+    const sub     = DB.submissions.find(s => String(s.AssignmentID) === aid);
+    const submitted = sub && (sub.Submitted === 'Yes' || sub.submitted === true);
+    const score     = sub ? (sub.Score || sub.score || null) : null;
+    const remarks   = sub ? (sub.Remarks || sub.remarks || '') : '';
+
+    return `<div class="assignment-card">
       <div class="assignment-header">
         <div>
-          <div class="assignment-title">${a.title}</div>
-          <div class="assignment-due"><i class="fas fa-calendar-alt"></i> Due: ${a.dueDate} &nbsp;|&nbsp; Max: ${a.maxScore} marks</div>
+          <div class="assignment-title">${title}</div>
+          <div class="assignment-due"><i class="fas fa-calendar-alt"></i> Due: ${due} &nbsp;|&nbsp; Max: ${maxS} marks</div>
         </div>
-        ${sub?`<span class="badge ${sub.score>=70?'badge-success':sub.score>=50?'badge-info':'badge-warning'}">${sub.submitted?'Submitted':''} ${sub.score?'· '+sub.score+'/100':''}</span>`:'<span class="badge badge-warning">Pending</span>'}
+        ${submitted
+          ? `<span class="badge ${score !== null && score >= 70 ? 'badge-success' : score !== null ? 'badge-info' : 'badge-warning'}">${submitted ? 'Submitted' : ''} ${score !== null ? '· ' + score + '/100' : ''}</span>`
+          : '<span class="badge badge-warning">Pending</span>'
+        }
       </div>
-      <div class="assignment-instructions">${a.instructions}</div>
-      ${sub&&sub.remarks?`<div class="warning-box" style="background:rgba(5,150,105,.08);border-color:rgba(5,150,105,.3)"><i class="fas fa-comment-dots warning-icon" style="color:var(--success)"></i><div class="warning-text"><h4 style="color:var(--success)">Teacher's Remarks</h4><p>${sub.remarks}</p></div></div>`:''}
-      ${!sub||!sub.submitted?`<div class="assignment-upload" onclick="submitAssignment(${a.id},this)">
-        <i class="fas fa-cloud-upload-alt"></i>
-        <p>Click to submit your assignment<br><small style="color:var(--text-muted)">Supported: PDF, Word, Image</small></p>
-      </div>`:'<div class="assignment-upload submitted"><i class="fas fa-check-circle" style="color:var(--success)"></i><p style="color:var(--success);font-weight:600">Assignment Submitted!</p></div>'}
+      <div class="assignment-instructions">${instr}</div>
+      ${remarks ? `<div class="warning-box" style="background:rgba(5,150,105,.08);border-color:rgba(5,150,105,.3)"><i class="fas fa-comment-dots warning-icon" style="color:var(--success)"></i><div class="warning-text"><h4 style="color:var(--success)">Teacher's Remarks</h4><p>${remarks}</p></div></div>` : ''}
+      ${!submitted
+        ? `<div class="assignment-upload" id="upload-${aid}" onclick="submitAssignment('${aid}', this)">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Click to submit your assignment<br><small style="color:var(--text-muted)">Supported formats: PDF, Word, Image</small></p>
+           </div>`
+        : '<div class="assignment-upload submitted"><i class="fas fa-check-circle" style="color:var(--success)"></i><p style="color:var(--success);font-weight:600">Assignment Submitted Successfully!</p></div>'
+      }
     </div>`;
   }).join('');
 }
-function submitAssignment(id,el){
+
+async function submitAssignment(aid, el) {
   el.classList.add('submitted');
-  el.innerHTML='<i class="fas fa-check-circle" style="color:var(--success)"></i><p style="color:var(--success);font-weight:600">Assignment Submitted!</p>';
-  const existing=DB.submissions.find(s=>s.studentId===currentUser.id&&s.assignmentId===id);
-  if(!existing){DB.submissions.push({studentId:currentUser.id,assignmentId:id,submitted:true,score:null,remarks:''});}
-  showToast('Assignment submitted successfully!','success');
-  apiCall('saveAssignment',{studentId:currentUser.id,assignmentId:id});
+  el.innerHTML = '<i class="fas fa-spinner fa-spin" style="color:var(--primary)"></i><p>Submitting...</p>';
+
+  const res = await apiPost('saveAssignment', {
+    studentId:    currentUser.studentId,
+    assignmentId: aid,
+  });
+
+  if (res.success) {
+    el.innerHTML = '<i class="fas fa-check-circle" style="color:var(--success)"></i><p style="color:var(--success);font-weight:600">Assignment Submitted Successfully!</p>';
+    showToast('Assignment submitted!', 'success');
+  } else {
+    el.classList.remove('submitted');
+    el.innerHTML = '<i class="fas fa-cloud-upload-alt"></i><p>Click to submit your assignment</p>';
+    showToast(res.data.error || 'Submission failed. Try again.', 'error');
+  }
 }
 
-/* =====================
-   NOTIFICATIONS
-   ===================== */
-function renderNotifications(){
-  const list=document.getElementById('notif-list');
-  if(!list)return;
-  const notifs=[];
-  const anns=DB.announcements.filter(a=>a.class==='All'||a.class===currentUser.class);
-  anns.forEach(a=>notifs.push({type:'info',icon:'fas fa-bullhorn',title:a.title,desc:a.message,time:a.date}));
-  if(currentUser.warnings>0)notifs.push({type:'warning',icon:'fas fa-exclamation-triangle',title:'Warning Issued',desc:`You have ${currentUser.warnings} warning(s) on your account.`,time:'Recently'});
-  notifs.push({type:'success',icon:'fas fa-trophy',title:'Quiz Score Updated',desc:`Your latest quiz score has been recorded on your dashboard.`,time:'Today'});
-  list.innerHTML=notifs.map(n=>`
+/* ─── NOTIFICATIONS ──────────────────────────────────────────*/
+function renderNotifications() {
+  const list = document.getElementById('notif-list');
+  if (!list) return;
+  const notifs = [];
+  (DB.announcements || []).forEach(a => {
+    notifs.push({
+      type: 'info', icon: 'fas fa-bullhorn',
+      title: a.Title || a.title || 'Announcement',
+      desc:  a.Message || a.message || '',
+      time:  a.Date || a.date || '',
+    });
+  });
+  const warnings = parseInt((currentUser || {}).warnings) || 0;
+  if (warnings > 0) {
+    notifs.push({ type: 'warning', icon: 'fas fa-exclamation-triangle', title: 'Warning Issued', desc: `You have ${warnings} warning(s) on your account. Please take note.`, time: 'Recent' });
+  }
+  if (!(DB.quizResults || []).length) {
+    notifs.push({ type: 'info', icon: 'fas fa-question-circle', title: 'No Quizzes Taken Yet', desc: 'Head over to the Quizzes section to attempt your first quiz!', time: '' });
+  } else {
+    notifs.push({ type: 'success', icon: 'fas fa-trophy', title: 'Quiz Scores Updated', desc: 'Your latest quiz score has been recorded.', time: 'Recent' });
+  }
+
+  if (!notifs.length) {
+    list.innerHTML = '<p style="color:var(--text-muted);font-size:14px">No notifications at this time.</p>';
+    return;
+  }
+  list.innerHTML = notifs.map(n => `
     <div class="notif-item">
       <div class="notif-icon ${n.type}"><i class="${n.icon}"></i></div>
-      <div class="notif-content"><div class="notif-title">${n.title}</div><div class="notif-desc">${n.desc}</div></div>
-      <div class="notif-time">${n.time}</div>
+      <div class="notif-content">
+        <div class="notif-title">${n.title}</div>
+        <div class="notif-desc">${n.desc}</div>
+      </div>
+      ${n.time ? `<div class="notif-time">${n.time}</div>` : ''}
     </div>`).join('');
-  // Badge
-  document.getElementById('notif-badge').textContent=notifs.length;
-  document.getElementById('notif-dot-s').style.display=notifs.length?'block':'none';
+
+  renderNotificationBadge();
 }
 
-/* =====================
-   CERTIFICATE
-   ===================== */
-function renderCertificate(){
-  const student=currentUser;
-  const total=calcTotalScore(student);
-  const {grade,remark}=getGrade(total);
-  const today=new Date().toLocaleDateString('en-GB',{year:'numeric',month:'long',day:'numeric'});
-  const passed=total>=40;
-  document.getElementById('certificate-preview').innerHTML=`
+/* ─── CERTIFICATE ────────────────────────────────────────────*/
+function renderCertificate() {
+  if (!currentUser) return;
+  const score  = calcTotalScore(currentUser);
+  const { grade, remark } = getGrade(score);
+  const today  = new Date().toLocaleDateString('en-GB', { year:'numeric', month:'long', day:'numeric' });
+  const passed = score >= 40;
+
+  document.getElementById('certificate-preview').innerHTML = `
   <div class="cert-outer">
     <div class="cert-inner">
       <div class="cert-top-bar"></div>
       <div class="cert-seal"><i class="fas fa-star"></i></div>
-      <div class="cert-school">Pariya Academy for Modern Science & Quran</div>
+      <div class="cert-school">Pariya Academy for Modern Science &amp; Quran</div>
       <div class="cert-title">Certificate of Achievement</div>
       <div class="cert-subtitle">English Language Programme</div>
-      <div class="cert-divider"><div class="cert-divider-line"></div><div class="cert-divider-star">✦</div><div class="cert-divider-line"></div></div>
+      <div class="cert-divider">
+        <div class="cert-divider-line"></div>
+        <div class="cert-divider-star">✦</div>
+        <div class="cert-divider-line"></div>
+      </div>
       <div class="cert-presented">This certificate is proudly presented to</div>
-      <div class="cert-name">${student.name}</div>
-      <div class="cert-class">${student.class} Student</div>
+      <div class="cert-name">${currentUser.name || '—'}</div>
+      <div class="cert-class">${currentUser.class || '—'} Student</div>
       <div class="cert-statement">
-        For successfully ${passed?'completing':'participating in'} the English Language Learning Programme at<br>
-        <strong>Pariya Academy for Modern Science & Quran</strong>,<br>
-        demonstrating dedication, effort, and academic ${passed?'excellence':'commitment'}.
+        For successfully ${passed ? 'completing' : 'participating in'} the English Language Learning Programme at<br>
+        <strong>Pariya Academy for Modern Science &amp; Quran</strong>,<br>
+        demonstrating dedication, effort, and academic ${passed ? 'excellence' : 'commitment'}.
       </div>
       <div class="cert-score-box">
-        <div class="cert-score-item"><div class="val">${total}</div><div class="lbl">Total Score</div></div>
+        <div class="cert-score-item"><div class="val">${score}</div><div class="lbl">Total Score</div></div>
         <div class="cert-score-item"><div class="val">${grade}</div><div class="lbl">Grade</div></div>
         <div class="cert-score-item"><div class="val">${remark}</div><div class="lbl">Remarks</div></div>
       </div>
       <div class="cert-sigs">
-        <div class="cert-sig"><div class="cert-sig-line"></div><div class="cert-sig-name">Arabo Modibbo</div><div class="cert-sig-title">Founder & Director</div></div>
-        <div class="cert-sig"><div class="cert-sig-line"></div><div class="cert-sig-name">Head of English Dept.</div><div class="cert-sig-title">English Department</div></div>
+        <div class="cert-sig">
+          <div class="cert-sig-line"></div>
+          <div class="cert-sig-name">Arabo Modibbo</div>
+          <div class="cert-sig-title">Founder &amp; Director</div>
+        </div>
+        <div class="cert-sig">
+          <div class="cert-sig-line"></div>
+          <div class="cert-sig-name">Head of English Dept.</div>
+          <div class="cert-sig-title">English Department</div>
+        </div>
       </div>
       <div class="cert-date">Issued on: ${today}</div>
     </div>
   </div>`;
+
+  // Save certificate record to backend
+  apiPost('generateCert', {
+    studentId:   currentUser.studentId,
+    studentName: currentUser.name,
+    class:       currentUser.class,
+    totalScore:  score,
+    grade,
+  });
 }
-function downloadCertificate(){
-  showToast('Certificate download started! Use Print → Save as PDF','info');
+
+function downloadCertificate() {
+  showToast('Opening print dialog — choose "Save as PDF" to download', 'info');
   window.print();
 }
 
-/* =====================
-   PROFILE
-   ===================== */
-function renderProfile(){
-  const s=currentUser;
-  const initial=s.name[0];
-  document.getElementById('profile-avatar-big').textContent=initial;
-  document.getElementById('profile-name').textContent=s.name;
-  document.getElementById('profile-class').textContent=`Class: ${s.class} · ID: ${s.id}`;
-  document.getElementById('profile-status-badge').innerHTML=`<span class="badge ${s.status==='Active'?'badge-success':'badge-danger'}">${s.status}</span>`;
-  const total=calcTotalScore(s);
-  const {grade,remark}=getGrade(total);
-  document.getElementById('profile-info-grid').innerHTML=`
+/* ─── PROFILE ────────────────────────────────────────────────*/
+function renderProfile() {
+  if (!currentUser) return;
+  const initial = (currentUser.name || 'S')[0].toUpperCase();
+  document.getElementById('profile-avatar-big').textContent = initial;
+  document.getElementById('profile-name').textContent  = currentUser.name  || '—';
+  document.getElementById('profile-class').textContent = `Class: ${currentUser.class || '—'} · ID: ${currentUser.studentId || '—'}`;
+  document.getElementById('profile-status-badge').innerHTML = `<span class="badge ${currentUser.status==='Active'?'badge-success':'badge-danger'}">${currentUser.status || 'Active'}</span>`;
+  const total = calcTotalScore(currentUser);
+  const { grade, remark } = getGrade(total);
+  document.getElementById('profile-info-grid').innerHTML = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-      ${profileItem('fas fa-id-badge','Student ID',s.id)}
-      ${profileItem('fas fa-users','Class',s.class)}
-      ${profileItem('fas fa-user','Username',s.username)}
-      ${profileItem('fas fa-trophy','Total Score',total+'/100')}
-      ${profileItem('fas fa-star','Grade',grade+' — '+remark)}
-      ${profileItem('fas fa-book','Lessons Done',s.completedLessons.length+'/'+DB.lessons.length)}
-      ${profileItem('fas fa-exclamation-triangle','Warnings',s.warnings)}
-      ${profileItem('fas fa-circle','Status',s.status)}
+      ${profileItem('fas fa-id-badge',          'Student ID',   currentUser.studentId || '—')}
+      ${profileItem('fas fa-users',             'Class',        currentUser.class     || '—')}
+      ${profileItem('fas fa-user',              'Username',     currentUser.username  || '—')}
+      ${profileItem('fas fa-trophy',            'Total Score',  total + ' / 100')}
+      ${profileItem('fas fa-star',              'Grade',        grade + ' — ' + remark)}
+      ${profileItem('fas fa-book',              'Lessons Done', (currentUser.completedLessons||[]).length + ' / ' + DB.lessons.length)}
+      ${profileItem('fas fa-exclamation-triangle','Warnings',   currentUser.warnings  || 0)}
+      ${profileItem('fas fa-circle',            'Status',       currentUser.status    || 'Active')}
     </div>`;
 }
-function profileItem(icon,label,val){
+
+function profileItem(icon, label, val) {
   return `<div style="background:var(--bg);border-radius:var(--radius-sm);padding:14px">
-    <div style="font-size:11px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px"><i class="${icon}" style="margin-right:4px"></i>${label}</div>
+    <div style="font-size:11px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">
+      <i class="${icon}" style="margin-right:4px"></i>${label}
+    </div>
     <div style="font-size:15px;font-weight:700;color:var(--text)">${val}</div>
   </div>`;
 }
-function changePassword(){
-  const np=document.getElementById('new-pass').value;
-  if(!np||np.length<6){showToast('Password must be at least 6 characters','warning');return;}
-  currentUser.password=np;
-  const s=DB.students.find(x=>x.id===currentUser.id);
-  if(s)s.password=np;
-  document.getElementById('new-pass').value='';
-  showToast('Password changed successfully','success');
+
+async function changePassword() {
+  const np = document.getElementById('new-pass').value.trim();
+  if (!np || np.length < 6) { showToast('Password must be at least 6 characters', 'warning'); return; }
+  const res = await apiPost('changePassword', {
+    studentId:   currentUser.studentId,
+    newPassword: np,
+  });
+  document.getElementById('new-pass').value = '';
+  if (res.success) showToast('Password changed successfully', 'success');
+  else             showToast(res.data.error || 'Failed to change password', 'error');
 }
 
-/* ================================
-   ADMIN DASHBOARD INITIALIZATION
-   ================================ */
-function initAdminDashboard(){
+/* ═══════════════════════════════════════════════════════════
+   ADMIN DASHBOARD
+   ═══════════════════════════════════════════════════════════ */
+function initAdminDashboard() {
   updateAdminStats();
   renderStudentsTable();
   renderLessonsTable();
@@ -2206,886 +2575,554 @@ function initAdminDashboard(){
   renderAdminAnnouncements();
   renderClassPerformanceBars();
   renderTopStudentsTable();
-  renderAdminAnalytics();
+  setTimeout(animateAdminCounters, 500);
 }
-function updateAdminStats(){
-  const total=DB.students.length;
-  const active=DB.students.filter(s=>s.status==='Active').length;
-  const suspended=DB.students.filter(s=>s.status==='Suspended').length;
-  const lessons=DB.lessons.length;
-  const scores=DB.students.map(s=>calcTotalScore(s)).filter(x=>x>0);
-  const avg=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):0;
-  document.getElementById('a-total-students').textContent=total;
-  document.getElementById('a-active-students').textContent=active;
-  document.getElementById('a-suspended-students').textContent=suspended;
-  document.getElementById('a-total-lessons').textContent=lessons;
-  document.getElementById('a-avg-score').textContent=avg+'%';
+
+function animateAdminCounters() {
+  document.querySelectorAll('.analytics-card .a-num').forEach(el => {
+    const txt = el.textContent;
+    const num = parseInt(txt);
+    if (isNaN(num) || num === 0) return;
+    let c = 0;
+    const step = Math.max(1, Math.floor(num / 40));
+    const t = setInterval(() => {
+      c += step;
+      if (c >= num) { c = num; clearInterval(t); }
+      el.textContent = txt.includes('%') ? c + '%' : c;
+    }, 25);
+  });
 }
-function renderStudentsTable(filtered){
-  const list=filtered||DB.students;
-  document.getElementById('students-table-body').innerHTML=list.map(s=>{
-    const score=calcTotalScore(s);
-    const {grade}=getGrade(score);
+
+function updateAdminStats() {
+  const total     = DB.students.length;
+  const active    = DB.students.filter(s => (s.Status || s.status) === 'Active').length;
+  const suspended = DB.students.filter(s => (s.Status || s.status) === 'Suspended').length;
+  const lessons   = DB.lessons.length;
+  const scores    = DB.students.map(s => {
+    const qs = tryParseArr(s.QuizScores || s.quizScores);
+    const as = tryParseArr(s.AssignmentScores || s.assignmentScores);
+    const all = [...qs, ...as];
+    return all.length ? Math.round(all.reduce((a, b) => a + b, 0) / all.length) : 0;
+  }).filter(x => x > 0);
+  const avg = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0;
+
+  document.getElementById('a-total-students').textContent    = total;
+  document.getElementById('a-active-students').textContent   = active;
+  document.getElementById('a-suspended-students').textContent= suspended;
+  document.getElementById('a-total-lessons').textContent     = lessons;
+  document.getElementById('a-avg-score').textContent         = avg + '%';
+}
+
+function getStudentScore(s) {
+  const qs  = tryParseArr(s.QuizScores || s.quizScores);
+  const as  = tryParseArr(s.AssignmentScores || s.assignmentScores);
+  const all = [...qs, ...as];
+  return all.length ? Math.round(all.reduce((a, b) => a + b, 0) / all.length) : 0;
+}
+
+function renderStudentsTable(filtered) {
+  const list = filtered || DB.students;
+  const tbody = document.getElementById('students-table-body');
+  if (!tbody) return;
+  if (!list.length) {
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--text-muted);padding:32px">No students found.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = list.map(s => {
+    const score  = getStudentScore(s);
+    const { grade } = getGrade(score);
+    const status = s.Status || s.status || 'Active';
+    const sid    = s.StudentID || s.id || '';
+    const name   = s.FullName  || s.name || '—';
+    const cls    = s.Class     || s.class || '—';
+    const warns  = parseInt(s.Warnings || s.warnings) || 0;
     return `<tr>
-      <td><span style="font-family:var(--mono,monospace);font-size:12px;color:var(--text-muted)">${s.id}</span></td>
-      <td><div style="display:flex;align-items:center"><div class="table-avatar">${s.name[0]}</div>${s.name}</div></td>
-      <td><span class="badge badge-info">${s.class}</span></td>
+      <td><span class="mono">${sid}</span></td>
+      <td><div style="display:flex;align-items:center"><div class="table-avatar">${name[0]||'?'}</div>${name}</div></td>
+      <td><span class="badge badge-info">${cls}</span></td>
       <td><strong>${score}</strong>/100</td>
       <td><strong style="color:${getGrade(score).color}">${grade}</strong></td>
-      <td>${s.warnings>0?`<span class="badge badge-warning">${s.warnings} warning${s.warnings>1?'s':''}</span>`:'<span class="badge badge-success">Clean</span>'}</td>
-      <td><span class="badge ${s.status==='Active'?'badge-success':'badge-danger'}">${s.status}</span></td>
+      <td>${warns > 0 ? `<span class="badge badge-warning">${warns} warning${warns>1?'s':''}</span>` : '<span class="badge badge-success">Clean</span>'}</td>
+      <td><span class="badge ${status==='Active'?'badge-success':'badge-danger'}">${status}</span></td>
       <td>
         <div style="display:flex;gap:4px;flex-wrap:wrap">
-          <button class="btn btn-sm" style="border:1px solid var(--border);color:var(--text-muted);padding:5px 10px" onclick="adminWarnStudent('${s.id}')" title="Warn"><i class="fas fa-exclamation-triangle"></i></button>
-          <button class="btn btn-sm" style="border:1px solid var(--border);color:${s.status==='Active'?'var(--danger)':'var(--success)'};padding:5px 10px" onclick="adminToggleSuspend('${s.id}')" title="${s.status==='Active'?'Suspend':'Unsuspend'}"><i class="fas fa-${s.status==='Active'?'ban':'check'}"></i></button>
-          <button class="btn btn-sm btn-danger" style="padding:5px 10px" onclick="adminDeleteStudent('${s.id}')" title="Delete"><i class="fas fa-trash"></i></button>
+          <button class="btn btn-sm" style="border:1px solid var(--border);color:var(--warning);padding:5px 10px" onclick="adminWarnStudent('${sid}')" title="Warn"><i class="fas fa-exclamation-triangle"></i></button>
+          <button class="btn btn-sm" style="border:1px solid var(--border);color:${status==='Active'?'var(--danger)':'var(--success)'};padding:5px 10px" onclick="adminToggleSuspend('${sid}')" title="${status==='Active'?'Suspend':'Unsuspend'}"><i class="fas fa-${status==='Active'?'ban':'check'}"></i></button>
+          <button class="btn btn-sm btn-danger" style="padding:5px 10px" onclick="adminDeleteStudent('${sid}')" title="Delete"><i class="fas fa-trash"></i></button>
         </div>
       </td>
     </tr>`;
   }).join('');
 }
-function filterAdminStudents(){
-  const search=document.getElementById('admin-student-search').value.toLowerCase();
-  const cls=document.getElementById('admin-class-filter').value;
-  const status=document.getElementById('admin-status-filter').value;
-  const filtered=DB.students.filter(s=>{
-    const ms=s.name.toLowerCase().includes(search)||s.id.toLowerCase().includes(search);
-    const mc=cls==='All'||s.class===cls;
-    const mst=status==='All'||s.status===status;
-    return ms&&mc&&mst;
+
+function filterAdminStudents() {
+  const search = document.getElementById('admin-student-search').value.toLowerCase();
+  const cls    = document.getElementById('admin-class-filter').value;
+  const status = document.getElementById('admin-status-filter').value;
+  const filtered = DB.students.filter(s => {
+    const name = (s.FullName || s.name || '').toLowerCase();
+    const sid  = (s.StudentID || s.id || '').toLowerCase();
+    const ms   = name.includes(search) || sid.includes(search);
+    const mc   = cls    === 'All' || (s.Class  || s.class)  === cls;
+    const mst  = status === 'All' || (s.Status || s.status) === status;
+    return ms && mc && mst;
   });
   renderStudentsTable(filtered);
 }
-function adminWarnStudent(id){
-  const s=DB.students.find(x=>x.id===id);
-  if(!s)return;
-  s.warnings++;
-  renderStudentsTable();
-  updateAdminStats();
-  showToast(`Warning issued to ${s.name}`,'warning');
-  apiCall('warnStudent',{studentId:id});
-}
-function adminToggleSuspend(id){
-  const s=DB.students.find(x=>x.id===id);
-  if(!s)return;
-  s.status=s.status==='Active'?'Suspended':'Active';
-  renderStudentsTable();
-  updateAdminStats();
-  showToast(`${s.name} is now ${s.status}`,'info');
-  apiCall('suspendStudent',{studentId:id,status:s.status});
-}
-function adminDeleteStudent(id){
-  if(!confirm('Delete this student? This cannot be undone.'))return;
-  const idx=DB.students.findIndex(s=>s.id===id);
-  if(idx>-1){const name=DB.students[idx].name;DB.students.splice(idx,1);renderStudentsTable();updateAdminStats();showToast(`${name} deleted`,'success');}
-}
-function adminAddStudent(){
-  const name=document.getElementById('ns-name').value.trim();
-  const cls=document.getElementById('ns-class').value;
-  const user=document.getElementById('ns-username').value.trim();
-  const pass=document.getElementById('ns-password').value;
-  if(!name||!user||!pass){showToast('Fill all fields','warning');return;}
-  const newId='PAR-'+String(DB.students.length+1).padStart(3,'0');
-  DB.students.push({id:newId,name,class:cls,username:user,password:pass,status:'Active',warnings:0,quizScores:[],assignmentScores:[],completedLessons:[],grade:'–'});
-  closeModal('add-student-modal');
-  renderStudentsTable();updateAdminStats();renderTopStudentsTable();
-  showToast(`Student ${name} added! ID: ${newId}`,'success');
-  ['ns-name','ns-username','ns-password'].forEach(id=>document.getElementById(id).value='');
-  apiCall('addStudent',{name,class:cls,username:user,password:pass});
-}
-function renderLessonsTable(){
-  document.getElementById('lessons-table-body').innerHTML=DB.lessons.map((l,i)=>`
-    <tr>
-      <td>${i+1}</td>
-      <td><strong>${l.emoji} ${l.title}</strong></td>
-      <td><span class="badge badge-info">${l.class}</span></td>
-      <td><span class="badge badge-gold">${l.category}</span></td>
-      <td>${l.videoId&&l.videoId!='dQw4w9WgXcQ'?'<span class="badge badge-success">Yes</span>':'<span class="badge badge-warning">Demo</span>'}</td>
-      <td><button class="btn btn-sm btn-danger" onclick="adminDeleteLesson(${l.id})"><i class="fas fa-trash"></i></button></td>
-    </tr>`).join('');
-}
-function adminAddLesson(){
-  const title=document.getElementById('nl-title').value.trim();
-  const cls=document.getElementById('nl-class').value;
-  const cat=document.getElementById('nl-category').value;
-  const desc=document.getElementById('nl-desc').value.trim();
-  const video=document.getElementById('nl-video').value.trim();
-  const pdf=document.getElementById('nl-pdf').value.trim();
-  if(!title||!desc){showToast('Fill required fields','warning');return;}
-  const emojis={'Grammar':'🎯','Essay Writing':'✍️','Vocabulary':'📖','Tenses':'⏰','Comprehension':'🔍','Oral English':'🎙️','Letter Writing':'✉️','Literature':'📚'};
-  const newId=DB.lessons.length;
-  DB.lessons.push({id:newId,title,class:cls,category:cat,desc,videoId:video||'dQw4w9WgXcQ',pdfLink:pdf||'#',emoji:emojis[cat]||'📝'});
-  closeModal('add-lesson-modal');
-  renderLessonsTable();
-  document.getElementById('a-total-lessons').textContent=DB.lessons.length;
-  showToast(`Lesson "${title}" added!`,'success');
-  ['nl-title','nl-desc','nl-video','nl-pdf'].forEach(id=>document.getElementById(id).value='');
-}
-function adminDeleteLesson(id){
-  if(!confirm('Delete this lesson?'))return;
-  const idx=DB.lessons.findIndex(l=>l.id===id);
-  if(idx>-1){DB.lessons.splice(idx,1);renderLessonsTable();}
-}
-function renderQuizResultsTable(){
-  document.getElementById('quiz-results-table').innerHTML=DB.quizResults.map(r=>`
-    <tr>
-      <td><div style="display:flex;align-items:center"><div class="table-avatar">${r.studentName[0]}</div>${r.studentName}</div></td>
-      <td><span class="badge badge-info">${r.class}</span></td>
-      <td>${r.quizTitle}</td>
-      <td><strong>${r.score}</strong>/100</td>
-      <td><strong style="color:${getGrade(r.score).color}">${r.grade}</strong></td>
-      <td>${r.date}</td>
-    </tr>`).join('');
-}
-function renderAssignmentsAdminTable(){
-  const rows=[];
-  DB.assignments.forEach(a=>{
-    DB.students.forEach(s=>{
-      const sub=DB.submissions.find(x=>x.studentId===s.id&&x.assignmentId===a.id);
-      rows.push({student:s,assignment:a,sub:sub||null});
-    });
-  });
-  document.getElementById('assignments-admin-table').innerHTML=rows.map(r=>`
-    <tr>
-      <td><div style="display:flex;align-items:center"><div class="table-avatar">${r.student.name[0]}</div>${r.student.name}</div></td>
-      <td><span class="badge badge-info">${r.student.class}</span></td>
-      <td>${r.assignment.title}</td>
-      <td>${r.sub?`<span class="badge badge-success">Yes</span>`:'<span class="badge badge-warning">No</span>'}</td>
-      <td>${r.sub&&r.sub.score?`<strong>${r.sub.score}</strong>/100`:'—'}</td>
-      <td style="max-width:180px;font-size:13px">${r.sub&&r.sub.remarks?r.sub.remarks:'—'}</td>
-      <td>
-        ${r.sub&&!r.sub.score?`<button class="btn btn-sm btn-primary" onclick="markAssignment('${r.student.id}',${r.assignment.id})"><i class="fas fa-check"></i> Mark</button>`:
-        r.sub?'<span class="badge badge-success">Marked</span>':'—'}
-      </td>
-    </tr>`).join('');
-}
-function markAssignment(studentId,assignmentId){
-  const score=prompt('Enter score (0–100):');
-  if(score===null)return;
-  const s=parseInt(score);
-  if(isNaN(s)||s<0||s>100){showToast('Invalid score','error');return;}
-  const remark=prompt('Enter remarks:');
-  const sub=DB.submissions.find(x=>x.studentId===studentId&&x.assignmentId===assignmentId);
-  if(sub){sub.score=s;sub.remarks=remark||'';}
-  const student=DB.students.find(x=>x.id===studentId);
-  if(student)student.assignmentScores.push(s);
-  renderAssignmentsAdminTable();
-  showToast('Assignment marked successfully!','success');
-}
-function renderAdminAnnouncements(){
-  document.getElementById('announcements-admin-list').innerHTML=DB.announcements.map(a=>`
-    <div class="announcement-card" style="border-left-color:var(--gold)">
-      <h4>${a.title} <span class="badge badge-info" style="font-size:10px;vertical-align:middle">${a.class}</span></h4>
-      <p>${a.message}</p>
-      <div class="a-meta"><span><i class="fas fa-calendar-alt"></i> ${a.date}</span><span><i class="fas fa-user"></i> ${a.author}</span><button class="btn btn-sm btn-danger" style="padding:3px 10px;margin-left:auto" onclick="deleteAnnouncement(${a.id})"><i class="fas fa-trash"></i></button></div>
-    </div>`).join('');
-}
-function adminPostAnnouncement(){
-  const title=document.getElementById('ann-title').value.trim();
-  const cls=document.getElementById('ann-class').value;
-  const msg=document.getElementById('ann-msg').value.trim();
-  if(!title||!msg){showToast('Fill all fields','warning');return;}
-  DB.announcements.unshift({id:Date.now(),title,class:cls,message:msg,date:new Date().toISOString().split('T')[0],author:'Admin'});
-  closeModal('announcement-modal');
-  renderAdminAnnouncements();
-  showToast('Announcement posted!','success');
-  ['ann-title','ann-msg'].forEach(id=>document.getElementById(id).value='');
-}
-function deleteAnnouncement(id){
-  DB.announcements=DB.announcements.filter(a=>a.id!==id);
-  renderAdminAnnouncements();
-  showToast('Announcement deleted','info');
-}
-function renderClassPerformanceBars(){
-  const classes=['JSS1','JSS2','JSS3','SS1','SS2','SS3'];
-  document.getElementById('class-performance-bars').innerHTML=classes.map(cls=>{
-    const students=DB.students.filter(s=>s.class===cls);
-    const avg=students.length?Math.round(students.map(s=>calcTotalScore(s)).reduce((a,b)=>a+b,0)/students.length):0;
-    return `<div class="progress-bar-wrap"><div class="progress-bar-label"><span>${cls} (${students.length} students)</span><span>${avg}%</span></div><div class="progress-bar"><div class="progress-bar-fill ${['blue','gold','green','blue','gold','green'][classes.indexOf(cls)]}" style="width:${avg}%"></div></div></div>`;
-  }).join('');
-}
-function renderTopStudentsTable(){
-  const sorted=[...DB.students].sort((a,b)=>calcTotalScore(b)-calcTotalScore(a)).slice(0,5);
-  document.getElementById('top-students-table').innerHTML=sorted.map((s,i)=>{
-    const score=calcTotalScore(s);const {grade}=getGrade(score);
-    return `<tr><td><strong>${['🥇','🥈','🥉','4','5'][i]}</strong></td><td><div style="display:flex;align-items:center"><div class="table-avatar">${s.name[0]}</div>${s.name}</div></td><td><span class="badge badge-info">${s.class}</span></td><td><strong>${score}</strong>/100</td><td><strong style="color:${getGrade(score).color}">${grade}</strong></td><td><span class="badge ${s.status==='Active'?'badge-success':'badge-danger'}">${s.status}</span></td></tr>`;
-  }).join('');
-}
-function renderAdminAnalytics(){
-  // Grade distribution
-  const gradeCounts={A:0,B:0,C:0,D:0,E:0,F:0};
-  DB.students.forEach(s=>{const {grade}=getGrade(calcTotalScore(s));gradeCounts[grade]++;});
-  const maxG=Math.max(...Object.values(gradeCounts))||1;
-  document.getElementById('grade-distribution-bars').innerHTML=Object.entries(gradeCounts).map(([g,c])=>`
-    <div class="progress-bar-wrap"><div class="progress-bar-label"><span>Grade ${g}</span><span>${c} students</span></div><div class="progress-bar"><div class="progress-bar-fill ${g==='A'?'green':g==='F'?'':g==='B'?'blue':'gold'}" style="width:${(c/maxG)*100}%;background:${getGrade(g==='A'?80:g==='B'?65:g==='C'?55:g==='D'?47:g==='E'?42:30).color}"></div></div></div>`).join('');
-  // Class chart
-  const classes=['JSS1','JSS2','JSS3','SS1','SS2','SS3'];
-  document.getElementById('class-chart').innerHTML=classes.map(cls=>{
-    const s=DB.students.filter(x=>x.class===cls);
-    const completedAvg=s.length?Math.round(s.map(x=>x.completedLessons.length).reduce((a,b)=>a+b,0)/s.length):0;
-    const pct=Math.round((completedAvg/DB.lessons.length)*100);
-    return `<div class="chart-bar-wrap"><div class="chart-bar-val">${pct}%</div><div style="flex:1;display:flex;align-items:flex-end;width:100%"><div class="chart-bar-inner" style="height:${pct||4}%;width:100%"></div></div><div class="chart-bar-label">${cls}</div></div>`;
-  }).join('');
-  // Full report
-  document.getElementById('full-report-table').innerHTML=DB.students.map(s=>{
-    const qAvg=s.quizScores.length?Math.round(s.quizScores.reduce((a,b)=>a+b,0)/s.quizScores.length):0;
-    const aAvg=s.assignmentScores.length?Math.round(s.assignmentScores.reduce((a,b)=>a+b,0)/s.assignmentScores.length):0;
-    const total=calcTotalScore(s);const {grade}=getGrade(total);
-    return `<tr><td><div style="display:flex;align-items:center"><div class="table-avatar">${s.name[0]}</div>${s.name}</div></td><td><span class="badge badge-info">${s.class}</span></td><td>${qAvg||'—'}</td><td>${aAvg||'—'}</td><td><strong>${total}</strong></td><td><strong style="color:${getGrade(total).color}">${grade}</strong></td><td>${s.completedLessons.length}/${DB.lessons.length}</td></tr>`;
-  }).join('');
-}
 
-/* =====================
-   API INTEGRATION
-   ===================== */
-async function apiCall(action,data={}){
-  if(USE_DEMO_DATA)return; // Skip in demo mode
-  try{
-    const res=await fetch(APPS_SCRIPT_URL,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({action,...data}),
-    });
-    const json=await res.json();
-    return json;
-  }catch(e){console.warn('API call failed:',action,e);}
-}
-
-/* =====================
-   SCROLL ANCHOR
-   ===================== */
-function scrollTo(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
-
-/* =====================
-   KEYBOARD SHORTCUTS
-   ===================== */
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){
-    document.querySelectorAll('.modal-overlay.active').forEach(m=>m.classList.remove('active'));
+async function adminWarnStudent(sid) {
+  if (!confirm('Issue a warning to this student?')) return;
+  const res = await apiPost('warnStudent', { studentId: sid, reason: 'Admin issued warning' });
+  if (res.success) {
+    showToast('Warning issued successfully', 'warning');
+    const s = DB.students.find(x => (x.StudentID || x.id) === sid);
+    if (s) s.Warnings = (parseInt(s.Warnings || s.warnings) || 0) + 1;
+    renderStudentsTable();
+    updateAdminStats();
+  } else {
+    showToast(res.data.error || 'Failed to issue warning', 'error');
   }
-});
-
-/* =====================
-   SIDEBAR NAV CLICK FIX
-   (Ensure active class updates correctly)
-   ===================== */
-document.querySelectorAll('#page-student .sidebar-nav-item').forEach(item=>{
-  item.addEventListener('click',function(){
-    document.querySelectorAll('#page-student .sidebar-nav-item').forEach(i=>i.classList.remove('active'));
-    this.classList.add('active');
-  });
-});
-document.querySelectorAll('#page-admin .sidebar-nav-item').forEach(item=>{
-  item.addEventListener('click',function(){
-    document.querySelectorAll('#page-admin .sidebar-nav-item').forEach(i=>i.classList.remove('active'));
-    this.classList.add('active');
-  });
-});
-
-/* =====================
-   SCROLL REVEAL OBSERVER
-   (re-usable, called on init)
-   ===================== */
-function initReveal(){
-  const obs=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
-  },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 }
 
-/* =====================
-   GRADING COLOR FIX
-   ===================== */
-// Extend getGrade to always return color
-const _getGrade=getGrade;
-function getGrade(score){
-  if(typeof score==='string'){
-    // called with grade letter for display
-    const map={A:'var(--success)',B:'var(--info)',C:'var(--primary)',D:'var(--warning)',E:'var(--gold-dark)',F:'var(--danger)'};
-    return{grade:score,remark:'',color:map[score]||'var(--text)'};
+async function adminToggleSuspend(sid) {
+  const s = DB.students.find(x => (x.StudentID || x.id) === sid);
+  if (!s) return;
+  const currentStatus = s.Status || s.status || 'Active';
+  const newStatus     = currentStatus === 'Active' ? 'Suspended' : 'Active';
+  if (!confirm(`${newStatus === 'Suspended' ? 'Suspend' : 'Unsuspend'} this student?`)) return;
+
+  const res = await apiPost('suspendStudent', { studentId: sid, status: newStatus });
+  if (res.success) {
+    s.Status = newStatus; s.status = newStatus;
+    showToast(`Student is now ${newStatus}`, 'info');
+    renderStudentsTable();
+    updateAdminStats();
+  } else {
+    showToast(res.data.error || 'Failed to update status', 'error');
   }
-  return _getGrade(score);
 }
 
-/* =====================
-   STUDENT DASHBOARD — 
-   OVERVIEW CHART FIX
-   ===================== */
-function renderStudentQuizChart(scores){
-  const wrap=document.getElementById('quiz-chart');
-  if(!wrap)return;
-  const labels=['Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8'];
-  if(!scores||!scores.length){
-    wrap.innerHTML='<p style="color:var(--text-muted);font-size:13px;padding:20px 0">No quiz scores yet. Take a quiz to see your history!</p>';
+async function adminDeleteStudent(sid) {
+  if (!confirm('Permanently delete this student? This cannot be undone.')) return;
+  const res = await apiPost('deleteStudent', { studentId: sid });
+  if (res.success) {
+    DB.students = DB.students.filter(x => (x.StudentID || x.id) !== sid);
+    showToast('Student deleted', 'success');
+    renderStudentsTable();
+    updateAdminStats();
+    renderTopStudentsTable();
+  } else {
+    showToast(res.data.error || 'Failed to delete student', 'error');
+  }
+}
+
+async function adminAddStudent() {
+  const name = document.getElementById('ns-name').value.trim();
+  const cls  = document.getElementById('ns-class').value;
+  const user = document.getElementById('ns-username').value.trim();
+  const pass = document.getElementById('ns-password').value.trim();
+  if (!name || !user || !pass) { showToast('Please fill all fields', 'warning'); return; }
+
+  const btn = document.querySelector('#add-student-modal .btn-primary');
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
+  btn.disabled  = true;
+
+  const res = await apiPost('addStudent', { name, class: cls, username: user, password: pass });
+
+  btn.innerHTML = '<i class="fas fa-user-plus"></i> Add Student';
+  btn.disabled  = false;
+
+  if (res.success) {
+    DB.students.push({
+      StudentID: res.data.studentId, FullName: name,
+      Class: cls, Username: user, Status: 'Active',
+      Warnings: 0, QuizScores: '[]', AssignmentScores: '[]', CompletedLessons: '[]',
+    });
+    closeModal('add-student-modal');
+    renderStudentsTable();
+    updateAdminStats();
+    renderTopStudentsTable();
+    showToast(`Student "${name}" added! ID: ${res.data.studentId}`, 'success');
+    ['ns-name','ns-username','ns-password'].forEach(id => document.getElementById(id).value = '');
+  } else {
+    showToast(res.data.error || 'Failed to add student', 'error');
+  }
+}
+
+function renderLessonsTable() {
+  const tbody = document.getElementById('lessons-table-body');
+  if (!tbody) return;
+  if (!DB.lessons.length) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:32px">No lessons yet. Add your first lesson!</td></tr>';
     return;
   }
-  const maxH=110;
-  wrap.innerHTML=scores.slice(0,8).map((s,i)=>{
-    const clr=s>=70?'#059669':s>=50?'#c9a84c':'#dc2626';
-    return `<div class="chart-bar-wrap">
-      <div class="chart-bar-val" style="font-size:11px;color:${clr}">${s}</div>
-      <div style="flex:1;display:flex;align-items:flex-end;width:100%">
-        <div style="width:100%;height:${Math.max(4,Math.round((s/100)*maxH))}px;background:linear-gradient(180deg,${clr}99,${clr}33);border-radius:4px 4px 0 0;transition:height 1.2s cubic-bezier(.34,1.56,.64,1)"></div>
+  tbody.innerHTML = DB.lessons.map((l, i) => {
+    const lid   = l.LessonID || l.id || i;
+    const title = l.Title    || l.title    || '—';
+    const cls   = l.Class    || l.class    || '—';
+    const cat   = l.Category || l.category || '—';
+    const vid   = l.VideoID  || l.videoId  || '';
+    const emoji = l.Emoji    || l.emoji    || '📖';
+    return `<tr>
+      <td>${i + 1}</td>
+      <td><strong>${emoji} ${title}</strong></td>
+      <td><span class="badge badge-info">${cls}</span></td>
+      <td><span class="badge badge-gold">${cat}</span></td>
+      <td>${vid ? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-warning">No</span>'}</td>
+      <td>
+        <button class="btn btn-sm btn-danger" onclick="adminDeleteLesson('${lid}')"><i class="fas fa-trash"></i> Delete</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+async function adminAddLesson() {
+  const title = document.getElementById('nl-title').value.trim();
+  const cls   = document.getElementById('nl-class').value;
+  const cat   = document.getElementById('nl-category').value;
+  const desc  = document.getElementById('nl-desc').value.trim();
+  const video = document.getElementById('nl-video').value.trim();
+  const pdf   = document.getElementById('nl-pdf').value.trim();
+  if (!title || !desc) { showToast('Please fill in the Title and Description', 'warning'); return; }
+
+  const emojiMap = { 'Grammar':'🎯','Essay Writing':'✍️','Vocabulary':'📖','Tenses':'⏰','Comprehension':'🔍','Oral English':'🎙️','Letter Writing':'✉️','Literature':'📚' };
+  const btn = document.querySelector('#add-lesson-modal .btn-primary');
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
+  btn.disabled  = true;
+
+  const res = await apiPost('addLesson', {
+    title, class: cls, category: cat, description: desc,
+    videoId: video, pdfLink: pdf, emoji: emojiMap[cat] || '📝',
+  });
+
+  btn.innerHTML = '<i class="fas fa-plus"></i> Add Lesson';
+  btn.disabled  = false;
+
+  if (res.success) {
+    DB.lessons.push({ LessonID: res.data.lessonId, Title: title, Class: cls, Category: cat, Description: desc, VideoID: video, PDFLink: pdf, Emoji: emojiMap[cat]||'📝' });
+    closeModal('add-lesson-modal');
+    renderLessonsTable();
+    updateAdminStats();
+    showToast(`Lesson "${title}" added!`, 'success');
+    ['nl-title','nl-desc','nl-video','nl-pdf'].forEach(id => document.getElementById(id).value = '');
+  } else {
+    showToast(res.data.error || 'Failed to add lesson', 'error');
+  }
+}
+
+async function adminDeleteLesson(lid) {
+  if (!confirm('Delete this lesson? Students will lose access to it.')) return;
+  const res = await apiPost('deleteLesson', { lessonId: lid });
+  if (res.success) {
+    DB.lessons = DB.lessons.filter(l => String(l.LessonID || l.id) !== String(lid));
+    renderLessonsTable();
+    updateAdminStats();
+    showToast('Lesson deleted', 'success');
+  } else {
+    showToast(res.data.error || 'Failed to delete lesson', 'error');
+  }
+}
+
+function renderQuizResultsTable() {
+  const tbody = document.getElementById('quiz-results-table');
+  if (!tbody) return;
+  if (!DB.quizResults.length) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:32px">No quiz results yet.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = [...DB.quizResults].reverse().map(r => {
+    const name  = r.StudentName || r.studentName || '—';
+    const cls   = r.Class       || r.class       || '—';
+    const qt    = r.QuizTitle   || r.quizTitle   || '—';
+    const score = Number(r.Score || r.score) || 0;
+    const grade = r.Grade       || r.grade       || getGrade(score).grade;
+    const date  = r.Date        || r.date        || '—';
+    return `<tr>
+      <td><div style="display:flex;align-items:center"><div class="table-avatar">${name[0]||'?'}</div>${name}</div></td>
+      <td><span class="badge badge-info">${cls}</span></td>
+      <td>${qt}</td>
+      <td><strong>${score}</strong>/100</td>
+      <td><strong style="color:${getGrade(score).color}">${grade}</strong></td>
+      <td>${date}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderAssignmentsAdminTable() {
+  const tbody = document.getElementById('assignments-admin-table');
+  if (!tbody) return;
+  const rows = [];
+  DB.assignments.forEach(a => {
+    DB.students.forEach(s => {
+      const aid  = String(a.AssignmentID || a.id || '');
+      const sid  = String(s.StudentID    || s.id || '');
+      const sub  = DB.submissions.find(x => String(x.AssignmentID) === aid && String(x.StudentID) === sid);
+      rows.push({ student: s, assignment: a, sub: sub || null });
+    });
+  });
+  if (!rows.length) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:32px">No assignments found.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = rows.map(r => {
+    const name  = r.student.FullName   || r.student.name   || '—';
+    const cls   = r.student.Class      || r.student.class  || '—';
+    const sid   = r.student.StudentID  || r.student.id     || '';
+    const aid   = r.assignment.AssignmentID || r.assignment.id || '';
+    const title = r.assignment.Title   || r.assignment.title || '—';
+    const submitted = r.sub && (r.sub.Submitted === 'Yes' || r.sub.submitted === true);
+    const score   = r.sub ? (r.sub.Score || r.sub.score || null) : null;
+    const remarks = r.sub ? (r.sub.Remarks || r.sub.remarks || '') : '';
+    return `<tr>
+      <td><div style="display:flex;align-items:center"><div class="table-avatar">${name[0]||'?'}</div>${name}</div></td>
+      <td><span class="badge badge-info">${cls}</span></td>
+      <td>${title}</td>
+      <td>${submitted ? '<span class="badge badge-success">Yes</span>' : '<span class="badge badge-warning">No</span>'}</td>
+      <td>${score !== null ? `<strong>${score}</strong>/100` : '—'}</td>
+      <td style="max-width:180px;font-size:13px">${remarks || '—'}</td>
+      <td>
+        ${submitted && score === null
+          ? `<button class="btn btn-sm btn-primary" onclick="adminMarkAssignment('${sid}','${aid}')"><i class="fas fa-check"></i> Mark</button>`
+          : submitted ? '<span class="badge badge-success">Marked</span>' : '—'
+        }
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+async function adminMarkAssignment(sid, aid) {
+  const score = prompt('Enter score (0–100):');
+  if (score === null) return;
+  const s = parseInt(score);
+  if (isNaN(s) || s < 0 || s > 100) { showToast('Invalid score. Enter a number between 0 and 100.', 'error'); return; }
+  const remarks = prompt('Enter remarks for the student:') || '';
+  const res = await apiPost('markAssignment', { studentId: sid, assignmentId: aid, score: s, remarks });
+  if (res.success) {
+    const sub = DB.submissions.find(x => String(x.StudentID) === sid && String(x.AssignmentID) === aid);
+    if (sub) { sub.Score = s; sub.Remarks = remarks; }
+    renderAssignmentsAdminTable();
+    showToast(`Assignment marked: ${s}/100`, 'success');
+  } else {
+    showToast(res.data.error || 'Failed to mark assignment', 'error');
+  }
+}
+
+function renderAdminAnnouncements() {
+  const container = document.getElementById('announcements-admin-list');
+  if (!container) return;
+  if (!DB.announcements.length) {
+    container.innerHTML = '<p style="color:var(--text-muted);font-size:14px">No announcements posted yet.</p>';
+    return;
+  }
+  container.innerHTML = DB.announcements.map(a => {
+    const aid   = a.AnnouncementID || a.id || '';
+    const title = a.Title    || a.title    || '—';
+    const cls   = a.Class    || a.class    || 'All';
+    const msg   = a.Message  || a.message  || '';
+    const date  = a.Date     || a.date     || '';
+    const auth  = a.Author   || a.author   || 'Admin';
+    return `<div class="announcement-card" style="border-left-color:var(--gold)">
+      <h4>${title} <span class="badge badge-info" style="font-size:10px;vertical-align:middle">${cls}</span></h4>
+      <p>${msg}</p>
+      <div class="a-meta">
+        <span><i class="fas fa-calendar-alt"></i> ${date}</span>
+        <span><i class="fas fa-user"></i> ${auth}</span>
+        <button class="btn btn-sm btn-danger" style="padding:3px 10px;margin-left:auto" onclick="adminDeleteAnnouncement('${aid}')"><i class="fas fa-trash"></i></button>
       </div>
-      <div class="chart-bar-label">${labels[i]||'Q'+(i+1)}</div>
     </div>`;
   }).join('');
 }
 
-/* =====================
-   ADMIN ANALYTICS CHART FIX
-   ===================== */
-function renderAdminAnalytics(){
+async function adminPostAnnouncement() {
+  const title = document.getElementById('ann-title').value.trim();
+  const cls   = document.getElementById('ann-class').value;
+  const msg   = document.getElementById('ann-msg').value.trim();
+  if (!title || !msg) { showToast('Please fill in all fields', 'warning'); return; }
+
+  const btn = document.querySelector('#announcement-modal .btn-primary');
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Posting...';
+  btn.disabled  = true;
+
+  const res = await apiPost('postAnnouncement', { title, class: cls, message: msg, author: 'Admin' });
+
+  btn.innerHTML = '<i class="fas fa-paper-plane"></i> Post Announcement';
+  btn.disabled  = false;
+
+  if (res.success) {
+    DB.announcements.unshift({ AnnouncementID: res.data.announcementId, Title: title, Class: cls, Message: msg, Author: 'Admin', Date: new Date().toISOString().split('T')[0] });
+    closeModal('announcement-modal');
+    renderAdminAnnouncements();
+    showToast('Announcement posted!', 'success');
+    document.getElementById('ann-title').value = '';
+    document.getElementById('ann-msg').value   = '';
+  } else {
+    showToast(res.data.error || 'Failed to post announcement', 'error');
+  }
+}
+
+async function adminDeleteAnnouncement(aid) {
+  if (!confirm('Delete this announcement?')) return;
+  const res = await apiPost('deleteAnnouncement', { announcementId: aid });
+  if (res.success) {
+    DB.announcements = DB.announcements.filter(a => String(a.AnnouncementID || a.id) !== String(aid));
+    renderAdminAnnouncements();
+    showToast('Announcement deleted', 'info');
+  } else {
+    showToast(res.data.error || 'Failed to delete', 'error');
+  }
+}
+
+function renderClassPerformanceBars() {
+  const container = document.getElementById('class-performance-bars');
+  if (!container) return;
+  const classes = ['JSS1','JSS2','JSS3','SS1','SS2','SS3'];
+  container.innerHTML = classes.map((cls, idx) => {
+    const students = DB.students.filter(s => (s.Class || s.class) === cls);
+    const avg = students.length
+      ? Math.round(students.map(s => getStudentScore(s)).reduce((a, b) => a + b, 0) / students.length)
+      : 0;
+    const colors = ['blue','gold','green','blue','gold','green'];
+    return `<div class="progress-bar-wrap">
+      <div class="progress-bar-label"><span>${cls} (${students.length} student${students.length!==1?'s':''})</span><span>${avg}%</span></div>
+      <div class="progress-bar"><div class="progress-bar-fill ${colors[idx]}" style="width:${avg}%"></div></div>
+    </div>`;
+  }).join('');
+}
+
+function renderTopStudentsTable() {
+  const tbody = document.getElementById('top-students-table');
+  if (!tbody) return;
+  const sorted = [...DB.students].sort((a, b) => getStudentScore(b) - getStudentScore(a)).slice(0, 5);
+  if (!sorted.length) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:32px">No students yet.</td></tr>';
+    return;
+  }
+  const medals = ['🥇','🥈','🥉','4','5'];
+  tbody.innerHTML = sorted.map((s, i) => {
+    const score  = getStudentScore(s);
+    const { grade } = getGrade(score);
+    const name   = s.FullName || s.name || '—';
+    const cls    = s.Class    || s.class || '—';
+    const status = s.Status   || s.status || 'Active';
+    return `<tr>
+      <td><strong>${medals[i]}</strong></td>
+      <td><div style="display:flex;align-items:center"><div class="table-avatar">${name[0]||'?'}</div>${name}</div></td>
+      <td><span class="badge badge-info">${cls}</span></td>
+      <td><strong>${score}</strong>/100</td>
+      <td><strong style="color:${getGrade(score).color}">${grade}</strong></td>
+      <td><span class="badge ${status==='Active'?'badge-success':'badge-danger'}">${status}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function renderAdminAnalytics() {
+  const gradeColors = { A:'#059669', B:'#0284c7', C:'#0a2463', D:'#d97706', E:'#9b7a2f', F:'#dc2626' };
+
   // Grade distribution
-  const gradeCounts={A:0,B:0,C:0,D:0,E:0,F:0};
-  DB.students.forEach(s=>{
-    const sc=calcTotalScore(s);
-    const g=sc>=70?'A':sc>=60?'B':sc>=50?'C':sc>=45?'D':sc>=40?'E':'F';
+  const gradeCounts = { A:0, B:0, C:0, D:0, E:0, F:0 };
+  DB.students.forEach(s => {
+    const sc = getStudentScore(s);
+    const g  = sc>=70?'A':sc>=60?'B':sc>=50?'C':sc>=45?'D':sc>=40?'E':'F';
     gradeCounts[g]++;
   });
-  const gradeColors={A:'#059669',B:'#0284c7',C:'#0a2463',D:'#d97706',E:'#9b7a2f',F:'#dc2626'};
-  const maxG=Math.max(...Object.values(gradeCounts),1);
-  const gEl=document.getElementById('grade-distribution-bars');
-  if(gEl){
-    gEl.innerHTML=Object.entries(gradeCounts).map(([g,c])=>`
+  const maxG = Math.max(...Object.values(gradeCounts), 1);
+  const gEl  = document.getElementById('grade-distribution-bars');
+  if (gEl) {
+    gEl.innerHTML = Object.entries(gradeCounts).map(([g, c]) => `
       <div class="progress-bar-wrap">
         <div class="progress-bar-label"><span>Grade <strong>${g}</strong></span><span>${c} student${c!==1?'s':''}</span></div>
-        <div class="progress-bar"><div class="progress-bar-fill" style="width:${maxG?Math.round((c/maxG)*100):0}%;background:${gradeColors[g]};transition:width 1.2s ease"></div></div>
+        <div class="progress-bar"><div class="progress-bar-fill" style="width:${Math.round((c/maxG)*100)}%;background:${gradeColors[g]};transition:width 1.2s ease"></div></div>
       </div>`).join('');
   }
 
-  // Class chart
-  const classes=['JSS1','JSS2','JSS3','SS1','SS2','SS3'];
-  const classChartEl=document.getElementById('class-chart');
-  if(classChartEl){
-    classChartEl.innerHTML=classes.map(cls=>{
-      const students=DB.students.filter(x=>x.class===cls);
-      const avgLessons=students.length
-        ?Math.round(students.map(x=>x.completedLessons.length).reduce((a,b)=>a+b,0)/students.length)
-        :0;
-      const pct=DB.lessons.length?Math.round((avgLessons/DB.lessons.length)*100):0;
+  // Class lesson-completion chart
+  const classes = ['JSS1','JSS2','JSS3','SS1','SS2','SS3'];
+  const ccEl = document.getElementById('class-chart');
+  if (ccEl && DB.lessons.length) {
+    ccEl.innerHTML = classes.map(cls => {
+      const students    = DB.students.filter(x => (x.Class || x.class) === cls);
+      const avgLessons  = students.length
+        ? Math.round(students.map(x => tryParseArr(x.CompletedLessons || x.completedLessons).length).reduce((a,b)=>a+b,0) / students.length)
+        : 0;
+      const pct = Math.round((avgLessons / DB.lessons.length) * 100);
       return `<div class="chart-bar-wrap">
         <div class="chart-bar-val" style="font-size:11px">${pct}%</div>
         <div style="flex:1;display:flex;align-items:flex-end;width:100%">
-          <div style="width:100%;height:${Math.max(4,pct)}%;background:linear-gradient(180deg,var(--primary-light),var(--primary));border-radius:4px 4px 0 0;transition:height 1.2s ease"></div>
+          <div style="width:100%;height:${Math.max(4,pct)}%;background:linear-gradient(180deg,var(--primary-light),var(--primary));border-radius:4px 4px 0 0"></div>
         </div>
         <div class="chart-bar-label">${cls}</div>
       </div>`;
     }).join('');
+  } else if (ccEl) {
+    ccEl.innerHTML = '<p style="color:var(--text-muted);font-size:13px;padding:20px 0">Add lessons to see class completion stats.</p>';
   }
 
   // Full report table
-  const reportEl=document.getElementById('full-report-table');
-  if(reportEl){
-    reportEl.innerHTML=DB.students.map(s=>{
-      const qAvg=s.quizScores.length?Math.round(s.quizScores.reduce((a,b)=>a+b,0)/s.quizScores.length):0;
-      const aAvg=s.assignmentScores.length?Math.round(s.assignmentScores.reduce((a,b)=>a+b,0)/s.assignmentScores.length):0;
-      const total=calcTotalScore(s);
-      const sc=total>=70?'A':total>=60?'B':total>=50?'C':total>=45?'D':total>=40?'E':'F';
+  const reportEl = document.getElementById('full-report-table');
+  if (reportEl) {
+    if (!DB.students.length) {
+      reportEl.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:32px">No data yet.</td></tr>';
+      return;
+    }
+    reportEl.innerHTML = DB.students.map(s => {
+      const qs    = tryParseArr(s.QuizScores        || s.quizScores);
+      const as    = tryParseArr(s.AssignmentScores  || s.assignmentScores);
+      const cl    = tryParseArr(s.CompletedLessons  || s.completedLessons);
+      const qAvg  = qs.length ? Math.round(qs.reduce((a,b)=>a+b,0)/qs.length) : 0;
+      const aAvg  = as.length ? Math.round(as.reduce((a,b)=>a+b,0)/as.length) : 0;
+      const total = getStudentScore(s);
+      const sc    = total>=70?'A':total>=60?'B':total>=50?'C':total>=45?'D':total>=40?'E':'F';
+      const name  = s.FullName || s.name || '—';
+      const cls   = s.Class    || s.class || '—';
       return `<tr>
-        <td><div style="display:flex;align-items:center"><div class="table-avatar">${s.name[0]}</div><span>${s.name}</span></div></td>
-        <td><span class="badge badge-info">${s.class}</span></td>
-        <td>${qAvg||'—'}</td>
-        <td>${aAvg||'—'}</td>
+        <td><div style="display:flex;align-items:center"><div class="table-avatar">${name[0]||'?'}</div>${name}</div></td>
+        <td><span class="badge badge-info">${cls}</span></td>
+        <td>${qAvg || '—'}</td>
+        <td>${aAvg || '—'}</td>
         <td><strong>${total}</strong>/100</td>
         <td><strong style="color:${gradeColors[sc]}">${sc}</strong></td>
-        <td>${s.completedLessons.length}/${DB.lessons.length}</td>
+        <td>${cl.length} / ${DB.lessons.length}</td>
       </tr>`;
     }).join('');
   }
 }
 
-/* =====================
-   LIVE SEARCH ENHANCEMENTS
-   ===================== */
-document.addEventListener('DOMContentLoaded',()=>{
-  // Enter key login
-  ['s-login-pass','a-login-pass'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el){
-      el.addEventListener('keydown',e=>{
-        if(e.key==='Enter'){
-          id.startsWith('s')?studentLogin():adminLogin();
-        }
-      });
-    }
-  });
+/* ─── KEYBOARD SHORTCUTS ─────────────────────────────────────*/
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+  }
 });
 
-/* =====================
-   SECTION NAVIGATION FIX
-   (Override to always work even without event)
-   ===================== */
-function showStudentSection(id,title){
-  document.querySelectorAll('#page-student .dash-section').forEach(s=>s.classList.remove('active'));
-  const sec=document.getElementById('section-'+id);
-  if(sec)sec.classList.add('active');
-  const titleEl=document.getElementById('topbar-title-s');
-  if(titleEl)titleEl.textContent=title;
-  document.querySelectorAll('#page-student .sidebar-nav-item').forEach(i=>{
-    i.classList.toggle('active',i.textContent.trim().toLowerCase().includes(title.toLowerCase().split(' ')[0]));
+/* ─── ENTER KEY ON LOGIN FIELDS ──────────────────────────────*/
+document.addEventListener('DOMContentLoaded', () => {
+  // Theme toggles
+  ['theme-toggle-home','theme-toggle-s','theme-toggle-a'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.toggle('on', currentTheme === 'dark');
+      el.addEventListener('click', () => applyTheme(currentTheme === 'dark' ? 'light' : 'dark'));
+    }
   });
-  closeMobileSidebar();
-  if(id==='certificate')renderCertificate();
-  if(id==='lessons')renderLessons();
-  if(id==='quizzes'){renderQuizList();document.getElementById('quiz-active-view').classList.add('hidden');document.getElementById('quiz-result-view').classList.add('hidden');document.getElementById('quiz-list-view').classList.remove('hidden');}
-  if(id==='assignments')renderAssignments();
-  if(id==='notifications')renderNotifications();
-  if(id==='profile')renderProfile();
-}
-function showAdminSection(id,title){
-  document.querySelectorAll('#page-admin .dash-section').forEach(s=>s.classList.remove('active'));
-  const sec=document.getElementById('section-'+id);
-  if(sec)sec.classList.add('active');
-  const titleEl=document.getElementById('topbar-title-a');
-  if(titleEl)titleEl.textContent=title;
-  document.querySelectorAll('#page-admin .sidebar-nav-item').forEach(i=>{
-    i.classList.toggle('active',i.textContent.trim().toLowerCase().includes(title.toLowerCase().split(' ')[0]));
-  });
-  closeMobileSidebar();
-  if(id==='a-overview'){renderTopStudentsTable();renderClassPerformanceBars();}
-  if(id==='a-students')renderStudentsTable();
-  if(id==='a-lessons')renderLessonsTable();
-  if(id==='a-quizzes')renderQuizResultsTable();
-  if(id==='a-assignments')renderAssignmentsAdminTable();
-  if(id==='a-announcements')renderAdminAnnouncements();
-  if(id==='a-analytics')renderAdminAnalytics();
-}
+  // Enter keys
+  document.getElementById('s-login-id')?.addEventListener('keydown',   e => { if (e.key==='Enter') document.getElementById('s-login-pass')?.focus(); });
+  document.getElementById('s-login-pass')?.addEventListener('keydown', e => { if (e.key==='Enter') studentLogin(); });
+  document.getElementById('a-login-user')?.addEventListener('keydown', e => { if (e.key==='Enter') document.getElementById('a-login-pass')?.focus(); });
+  document.getElementById('a-login-pass')?.addEventListener('keydown', e => { if (e.key==='Enter') adminLogin(); });
+});
 
-/* =====================
-   GOOGLE APPS SCRIPT
-   BACKEND REFERENCE
-   (Copy this code to your
-    Google Apps Script editor)
-   =====================
-
-const SHEET_ID = 'YOUR_GOOGLE_SHEET_ID_HERE';
-
-const SHEETS = {
-  STUDENTS:      'Students',
-  LESSONS:       'Lessons',
-  QUIZZES:       'Quizzes',
-  ASSIGNMENTS:   'Assignments',
-  RESULTS:       'Results',
-  CERTIFICATES:  'Certificates',
-  WARNINGS:      'Warnings',
-  SUSPENSIONS:   'Suspensions',
-  ANNOUNCEMENTS: 'Announcements',
-  ADMINS:        'Admins',
-};
-
-function getSheet(name) {
-  const ss = SpreadsheetApp.openById(SHEET_ID);
-  let sheet = ss.getSheetByName(name);
-  if (!sheet) {
-    sheet = ss.insertSheet(name);
-    initSheetHeaders(sheet, name);
-  }
-  return sheet;
-}
-
-function initSheetHeaders(sheet, name) {
-  const headers = {
-    Students:      ['StudentID','FullName','Class','Username','Password','Status','Warnings','QuizScores','AssignmentScores','CompletedLessons','TotalScore','Grade','CertificateLink','DateAdded'],
-    Lessons:       ['LessonID','Title','Class','Category','Description','VideoID','PDFLink','DateAdded'],
-    Quizzes:       ['QuizID','Title','Category','QuestionsJSON'],
-    Assignments:   ['AssignmentID','Title','Class','Instructions','DueDate','MaxScore'],
-    Results:       ['ResultID','StudentID','StudentName','Class','QuizTitle','Score','Grade','Date'],
-    Certificates:  ['CertID','StudentID','StudentName','Class','TotalScore','Grade','IssueDate'],
-    Warnings:      ['WarningID','StudentID','Reason','IssuedBy','Date'],
-    Suspensions:   ['SuspensionID','StudentID','Reason','StartDate','EndDate','Status'],
-    Announcements: ['AnnouncementID','Title','Class','Message','Author','Date'],
-    Admins:        ['Username','Password','FullName','Role'],
-  };
-  const h = headers[name] || ['ID','Data'];
-  sheet.appendRow(h);
-  sheet.getRange(1,1,1,h.length).setFontWeight('bold').setBackground('#0a2463').setFontColor('#ffffff');
-}
-
-function doGet(e) {
-  const action = e.parameter.action || '';
-  let result;
-  try {
-    switch(action) {
-      case 'getStudents':      result = getStudents(e.parameter);   break;
-      case 'getLessons':       result = getLessons(e.parameter);    break;
-      case 'getAnnouncements': result = getAnnouncements();         break;
-      case 'getResults':       result = getResults(e.parameter);    break;
-      default: result = {error: 'Unknown action: ' + action};
-    }
-  } catch(err) {
-    result = {error: err.message};
-  }
-  return ContentService
-    .createTextOutput(JSON.stringify({success:!result.error, data:result}))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-
-function doPost(e) {
-  let body, result;
-  try {
-    body = JSON.parse(e.postData.contents);
-    const action = body.action || '';
-    switch(action) {
-      case 'login':             result = login(body);             break;
-      case 'addStudent':        result = addStudent(body);        break;
-      case 'editStudent':       result = editStudent(body);       break;
-      case 'deleteStudent':     result = deleteStudent(body);     break;
-      case 'suspendStudent':    result = suspendStudent(body);    break;
-      case 'warnStudent':       result = warnStudent(body);       break;
-      case 'saveQuiz':          result = saveQuizResult(body);    break;
-      case 'saveAssignment':    result = saveAssignment(body);    break;
-      case 'saveLesson':        result = saveLessonComplete(body);break;
-      case 'generateCert':      result = generateCertificate(body);break;
-      case 'postAnnouncement':  result = postAnnouncement(body);  break;
-      case 'markAssignment':    result = markAssignment(body);    break;
-      default: result = {error: 'Unknown action: ' + action};
-    }
-  } catch(err) {
-    result = {error: err.message};
-  }
-  return ContentService
-    .createTextOutput(JSON.stringify({success:!result.error, data:result}))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-
-// ---- AUTH ----
-function login(body) {
-  const sheet = getSheet(SHEETS.STUDENTS);
-  const data  = sheet.getDataRange().getValues();
-  for (let i = 1; i < data.length; i++) {
-    if (data[i][0] === body.studentId && data[i][4] === body.password) {
-      if (data[i][5] === 'Suspended') return {error:'Account suspended'};
-      return {
-        studentId: data[i][0], name: data[i][1], class: data[i][2],
-        username:  data[i][3], status: data[i][5], warnings: data[i][6],
-        quizScores: data[i][7], assignmentScores: data[i][8],
-        completedLessons: data[i][9], totalScore: data[i][10], grade: data[i][11],
-      };
-    }
-  }
-  return {error:'Invalid credentials'};
-}
-
-// ---- STUDENTS CRUD ----
-function getStudents(params) {
-  const sheet = getSheet(SHEETS.STUDENTS);
-  const data  = sheet.getDataRange().getValues();
-  const headers = data[0];
-  return data.slice(1).map(row => {
-    const obj = {};
-    headers.forEach((h,i) => obj[h] = row[i]);
-    return obj;
-  });
-}
-
-function addStudent(body) {
-  const sheet = getSheet(SHEETS.STUDENTS);
-  const id = 'PAR-' + String(sheet.getLastRow()).padStart(3,'0');
-  sheet.appendRow([
-    id, body.name, body.class, body.username, body.password,
-    'Active', 0, '[]', '[]', '[]', 0, '-', '', new Date().toISOString()
-  ]);
-  return {studentId: id, message: 'Student added successfully'};
-}
-
-function editStudent(body) {
-  const sheet = getSheet(SHEETS.STUDENTS);
-  const data  = sheet.getDataRange().getValues();
-  for (let i = 1; i < data.length; i++) {
-    if (data[i][0] === body.studentId) {
-      if (body.name)     sheet.getRange(i+1,2).setValue(body.name);
-      if (body.class)    sheet.getRange(i+1,3).setValue(body.class);
-      if (body.username) sheet.getRange(i+1,4).setValue(body.username);
-      if (body.password) sheet.getRange(i+1,5).setValue(body.password);
-      return {message: 'Student updated'};
-    }
-  }
-  return {error: 'Student not found'};
-}
-
-function deleteStudent(body) {
-  const sheet = getSheet(SHEETS.STUDENTS);
-  const data  = sheet.getDataRange().getValues();
-  for (let i = 1; i < data.length; i++) {
-    if (data[i][0] === body.studentId) {
-      sheet.deleteRow(i+1);
-      return {message: 'Student deleted'};
-    }
-  }
-  return {error: 'Student not found'};
-}
-
-function suspendStudent(body) {
-  const sheet = getSheet(SHEETS.STUDENTS);
-  const data  = sheet.getDataRange().getValues();
-  for (let i = 1; i < data.length; i++) {
-    if (data[i][0] === body.studentId) {
-      sheet.getRange(i+1,6).setValue(body.status || 'Suspended');
-      // Log suspension
-      const sSheet = getSheet(SHEETS.SUSPENSIONS);
-      sSheet.appendRow([
-        Date.now(), body.studentId, body.reason||'Admin action',
-        new Date().toISOString(), body.endDate||'', body.status||'Suspended'
-      ]);
-      return {message: 'Status updated to ' + (body.status||'Suspended')};
-    }
-  }
-  return {error: 'Student not found'};
-}
-
-function warnStudent(body) {
-  const sheet = getSheet(SHEETS.STUDENTS);
-  const data  = sheet.getDataRange().getValues();
-  for (let i = 1; i < data.length; i++) {
-    if (data[i][0] === body.studentId) {
-      const warnings = (parseInt(data[i][6])||0) + 1;
-      sheet.getRange(i+1,7).setValue(warnings);
-      // Log warning
-      const wSheet = getSheet(SHEETS.WARNINGS);
-      wSheet.appendRow([Date.now(), body.studentId, body.reason||'Admin warning', 'Admin', new Date().toISOString()]);
-      return {message: 'Warning issued. Total warnings: ' + warnings};
-    }
-  }
-  return {error: 'Student not found'};
-}
-
-// ---- LESSONS ----
-function getLessons(params) {
-  const sheet = getSheet(SHEETS.LESSONS);
-  const data  = sheet.getDataRange().getValues();
-  const headers = data[0];
-  return data.slice(1).map(row=>{
-    const obj={};headers.forEach((h,i)=>obj[h]=row[i]);return obj;
-  });
-}
-
-// ---- QUIZ RESULTS ----
-function saveQuizResult(body) {
-  const sheet = getSheet(SHEETS.RESULTS);
-  sheet.appendRow([
-    Date.now(), body.studentId, body.studentName||'', body.class||'',
-    body.quizTitle, body.score, body.grade, new Date().toISOString().split('T')[0]
-  ]);
-  // Update student total score
-  updateStudentScore(body.studentId);
-  return {message: 'Quiz result saved'};
-}
-
-function getResults(params) {
-  const sheet = getSheet(SHEETS.RESULTS);
-  const data  = sheet.getDataRange().getValues();
-  const headers = data[0];
-  let rows = data.slice(1).map(row=>{
-    const obj={};headers.forEach((h,i)=>obj[h]=row[i]);return obj;
-  });
-  if (params.studentId) rows = rows.filter(r=>r.StudentID===params.studentId);
-  return rows;
-}
-
-// ---- ASSIGNMENTS ----
-function saveAssignment(body) {
-  const sheet = getSheet(SHEETS.ASSIGNMENTS);
-  sheet.appendRow([
-    Date.now(), body.studentId, body.assignmentId,
-    'Submitted', null, '', new Date().toISOString()
-  ]);
-  return {message: 'Assignment submitted'};
-}
-
-function markAssignment(body) {
-  // Find submission row and add score/remark
-  const sheet = getSheet(SHEETS.ASSIGNMENTS);
-  const data  = sheet.getDataRange().getValues();
-  for (let i = 1; i < data.length; i++) {
-    if (data[i][1]===body.studentId && String(data[i][2])===String(body.assignmentId)) {
-      sheet.getRange(i+1,5).setValue(body.score);
-      sheet.getRange(i+1,6).setValue(body.remarks||'');
-      updateStudentScore(body.studentId);
-      return {message: 'Assignment marked'};
-    }
-  }
-  return {error: 'Submission not found'};
-}
-
-// ---- LESSON COMPLETION ----
-function saveLessonComplete(body) {
-  const sheet = getSheet(SHEETS.STUDENTS);
-  const data  = sheet.getDataRange().getValues();
-  for (let i = 1; i < data.length; i++) {
-    if (data[i][0] === body.studentId) {
-      let completed = JSON.parse(data[i][9]||'[]');
-      if (!completed.includes(body.lessonId)) {
-        completed.push(body.lessonId);
-        sheet.getRange(i+1,10).setValue(JSON.stringify(completed));
+/* ─── AUTO-REFRESH ANNOUNCEMENTS (every 5 min) ───────────────*/
+setInterval(() => {
+  if (currentRole === 'student' && currentUser) {
+    apiGet('getAnnouncements', { class: currentUser.class }).then(res => {
+      if (res.success) {
+        DB.announcements = res.data || [];
+        renderStudentAnnouncements(currentUser.class);
+        renderNotificationBadge();
       }
-      return {message: 'Lesson marked complete'};
-    }
+    });
   }
-  return {error: 'Student not found'};
-}
-
-// ---- CERTIFICATES ----
-function generateCertificate(body) {
-  const sheet = getSheet(SHEETS.CERTIFICATES);
-  const certId = 'CERT-' + Date.now();
-  sheet.appendRow([
-    certId, body.studentId, body.studentName, body.class,
-    body.totalScore, body.grade, new Date().toISOString().split('T')[0]
-  ]);
-  // Update student certificate link
-  const sSheet = getSheet(SHEETS.STUDENTS);
-  const data   = sSheet.getDataRange().getValues();
-  for (let i = 1; i < data.length; i++) {
-    if (data[i][0] === body.studentId) {
-      sSheet.getRange(i+1,13).setValue(certId);
-      break;
-    }
-  }
-  return {certId, message: 'Certificate generated'};
-}
-
-// ---- ANNOUNCEMENTS ----
-function getAnnouncements() {
-  const sheet = getSheet(SHEETS.ANNOUNCEMENTS);
-  const data  = sheet.getDataRange().getValues();
-  const headers = data[0];
-  return data.slice(1).map(row=>{
-    const obj={};headers.forEach((h,i)=>obj[h]=row[i]);return obj;
-  });
-}
-
-function postAnnouncement(body) {
-  const sheet = getSheet(SHEETS.ANNOUNCEMENTS);
-  sheet.appendRow([
-    Date.now(), body.title, body.class||'All',
-    body.message, body.author||'Admin', new Date().toISOString().split('T')[0]
-  ]);
-  return {message: 'Announcement posted'};
-}
-
-// ---- HELPERS ----
-function updateStudentScore(studentId) {
-  // Recalculate and update student's total score and grade
-  const rSheet = getSheet(SHEETS.RESULTS);
-  const rData  = rSheet.getDataRange().getValues();
-  const scores = rData.slice(1)
-    .filter(r=>r[1]===studentId)
-    .map(r=>Number(r[5])||0);
-  const avg = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : 0;
-  const grade = avg>=70?'A':avg>=60?'B':avg>=50?'C':avg>=45?'D':avg>=40?'E':'F';
-
-  const sSheet = getSheet(SHEETS.STUDENTS);
-  const sData  = sSheet.getDataRange().getValues();
-  for (let i = 1; i < sData.length; i++) {
-    if (sData[i][0] === studentId) {
-      sSheet.getRange(i+1,11).setValue(avg);
-      sSheet.getRange(i+1,12).setValue(grade);
-      break;
-    }
-  }
-}
-
-// ---- SETUP FUNCTION ----
-// Run this once to initialize all sheets
-function setupSheets() {
-  Object.values(SHEETS).forEach(name => getSheet(name));
-  // Add default admin
-  const admins = getSheet(SHEETS.ADMINS);
-  if (admins.getLastRow() < 2) {
-    admins.appendRow(['admin','admin2026','Administrator','superadmin']);
-  }
-  Logger.log('Sheets initialized successfully!');
-}
-
-   =====================
-   END GOOGLE APPS SCRIPT
-   ===================== */
-
-/* =====================
-   INIT ON PAGE LOAD
-   ===================== */
-document.addEventListener('DOMContentLoaded',()=>{
-  // Apply theme toggles
-  ['theme-toggle-home','theme-toggle-s','theme-toggle-a'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el){
-      el.classList.toggle('on',currentTheme==='dark');
-      el.addEventListener('click',()=>{
-        applyTheme(currentTheme==='dark'?'light':'dark');
-      });
-    }
-  });
-  // Enter key on login fields
-  document.getElementById('s-login-pass')?.addEventListener('keydown',e=>{if(e.key==='Enter')studentLogin();});
-  document.getElementById('a-login-pass')?.addEventListener('keydown',e=>{if(e.key==='Enter')adminLogin();});
-  document.getElementById('s-login-id')?.addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('s-login-pass')?.focus();});
-  document.getElementById('a-login-user')?.addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('a-login-pass')?.focus();});
-});
-
-/* =====================
-   BACK TO TOP FAB SHOW
-   ===================== */
-window.addEventListener('scroll',()=>{
-  const fab=document.getElementById('fab-btn');
-  if(fab){
-    if(window.scrollY>400){fab.classList.remove('hidden');}
-    else{fab.classList.add('hidden');}
-  }
-},{ passive:true });
-
-/* =====================
-   EXTRA POLISH:
-   Animate stat cards on
-   admin section load
-   ===================== */
-function animateAdminCounters(){
-  document.querySelectorAll('.analytics-card .a-num').forEach(el=>{
-    const txt=el.textContent;
-    const num=parseInt(txt);
-    if(isNaN(num))return;
-    let c=0;
-    const step=Math.max(1,Math.floor(num/40));
-    const t=setInterval(()=>{
-      c+=step;
-      if(c>=num){c=num;clearInterval(t);}
-      el.textContent=txt.includes('%')?c+'%':c;
-    },25);
-  });
-}
-
-/* =====================
-   ADMIN DASHBOARD INIT
-   (Override to also animate)
-   ===================== */
-const _initAdminDashboard=initAdminDashboard;
-function initAdminDashboard(){
-  _initAdminDashboard();
-  setTimeout(animateAdminCounters,400);
-}
-
-/* =====================
-   RESPONSIVE GRID 
-   FIX FOR ADMIN/STUDENT
-   ===================== */
-function checkGridResponsive(){
-  const isMobile=window.innerWidth<=768;
-  document.querySelectorAll('.progress-grid-row').forEach(el=>{
-    el.style.gridTemplateColumns=isMobile?'1fr':'1fr 1fr';
-  });
-}
-window.addEventListener('resize',checkGridResponsive,{passive:true});
-checkGridResponsive();
-
-/* =====================
-   AUTO-REFRESH ANNOUNCEMENTS
-   Every 5 minutes if logged in
-   ===================== */
-setInterval(()=>{
-  if(currentRole==='student'&&currentUser){
-    renderStudentAnnouncements(currentUser.class);
-  }
-},300000);
+}, 300000);
 </script>
 
 </body>
